@@ -1,24 +1,28 @@
 import { Button } from "@chakra-ui/react";
+
 import "./Navbar.css";
 
 
-const navLinks = [
-  {
-    label: "Inicio",
-    href: "#inicio",
-  },
-  {
-    label: "Servicios",
-    href: "#servicios",
-  },
-  {
-    label: "Contacto",
-    href: "#contacto",
-  },
-];
-
-
 function Navbar() {
+  const navLinks = [
+    {
+      id: 1,
+      label: "Inicio",
+      href: "/",
+    },
+    {
+      id: 2,
+      label: "Servicios",
+      href: "/#servicios",
+    },
+    {
+      id: 3,
+      label: "Contacto",
+      href: "/#contacto",
+    },
+  ];
+
+
   return (
     <nav className="navbar navbar-expand-lg whaly-navbar">
 
@@ -27,19 +31,17 @@ function Navbar() {
         {/* =========================
             LOGO
         ========================= */}
-
         <a
           className="navbar-brand whaly-navbar__brand"
-          href="#inicio"
+          href="/"
         >
           whaly
         </a>
 
 
         {/* =========================
-            BOTON HAMBURGUESA
+            BOTÓN MENÚ MÓVIL
         ========================= */}
-
         <button
           className="navbar-toggler whaly-navbar__toggler"
           type="button"
@@ -56,19 +58,17 @@ function Navbar() {
         {/* =========================
             CONTENIDO DEL NAVBAR
         ========================= */}
-
         <div
           className="collapse navbar-collapse"
           id="whalyNavbar"
         >
 
-          {/* LINKS */}
-
+          {/* ENLACES */}
           <div className="navbar-nav mx-auto whaly-navbar__links">
 
             {navLinks.map((link) => (
               <a
-                key={link.href}
+                key={link.id}
                 href={link.href}
                 className="nav-link whaly-navbar__link"
               >
@@ -79,25 +79,27 @@ function Navbar() {
           </div>
 
 
-          {/* BOTON ESCRIBENOS */}
-
+          {/* =========================
+              BOTÓN CONTACTO
+          ========================= */}
           <div className="whaly-navbar__actions">
 
             <Button
               asChild
-              className="whaly-navbar__contact-button"
               background="var(--whaly-mint)"
               color="var(--whaly-purple)"
               borderRadius="12px"
               paddingInline="28px"
               height="50px"
               fontWeight="700"
+              border="none"
               _hover={{
                 background: "var(--whaly-white)",
                 color: "var(--whaly-purple)",
+                transform: "translateY(-2px)",
               }}
             >
-              <a href="#contacto">
+              <a href="/#contacto">
                 Escríbenos
               </a>
             </Button>
