@@ -13,9 +13,7 @@ function Footer() {
       backgroundColor="var(--whaly-purple)"
       color="var(--whaly-white)"
     >
-      {/* =========================
-          FRANJA SUPERIOR
-      ========================= */}
+      {/*FRANJA SUPERIOR */}
       <Box
         height="16px"
         backgroundColor="var(--whaly-lavender)"
@@ -32,9 +30,7 @@ function Footer() {
           md: "24px",
         }}
       >
-        {/* =========================
-            COLUMNAS
-        ========================= */}
+        {/*COLUMNAS*/}
         <SimpleGrid
           columns={{
             base: 1,
@@ -45,7 +41,7 @@ function Footer() {
             md: "80px",
           }}
         >
-          {/* MARCA */}
+          {/*MARCA*/}
           <Stack
             gap="18px"
             align={{
@@ -74,7 +70,7 @@ function Footer() {
             </Text>
           </Stack>
 
-          {/* ENLACES RÁPIDOS */}
+          {/*ENLACES RÁPIDOS*/}
           <Stack
             gap="14px"
             align={{
@@ -131,7 +127,7 @@ function Footer() {
             </Box>
           </Stack>
 
-          {/* LEGAL */}
+          {/*LEGAL*/}
           <Stack
             gap="14px"
             align={{
@@ -189,9 +185,7 @@ function Footer() {
           </Stack>
         </SimpleGrid>
 
-        {/* =========================
-            PARTE INFERIOR
-        ========================= */}
+        {/*PARTE INFERIOR*/}
         <Box
           marginTop={{
             base: "55px",

@@ -61,9 +61,7 @@ function SeccionContacto() {
     >
       <Container maxW="1200px">
 
-        {/* =========================
-            ENCABEZADO
-        ========================= */}
+        {/*ENCABEZADO*/}
         <Stack
           gap="16px"
           align="center"
@@ -110,9 +108,7 @@ function SeccionContacto() {
           </Text>
         </Stack>
 
-        {/* =========================
-            CARDS DE CONTACTO
-        ========================= */}
+        {/*CARDS DE CONTACTO*/}
         <SimpleGrid
           columns={{
             base: 1,
@@ -169,7 +165,7 @@ function SeccionContacto() {
                       gap="16px"
                     >
 
-                      {/* CÍRCULO DEL ICONO */}
+                      {/*CÍRCULO DEL ICONO*/}
                       <Box
                         width="54px"
                         height="54px"
@@ -184,7 +180,7 @@ function SeccionContacto() {
                         <Icono size={23} />
                       </Box>
 
-                      {/* TIPO DE CONTACTO */}
+                      {/*TIPO DE CONTACTO*/}
                       <Text
                         color="var(--whaly-purple)"
                         fontSize="13px"
@@ -194,7 +190,7 @@ function SeccionContacto() {
                         {contacto.titulo}
                       </Text>
 
-                      {/* DATO */}
+                      {/*DATO*/}
                       <Text
                         color="var(--whaly-purple)"
                         fontSize="17px"
@@ -205,7 +201,7 @@ function SeccionContacto() {
                         {contacto.valor}
                       </Text>
 
-                      {/* LÍNEA DECORATIVA */}
+                      {/*LÍNEA DECORATIVA*/}
                       <Box
                         marginTop="auto"
                         width="62px"
@@ -221,9 +217,7 @@ function SeccionContacto() {
           })}
         </SimpleGrid>
 
-        {/* =========================
-            CARD INFERIOR
-        ========================= */}
+        {/*CARD INFERIOR*/}
         <Card.Root
           marginTop="40px"
           backgroundColor="var(--whaly-white)"

@@ -22,9 +22,7 @@ function PaginaInicio() {
   return (
     <div className="landing-container">
 
-      {/* =========================
-          HERO
-      ========================= */}
+      {/*HERO*/}
       <main
         className="hero"
         id="inicio"
@@ -51,9 +49,7 @@ function PaginaInicio() {
         </p>
 
 
-        {/* =========================
-            BOTONES
-        ========================= */}
+        {/*BOTONES*/}
         <div className="button-group">
 
           <Link
@@ -90,15 +86,11 @@ function App() {
   return (
     <>
 
-      {/* =========================
-          NAVBAR GLOBAL
-      ========================= */}
+      {/*NAVBAR GLOBAL*/}
       <Navbar />
 
 
-      {/* =========================
-          RUTAS
-      ========================= */}
+      {/*RUTAS*/}
       <Routes>
 
         {/* HOME */}

@@ -33,9 +33,7 @@ function Personas() {
       >
         <Container maxW="1200px">
 
-          {/* =========================
-              VOLVER
-          ========================= */}
+          {/*VOLVER*/}
           <Box
             marginBottom={{
               base: "40px",
@@ -60,9 +58,7 @@ function Personas() {
           </Box>
 
 
-          {/* =========================
-              ENCABEZADO
-          ========================= */}
+          {/*ENCABEZADO*/}
           <Stack
             align="center"
             textAlign="center"
@@ -110,9 +106,7 @@ function Personas() {
           </Stack>
 
 
-          {/* =========================
-              CARDS DE SEGUROS
-          ========================= */}
+          {/*CARDS DE SEGUROS*/}
           <SimpleGrid
             columns={{
               base: 1,
@@ -132,9 +126,7 @@ function Personas() {
           </SimpleGrid>
 
 
-          {/* =========================
-              CTA FINAL
-          ========================= */}
+          {/*CTA FINAL*/}
           <Box
             marginTop={{
               base: "60px",

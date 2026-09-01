@@ -1,7 +1,5 @@
 import { Button } from "@chakra-ui/react";
-
 import "./Navbar.css";
-
 
 function Navbar() {
   const navLinks = [
@@ -22,15 +20,11 @@ function Navbar() {
     },
   ];
 
-
   return (
     <nav className="navbar navbar-expand-lg whaly-navbar">
-
       <div className="container-fluid whaly-navbar__container">
 
-        {/* =========================
-            LOGO
-        ========================= */}
+        {/* LOGO */}
         <a
           className="navbar-brand whaly-navbar__brand"
           href="/"
@@ -38,10 +32,7 @@ function Navbar() {
           whaly
         </a>
 
-
-        {/* =========================
-            BOTÓN MENÚ MÓVIL
-        ========================= */}
+        {/* BOTÓN MENÚ MÓVIL */}
         <button
           className="navbar-toggler whaly-navbar__toggler"
           type="button"
@@ -54,18 +45,13 @@ function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-
-        {/* =========================
-            CONTENIDO DEL NAVBAR
-        ========================= */}
+        {/* CONTENIDO DEL NAVBAR */}
         <div
           className="collapse navbar-collapse"
           id="whalyNavbar"
         >
-
           {/* ENLACES */}
           <div className="navbar-nav mx-auto whaly-navbar__links">
-
             {navLinks.map((link) => (
               <a
                 key={link.id}
@@ -75,15 +61,10 @@ function Navbar() {
                 {link.label}
               </a>
             ))}
-
           </div>
 
-
-          {/* =========================
-              BOTÓN CONTACTO
-          ========================= */}
+          {/* BOTÓN CONTACTO */}
           <div className="whaly-navbar__actions">
-
             <Button
               asChild
               background="var(--whaly-mint)"
@@ -103,16 +84,11 @@ function Navbar() {
                 Escríbenos
               </a>
             </Button>
-
           </div>
-
         </div>
-
       </div>
-
     </nav>
   );
 }
-
 
 export default Navbar;
