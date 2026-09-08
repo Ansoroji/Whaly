@@ -50,9 +50,7 @@ function SeccionServicios() {
     >
       <Container maxW="1200px">
 
-        {/* =========================
-            ENCABEZADO
-        ========================= */}
+        {/*ENCABEZADO*/}
         <Stack
           gap="16px"
           align="center"

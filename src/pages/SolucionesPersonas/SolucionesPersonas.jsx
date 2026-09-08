@@ -52,9 +52,7 @@ function SolucionesPersonas() {
         backgroundColor="var(--whaly-light-blue)"
       >
 
-        {/* =========================
-            HERO
-        ========================= */}
+        {/*HERO*/}
         <Box
           backgroundColor="var(--whaly-mint)"
           py={{
@@ -121,9 +119,7 @@ function SolucionesPersonas() {
         </Box>
 
 
-        {/* =========================
-            INTRODUCCIÓN
-        ========================= */}
+        {/*INTRODUCCIÓN*/}
         <Box
           py={{
             base: "70px",
@@ -184,9 +180,7 @@ function SolucionesPersonas() {
             </Stack>
 
 
-            {/* =========================
-                CARDS
-            ========================= */}
+            {/*CARDS*/}
             <SimpleGrid
               columns={{
                 base: 1,
@@ -269,9 +263,7 @@ function SolucionesPersonas() {
         </Box>
 
 
-        {/* =========================
-            MENSAJE CERCANO
-        ========================= */}
+        {/* MENSAJE CERCANO*/}
         <Box
           py={{
             base: "30px",
@@ -331,9 +323,7 @@ function SolucionesPersonas() {
         </Box>
 
 
-        {/* =========================
-            CTA
-        ========================= */}
+        {/*CTA*/}
         <Box
           py={{
             base: "80px",

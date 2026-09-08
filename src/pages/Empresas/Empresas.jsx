@@ -12,8 +12,9 @@ import { Link } from "react-router-dom";
 import TarjetaSeguro from "../../components/TarjetaSeguro/TarjetaSeguro";
 import Footer from "../../components/Footer/Footer";
 
-import { segurosEmpresas } from "../../datos/seguros";
+import seguros from "../../datos/seguros.json";
 
+const { segurosEmpresas } = seguros;
 
 function Empresas() {
   return (
@@ -33,9 +34,7 @@ function Empresas() {
       >
         <Container maxW="1200px">
 
-          {/* =========================
-              VOLVER
-          ========================= */}
+          {/*VOLVER*/}
           <Box
             marginBottom={{
               base: "40px",
@@ -60,9 +59,7 @@ function Empresas() {
           </Box>
 
 
-          {/* =========================
-              ENCABEZADO
-          ========================= */}
+          {/*ENCABEZADO*/}
           <Stack
             align="center"
             textAlign="center"
@@ -109,9 +106,7 @@ function Empresas() {
           </Stack>
 
 
-          {/* =========================
-              CARDS DE SEGUROS
-          ========================= */}
+          {/*CARDS DE SEGUROS*/}
           <SimpleGrid
             columns={{
               base: 1,
@@ -131,9 +126,7 @@ function Empresas() {
           </SimpleGrid>
 
 
-          {/* =========================
-              CTA FINAL
-          ========================= */}
+          {/*CTA FINAL*/}
           <Box
             marginTop={{
               base: "60px",

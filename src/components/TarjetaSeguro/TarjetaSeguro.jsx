@@ -31,9 +31,7 @@ function TarjetaSeguro({
       }}
     >
 
-      {/* =========================
-          IMAGEN
-      ========================= */}
+      {/*IMAGEN*/}
       <Box
         height={{
           base: "220px",
@@ -59,9 +57,7 @@ function TarjetaSeguro({
       </Box>
 
 
-      {/* =========================
-          CONTENIDO
-      ========================= */}
+      {/*CONTENIDO*/}
       <Card.Body
         padding={{
           base: "24px",
