@@ -11,29 +11,29 @@ import SolucionesEmpresas from "./pages/SolucionesEmpresas/SolucionesEmpresas";
 
 import Personas from "./pages/Personas/Personas";
 import Empresas from "./pages/Empresas/Empresas";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 import "./App.css";
 
-
-
-
 function App() {
+   const location = useLocation();
+
+  useEffect(() => {
+    if (!location?.pathname) return;
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
     <>
-
       {/*NAVBAR GLOBAL*/}
       <Navbar />
-
 
       {/*RUTAS*/}
       <Routes>
 
         {/* HOME */}
-        <Route
-          path="/"
-          element={<PaginaInicio />}
-        />
-
+        <Route path="/" element={<PaginaInicio />}/>
 
         {/* EXPLICACIÓN PERSONAS */}
         <Route
