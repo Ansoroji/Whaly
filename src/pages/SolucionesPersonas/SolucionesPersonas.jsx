@@ -52,7 +52,7 @@ function SolucionesPersonas() {
         backgroundColor="var(--whaly-light-blue)"
       >
 
-        {/*HERO*/}
+        {/* HERO */}
         <Box
           backgroundColor="var(--whaly-mint)"
           py={{
@@ -119,7 +119,7 @@ function SolucionesPersonas() {
         </Box>
 
 
-        {/*INTRODUCCIÓN*/}
+        {/* INTRODUCCIÓN */}
         <Box
           py={{
             base: "70px",
@@ -141,6 +141,7 @@ function SolucionesPersonas() {
                 md: "65px",
               }}
             >
+
               <Text
                 color="var(--whaly-purple)"
                 fontSize="14px"
@@ -149,6 +150,7 @@ function SolucionesPersonas() {
               >
                 ¿POR QUÉ TENER UN SEGURO?
               </Text>
+
 
               <Heading
                 as="h2"
@@ -164,6 +166,7 @@ function SolucionesPersonas() {
                 Porque hay cosas que vale la pena cuidar
               </Heading>
 
+
               <Text
                 maxW="760px"
                 color="var(--whaly-purple)"
@@ -177,10 +180,11 @@ function SolucionesPersonas() {
                 encontrar opciones que realmente tengan sentido para tu vida,
                 tus planes y las personas que te importan.
               </Text>
+
             </Stack>
 
 
-            {/*CARDS*/}
+            {/* CARDS */}
             <SimpleGrid
               columns={{
                 base: 1,
@@ -188,6 +192,7 @@ function SolucionesPersonas() {
               }}
               gap="28px"
             >
+
               {razones.map((razon) => {
                 const Icono = razon.icono;
 
@@ -208,12 +213,14 @@ function SolucionesPersonas() {
                         "0 14px 28px rgba(0, 0, 0, 0.12)",
                     }}
                   >
+
                     <Card.Body
                       padding={{
                         base: "28px",
                         md: "32px",
                       }}
                     >
+
                       <Stack
                         gap="20px"
                         align="flex-start"
@@ -253,17 +260,20 @@ function SolucionesPersonas() {
                         </Text>
 
                       </Stack>
+
                     </Card.Body>
+
                   </Card.Root>
                 );
               })}
+
             </SimpleGrid>
 
           </Container>
         </Box>
 
 
-        {/* MENSAJE CERCANO*/}
+        {/* MENSAJE CERCANO */}
         <Box
           py={{
             base: "30px",
@@ -284,11 +294,13 @@ function SolucionesPersonas() {
                 md: "55px",
               }}
             >
+
               <Stack
                 textAlign="center"
                 align="center"
                 gap="18px"
               >
+
                 <Heading
                   as="h2"
                   color="var(--whaly-purple)"
@@ -301,6 +313,7 @@ function SolucionesPersonas() {
                 >
                   No se trata de tener todos los seguros
                 </Heading>
+
 
                 <Text
                   maxW="720px"
@@ -316,14 +329,16 @@ function SolucionesPersonas() {
                   complicadas y elegir con tranquilidad lo que funciona
                   mejor para ti.
                 </Text>
+
               </Stack>
+
             </Box>
 
           </Container>
         </Box>
 
 
-        {/*CTA*/}
+        {/* CTA */}
         <Box
           py={{
             base: "80px",
@@ -381,30 +396,94 @@ function SolucionesPersonas() {
               </Text>
 
 
-              <Box
-                as={Link}
-                to="/personas"
+              {/* BOTONES */}
+              <Stack
+                direction="column"
+                gap="12px"
                 marginTop="10px"
-                backgroundColor="var(--whaly-purple)"
-                color="var(--whaly-white)"
-                padding="16px 30px"
-                borderRadius="12px"
-                fontSize="16px"
-                fontWeight="700"
-                display="inline-block"
-                transition="
-                  transform 0.2s ease,
-                  background-color 0.2s ease
-                "
-                _hover={{
-                  transform: "translateY(-3px)",
-                  backgroundColor: "var(--whaly-mint)",
-                  color: "var(--whaly-purple)",
-                  textDecoration: "none",
-                }}
+                width="100%"
+                maxW="430px"
+                align="center"
               >
-                Conoce nuestros seguros para personas →
-              </Box>
+
+                {/* CUESTIONARIO */}
+                <Box
+                  as={Link}
+                  to="/Cuestionario"
+                  width="100%"
+                  minHeight="58px"
+                  backgroundColor="transparent"
+                  color="var(--whaly-purple)"
+                  padding="16px 30px"
+                  borderRadius="12px"
+                  border="2px solid var(--whaly-purple)"
+                  fontSize="16px"
+                  fontWeight="700"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  textAlign="center"
+                  transition="
+                    transform 0.2s ease,
+                    background-color 0.2s ease,
+                    color 0.2s ease
+                  "
+                  _hover={{
+                    transform: "translateY(-3px)",
+                    backgroundColor: "var(--whaly-purple)",
+                    color: "var(--whaly-white)",
+                    textDecoration: "none",
+                  }}
+                >
+                  Encuentra tu seguro ideal →
+                </Box>
+
+
+                {/* SEPARADOR */}
+                <Text
+                  color="var(--whaly-purple)"
+                  fontSize="16px"
+                  fontWeight="700"
+                  lineHeight="1"
+                  py="2px"
+                >
+                  ó
+                </Text>
+
+
+                {/* VER SEGUROS */}
+                <Box
+                  as={Link}
+                  to="/personas"
+                  width="100%"
+                  minHeight="58px"
+                  backgroundColor="var(--whaly-purple)"
+                  color="var(--whaly-white)"
+                  padding="16px 30px"
+                  borderRadius="12px"
+                  border="2px solid var(--whaly-purple)"
+                  fontSize="16px"
+                  fontWeight="700"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  textAlign="center"
+                  transition="
+                    transform 0.2s ease,
+                    background-color 0.2s ease,
+                    color 0.2s ease
+                  "
+                  _hover={{
+                    transform: "translateY(-3px)",
+                    backgroundColor: "var(--whaly-mint)",
+                    color: "var(--whaly-purple)",
+                    textDecoration: "none",
+                  }}
+                >
+                  Conoce nuestros seguros para personas →
+                </Box>
+
+              </Stack>
 
             </Stack>
 

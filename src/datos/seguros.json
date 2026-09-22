@@ -2,65 +2,76 @@
   "segurosPersonas": [
     {
       "id": 1,
+      "codigo": "vida",
       "titulo": "Seguro de Vida",
       "descripcion": "Protege la estabilidad económica de tu familia ante situaciones inesperadas.",
       "imagen": "/images/seguros/personas/vida.webp"
     },
     {
       "id": 2,
+      "codigo": "movilidad",
       "titulo": "Seguro de Movilidad",
       "descripcion": "Protege tu vehículo y tu patrimonio frente a imprevistos en la carretera.",
       "imagen": "/images/seguros/personas/movilidad.webp"
     },
     {
       "id": 3,
+      "codigo": "pension",
       "titulo": "Renta Pensión",
       "descripcion": "Planea desde hoy los ingresos que quieres recibir durante tu jubilación.",
       "imagen": "/images/seguros/personas/renta-pension.webp"
     },
     {
       "id": 4,
+      "codigo": "educacion",
       "titulo": "Renta Educación",
       "descripcion": "Planifica con anticipación los recursos para la educación de tus hijos.",
       "imagen": "/images/seguros/personas/renta-educacion.webp"
     },
     {
       "id": 5,
+      "codigo": "salud",
       "titulo": "Seguros de Salud",
       "descripcion": "Opciones de protección para complementar y fortalecer tu atención en salud.",
       "imagen": "/images/seguros/personas/salud.webp"
     },
     {
       "id": 6,
+      "codigo": "viaje",
       "titulo": "Seguros de Viaje",
       "descripcion": "Viaja con respaldo ante situaciones inesperadas durante tus vacaciones o trabajo.",
       "imagen": "/images/seguros/personas/viaje.webp"
     },
     {
       "id": 7,
+      "codigo": "hogar",
       "titulo": "Seguros de Hogar",
       "descripcion": "Protege tu vivienda y patrimonio frente a diferentes riesgos.",
       "imagen": "/images/seguros/personas/hogar.webp"
     },
     {
       "id": 8,
+      "codigo": "credito",
       "titulo": "Crédito Protegido",
       "descripcion": "Encuentra alternativas para proteger tus créditos y obligaciones financieras.",
       "imagen": "/images/seguros/personas/credito-protegido.webp"
     },
     {
       "id": 9,
+      "codigo": "mascotas",
       "titulo": "Seguro para Mascotas",
       "descripcion": "Protección pensada para cuidar la salud y bienestar de tus mascotas.",
       "imagen": "/images/seguros/personas/mascotas.webp"
     },
     {
       "id": 10,
+      "codigo": "responsabilidad",
       "titulo": "Responsabilidad Civil",
       "descripcion": "Protege tu patrimonio frente a daños que puedas ocasionar a terceros.",
       "imagen": "/images/seguros/personas/responsabilidad-civil.webp"
     }
   ],
+
   "segurosEmpresas": [
     {
       "id": 1,

@@ -1,0 +1,223 @@
+{
+  "configuracion": {
+    "cantidadRecomendaciones": 4
+  },
+
+  "perfiles": {
+    "Estoy empezando mi vida laboral": "Constructor de la Independencia",
+    "Tengo ingresos estables": "Constructor de Patrimonio",
+    "Estoy formando una familia": "Arquitecto de Nuevos Comienzos",
+    "Tengo familia y responsabilidades económicas": "Protector de los Tuyos",
+    "Estoy cerca a la jubilación": "Planificador de Tranquilidad"
+  },
+
+  "momentoVida": {
+    "Estoy empezando mi vida laboral": {
+      "salud": 3,
+      "movilidad": 2,
+      "credito": 2
+    },
+
+    "Tengo ingresos estables": {
+      "salud": 2,
+      "hogar": 2,
+      "vida": 2,
+      "credito": 1
+    },
+
+    "Estoy formando una familia": {
+      "vida": 5,
+      "salud": 3,
+      "educacion": 3,
+      "hogar": 2
+    },
+
+    "Tengo familia y responsabilidades económicas": {
+      "vida": 6,
+      "salud": 3,
+      "hogar": 3,
+      "educacion": 3,
+      "responsabilidad": 1
+    },
+
+    "Estoy cerca a la jubilación": {
+      "pension": 6,
+      "salud": 4,
+      "vida": 2
+    }
+  },
+
+  "posesiones": {
+    "Vehículo": {
+      "movilidad": 7
+    },
+
+    "Propiedad raíz": {
+      "hogar": 7,
+      "responsabilidad": 2
+    },
+
+    "Hijos": {
+      "vida": 5,
+      "educacion": 7,
+      "salud": 2
+    },
+
+    "Mascota": {
+      "mascotas": 7
+    },
+
+    "Ninguno": {}
+  },
+
+  "preocupacion": {
+    "Mis ingresos": {
+      "vida": 5,
+      "credito": 3
+    },
+
+    "Mi salud": {
+      "salud": 7
+    },
+
+    "Mi vivienda o bienes": {
+      "hogar": 7,
+      "responsabilidad": 3
+    },
+
+    "Mi estabilidad familiar": {
+      "vida": 7,
+      "salud": 2,
+      "educacion": 2
+    }
+  },
+
+  "preparacion": {
+    "1": {
+      "vida": 2,
+      "salud": 2,
+      "hogar": 1
+    },
+
+    "2": {
+      "vida": 2,
+      "salud": 2
+    },
+
+    "3": {
+      "vida": 1,
+      "salud": 1
+    },
+
+    "4": {},
+
+    "5": {}
+  },
+
+  "riesgos": {
+    "Prefiero evitarlos": {
+      "vida": 2,
+      "salud": 2,
+      "hogar": 1,
+      "responsabilidad": 1
+    },
+
+    "Los asumo si no son muy altos": {
+      "vida": 1,
+      "salud": 1
+    },
+
+    "Prefiero estar cubierto siempre": {
+      "vida": 3,
+      "salud": 3,
+      "hogar": 2,
+      "responsabilidad": 2
+    }
+  },
+
+  "gastoSeguros": {
+    "Es un gasto innecesario": {
+      "tipoCliente": "sensible_precio"
+    },
+
+    "Solo lo pago si es obligatorio": {
+      "tipoCliente": "cobertura_esencial"
+    },
+
+    "Es una inversión en tranquilidad": {
+      "tipoCliente": "proteccion_amplia"
+    }
+  },
+
+  "mensualidad": {
+    "Que sea barato y accesible": {
+      "preferencia": "economico"
+    },
+
+    "Que tenga beneficios claros": {
+      "preferencia": "beneficios"
+    },
+
+    "Que me brinde seguridad a largo plazo": {
+      "preferencia": "largo_plazo",
+      "puntos": {
+        "pension": 3,
+        "educacion": 2,
+        "vida": 1
+      }
+    }
+  },
+
+  "eleccionSeguro": {
+    "Con alguien que me asesore": {
+      "canal": "asesor"
+    },
+
+    "Investigando por mi cuenta": {
+      "canal": "autogestion"
+    },
+
+    "Por recomendación de alguien cercano": {
+      "canal": "recomendacion"
+    }
+  },
+
+  "largoPlazo": {
+    "1": {},
+
+    "2": {},
+
+    "3": {
+      "pension": 1,
+      "educacion": 1
+    },
+
+    "4": {
+      "pension": 3,
+      "educacion": 2,
+      "vida": 1
+    },
+
+    "5": {
+      "pension": 5,
+      "educacion": 4,
+      "vida": 2
+    }
+  },
+
+  "futuro": {
+    "La educación": {
+      "educacion": 8
+    },
+
+    "La pensión": {
+      "pension": 8
+    },
+
+    "Seguro de vida": {
+      "vida": 8
+    },
+
+    "Ninguno": {}
+  }
+}
