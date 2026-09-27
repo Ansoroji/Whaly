@@ -1,88 +1,135 @@
 import {
   Routes,
   Route,
+  useLocation,
 } from "react-router-dom";
 
-import Navbar from "./components/Navbar/Navbar";
+import {
+  useEffect,
+} from "react";
 
-import PaginaInicio from "./pages/PaginaInicio/PaginaInicio";
-import SolucionesPersonas from "./pages/SolucionesPersonas/SolucionesPersonas";
-import SolucionesEmpresas from "./pages/SolucionesEmpresas/SolucionesEmpresas";
-import Personas from "./pages/Personas/Personas";
-import Empresas from "./pages/Empresas/Empresas";
-import Cuestionario from "./pages/Cuestionario/Cuestionario";
+import Navbar
+  from "./components/Navbar/Navbar";
 
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import PaginaInicio
+  from "./pages/PaginaInicio/PaginaInicio";
+
+import SolucionesPersonas
+  from "./pages/SolucionesPersonas/SolucionesPersonas";
+
+import SolucionesEmpresas
+  from "./pages/SolucionesEmpresas/SolucionesEmpresas";
+
+import Personas
+  from "./pages/Personas/Personas";
+
+import Empresas
+  from "./pages/Empresas/Empresas";
+
+import Cuestionario
+  from "./pages/Cuestionario/Cuestionario";
+
+import Perfil
+  from "./pages/Perfil/Perfil";
 
 import "./App.css";
 
 
 function App() {
-  const location = useLocation();
+
+  const location =
+    useLocation();
+
 
   useEffect(() => {
-    if (!location?.pathname) return;
 
-    window.scrollTo(0, 0);
-  }, [location.pathname]);
+    if (
+      !location?.pathname
+    ) {
+      return;
+    }
+
+
+    window.scrollTo(
+      0,
+      0
+    );
+
+  }, [
+    location.pathname,
+  ]);
 
 
   return (
+
     <>
 
-      {/* NAVBAR GLOBAL */}
       <Navbar />
 
 
-      {/* RUTAS */}
       <Routes>
 
-        {/* HOME */}
         <Route
           path="/"
-          element={<PaginaInicio />}
+          element={
+            <PaginaInicio />
+          }
         />
 
 
-        {/* EXPLICACIÓN PERSONAS */}
         <Route
           path="/soluciones-personas"
-          element={<SolucionesPersonas />}
+          element={
+            <SolucionesPersonas />
+          }
         />
 
 
-        {/* CATÁLOGO PERSONAS */}
         <Route
           path="/personas"
-          element={<Personas />}
+          element={
+            <Personas />
+          }
         />
 
 
-        {/* EXPLICACIÓN EMPRESAS */}
         <Route
           path="/soluciones-empresas"
-          element={<SolucionesEmpresas />}
+          element={
+            <SolucionesEmpresas />
+          }
         />
 
 
-        {/* CATÁLOGO EMPRESAS */}
         <Route
           path="/empresas"
-          element={<Empresas />}
+          element={
+            <Empresas />
+          }
         />
 
 
-        {/* CUESTIONARIO */}
         <Route
-          path="/Cuestionario"
-          element={<Cuestionario />}
+          path="/cuestionario"
+          element={
+            <Cuestionario />
+          }
+        />
+
+
+        <Route
+          path="/perfil"
+          element={
+            <Perfil />
+          }
         />
 
       </Routes>
 
     </>
+
   );
+
 }
 
 

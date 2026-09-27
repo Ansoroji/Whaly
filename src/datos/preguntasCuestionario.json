@@ -1,0 +1,116 @@
+[
+  {
+    "id": "momentoVida",
+    "tipo": "unica",
+    "pregunta": "¿En qué momento de vida te encuentras?",
+    "opciones": [
+      "Estoy empezando mi vida laboral",
+      "Tengo ingresos estables",
+      "Estoy formando una familia",
+      "Tengo familia y responsabilidades económicas",
+      "Estoy cerca a la jubilación"
+    ]
+  },
+  {
+    "id": "posesiones",
+    "tipo": "multiple",
+    "pregunta": "¿Cuáles de estos tienes actualmente?",
+    "ayuda": "Selecciona todos los que apliquen",
+    "opciones": [
+      "Vehículo",
+      "Propiedad raíz",
+      "Hijos",
+      "Mascota",
+      "Ninguno"
+    ]
+  },
+  {
+    "id": "preocupacion",
+    "tipo": "unica",
+    "pregunta": "¿Qué te preocuparía más perder hoy?",
+    "opciones": [
+      "Mis ingresos",
+      "Mi salud",
+      "Mi vivienda o bienes",
+      "Mi estabilidad familiar"
+    ]
+  },
+  {
+    "id": "preparacion",
+    "tipo": "escala",
+    "pregunta": "¿Qué tan preparado te sientes ante un imprevisto?",
+    "ayuda": "1 siendo poco preparado y 5 siendo completamente preparado",
+    "opciones": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  {
+    "id": "riesgos",
+    "tipo": "unica",
+    "pregunta": "¿Cómo sueles actuar frente a riesgos?",
+    "opciones": [
+      "Prefiero evitarlos",
+      "Los asumo si no son muy altos",
+      "Prefiero estar cubierto siempre"
+    ]
+  },
+  {
+    "id": "gastoSeguros",
+    "tipo": "unica",
+    "pregunta": "¿Cómo ves el gasto en seguros?",
+    "opciones": [
+      "Es un gasto innecesario",
+      "Solo lo pago si es obligatorio",
+      "Es una inversión en tranquilidad"
+    ]
+  },
+  {
+    "id": "mensualidad",
+    "tipo": "unica",
+    "pregunta": "¿Qué valoras más al pagar una mensualidad?",
+    "opciones": [
+      "Que sea barato y accesible",
+      "Que tenga beneficios claros",
+      "Que me brinde seguridad a largo plazo"
+    ]
+  },
+  {
+    "id": "eleccionSeguro",
+    "tipo": "unica",
+    "pregunta": "¿Cómo prefieres elegir un seguro?",
+    "opciones": [
+      "Con alguien que me asesore",
+      "Investigando por mi cuenta",
+      "Por recomendación de alguien cercano"
+    ]
+  },
+  {
+    "id": "largoPlazo",
+    "tipo": "escala",
+    "pregunta": "¿Qué tan importante es para ti planear a largo plazo?",
+    "ayuda": "1 siendo poco importante y 5 siendo muy importante",
+    "opciones": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  {
+    "id": "futuro",
+    "tipo": "multiple",
+    "pregunta": "¿Te interesa asegurar cosas a futuro (educación, pensión, etc.)?",
+    "ayuda": "Selecciona todos los que apliquen",
+    "opciones": [
+      "La educación",
+      "La pensión",
+      "Seguro de vida",
+      "Ninguno"
+    ]
+  }
+]
