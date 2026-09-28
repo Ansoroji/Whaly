@@ -203,6 +203,8 @@ function FormularioDatos({
             label="¿Cuál es tu número de teléfono?"
             name="telefono"
             type="tel"
+            inputMode="numeric"
+            maxLength={10}
             value={datos.telefono}
             onChange={onChange}
             placeholder="Ej. 300 123 4567"

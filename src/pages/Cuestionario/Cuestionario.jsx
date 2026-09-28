@@ -97,12 +97,16 @@ function Cuestionario() {
       value,
     } = e.target;
 
+    const valorCampo =
+      name === "telefono"
+        ? value.replace(/\D/g, "").slice(0, 10)
+        : value;
 
     setDatos((prev) => ({
 
       ...prev,
 
-      [name]: value,
+      [name]: valorCampo,
 
     }));
 
@@ -117,7 +121,7 @@ function Cuestionario() {
 
     datos.ciudad.trim() !== "" &&
 
-    datos.telefono.trim() !== "";
+    /^\d{10}$/.test(datos.telefono);
 
 
   const comenzarCuestionario = () => {

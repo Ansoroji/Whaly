@@ -14,6 +14,8 @@ function CampoFormulario({
   type = "text",
   min,
   max,
+  maxLength,
+  inputMode,
 }) {
 
   return (
@@ -35,6 +37,8 @@ function CampoFormulario({
         type={type}
         min={min}
         max={max}
+        maxLength={maxLength}
+        inputMode={inputMode}
         value={value}
         onChange={onChange}
         placeholder={placeholder}

@@ -1,7 +1,12 @@
 import { Button } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { obtenerUsuarioWhaly } from "../../utils/perfilStorage";
 import "./Navbar.css";
 
 function Navbar() {
+  const usuarioTienePerfil =
+    obtenerUsuarioWhaly()?.cuestionarioCompletado === true;
+
   const navLinks = [
     {
       id: 1,
@@ -80,9 +85,9 @@ function Navbar() {
                 transform: "translateY(-2px)",
               }}
             >
-              <a href="/#contacto">
-                Escríbenos
-              </a>
+              <Link to={usuarioTienePerfil ? "/perfil" : "/cuestionario"}>
+                {usuarioTienePerfil ? "Mi perfil" : "Hacer cuestionario"}
+              </Link>
             </Button>
           </div>
         </div>

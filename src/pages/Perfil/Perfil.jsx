@@ -4,11 +4,17 @@ import {
   Button,
   Card,
   Container,
+  Dialog,
   Heading,
+  Portal,
   SimpleGrid,
   Stack,
   Text,
 } from "@chakra-ui/react";
+
+import {
+  useState,
+} from "react";
 
 import {
   useNavigate,
@@ -20,6 +26,7 @@ import {
 } from "react-icons/fa6";
 
 import {
+  eliminarUsuarioWhaly,
   obtenerUsuarioWhaly,
 } from "../../utils/perfilStorage";
 
@@ -36,6 +43,20 @@ function Perfil() {
 
   const usuario =
     obtenerUsuarioWhaly();
+
+  const [
+    mostrarConfirmacionEliminar,
+    setMostrarConfirmacionEliminar,
+  ] = useState(false);
+
+  const volverAHacerCuestionario = () => {
+    navigate("/cuestionario");
+  };
+
+  const eliminarPerfil = () => {
+    eliminarUsuarioWhaly();
+    navigate("/cuestionario");
+  };
 
 
   /* ========================================
@@ -468,50 +489,54 @@ function Perfil() {
           ========================= */}
 
           <Stack
-            direction={{
-              base: "column",
-              sm: "row",
-            }}
+            direction="column"
             justify="center"
             gap="15px"
           >
 
             <Button
-            onClick={() =>
-                navigate("/")
-            }
-
-            backgroundColor="var(--whaly-mint)"
-            color="var(--whaly-purple)"
-
-            border="2px solid var(--whaly-purple)"
-            borderRadius="30px"
-
-            minW={{
+              onClick={volverAHacerCuestionario}
+              backgroundColor="var(--whaly-mint)"
+              color="var(--whaly-purple)"
+              border="2px solid var(--whaly-purple)"
+              borderRadius="30px"
+              minW={{
                 base: "180px",
-                md: "210px",
-            }}
-
-            height="56px"
-
-            px="30px"
-
-            fontWeight="800"
-
-            transition="all 0.2s ease"
-
-            _hover={{
-                backgroundColor:
-                "var(--whaly-purple)",
-
-                color:
-                "var(--whaly-white)",
-
-                transform:
-                "translateY(-2px)",
-            }}
+                md: "260px",
+              }}
+              height="56px"
+              px="30px"
+              fontWeight="800"
+              transition="all 0.2s ease"
+              _hover={{
+                backgroundColor: "var(--whaly-purple)",
+                color: "var(--whaly-white)",
+                transform: "translateY(-2px)",
+              }}
             >
-            ← Volver al inicio
+              Volver a hacer el cuestionario
+            </Button>
+
+            <Button
+              onClick={() => setMostrarConfirmacionEliminar(true)}
+              backgroundColor="var(--whaly-white)"
+              color="var(--whaly-purple)"
+              border="2px solid var(--whaly-purple)"
+              borderRadius="30px"
+              minW={{
+                base: "180px",
+                md: "260px",
+              }}
+              height="56px"
+              px="30px"
+              fontWeight="800"
+              transition="all 0.2s ease"
+              _hover={{
+                backgroundColor: "var(--whaly-lavender)",
+                transform: "translateY(-2px)",
+              }}
+            >
+              Eliminar perfil
             </Button>
 
           </Stack>
@@ -519,6 +544,85 @@ function Perfil() {
         </Stack>
 
       </Container>
+
+      <Dialog.Root
+        open={mostrarConfirmacionEliminar}
+        onOpenChange={(event) =>
+          setMostrarConfirmacionEliminar(event.open)
+        }
+      >
+        <Portal>
+          <Dialog.Backdrop
+            background="rgba(40, 24, 72, 0.72)"
+            backdropFilter="blur(4px)"
+          />
+          <Dialog.Positioner p="20px">
+            <Dialog.Content
+              maxW="480px"
+              backgroundColor="var(--whaly-white)"
+              border="2px solid var(--whaly-purple)"
+              borderRadius="30px"
+              boxShadow="0 20px 60px rgba(35, 20, 60, 0.3)"
+            >
+              <Dialog.Header pb="0">
+                <Dialog.Title
+                  color="var(--whaly-purple)"
+                  fontSize="25px"
+                  fontWeight="800"
+                >
+                  ¿Eliminar tu perfil?
+                </Dialog.Title>
+              </Dialog.Header>
+
+              <Dialog.Body>
+                <Text color="var(--whaly-purple)" opacity="0.8">
+                  Se borrarán tus datos y resultados guardados en este
+                  navegador. Esta acción no se puede deshacer.
+                </Text>
+              </Dialog.Body>
+
+              <Dialog.Footer
+                direction={{
+                  base: "column",
+                  sm: "row",
+                }}
+                gap="12px"
+              >
+                <Button
+                  onClick={() => setMostrarConfirmacionEliminar(false)}
+                  backgroundColor="var(--whaly-white)"
+                  color="var(--whaly-purple)"
+                  border="2px solid var(--whaly-purple)"
+                  borderRadius="30px"
+                  minH="50px"
+                  fontWeight="800"
+                  _hover={{
+                    backgroundColor: "var(--whaly-lavender)",
+                  }}
+                >
+                  Cancelar
+                </Button>
+
+                <Button
+                  onClick={eliminarPerfil}
+                  backgroundColor="var(--whaly-mint)"
+                  color="var(--whaly-purple)"
+                  border="2px solid var(--whaly-purple)"
+                  borderRadius="30px"
+                  minH="50px"
+                  fontWeight="800"
+                  _hover={{
+                    backgroundColor: "var(--whaly-purple)",
+                    color: "var(--whaly-white)",
+                  }}
+                >
+                  Sí, eliminar perfil
+                </Button>
+              </Dialog.Footer>
+            </Dialog.Content>
+          </Dialog.Positioner>
+        </Portal>
+      </Dialog.Root>
 
     </Box>
 
