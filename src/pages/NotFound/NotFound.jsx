@@ -65,7 +65,7 @@ function NotFound() {
             }}
             fontWeight="800"
           >
-            Parece que te perdiste
+            Ups! Parece que te perdiste
           </Heading>
 
 
@@ -84,7 +84,9 @@ function NotFound() {
           >
             La página que estás buscando
             no existe o pudo haber cambiado
-            de ubicación.
+            de ubicación, no te preocupes, 
+            puedes volver al inicio y 
+            seguir explorando.
           </Text>
 
 
