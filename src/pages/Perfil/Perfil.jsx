@@ -173,10 +173,8 @@ function Perfil() {
   } = usuario;
 
 
-  const primerNombre =
-    datosPersonales.nombre
-      ?.trim()
-      .split(" ")[0];
+  const nombreCompleto =
+    datosPersonales.nombre?.trim();
 
 
   return (
@@ -247,7 +245,7 @@ function Perfil() {
                 md: "46px",
               }}
             >
-              Hola, {primerNombre}
+              Hola, {nombreCompleto}
             </Heading>
 
 

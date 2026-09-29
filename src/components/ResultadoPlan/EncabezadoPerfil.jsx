@@ -10,10 +10,8 @@ function EncabezadoPerfil({
   perfil,
 }) {
 
-  const primerNombre =
-    nombre
-      ?.trim()
-      .split(" ")[0];
+  const nombreCompleto =
+    nombre?.trim();
 
 
   return (
@@ -43,8 +41,8 @@ function EncabezadoPerfil({
         fontWeight="800"
       >
 
-        {primerNombre
-          ? `${primerNombre}, eres`
+        {nombreCompleto
+          ? `${nombreCompleto}, eres`
           : "Eres"}
 
       </Heading>
