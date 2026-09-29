@@ -32,6 +32,10 @@ import Cuestionario
 import Perfil
   from "./pages/Perfil/Perfil";
 
+import NotFound
+  from "./pages/NotFound/NotFound";
+
+
 import "./App.css";
 
 
@@ -123,6 +127,13 @@ function App() {
             <Perfil />
           }
         />
+
+        <Route
+          path="*"
+          element={
+            <NotFound />
+          }
+/>
 
       </Routes>
 
