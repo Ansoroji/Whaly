@@ -1,116 +1,399 @@
-[
-  {
-    "id": "momentoVida",
-    "tipo": "unica",
-    "pregunta": "¿En qué momento de vida te encuentras?",
-    "opciones": [
-      "Estoy empezando mi vida laboral",
-      "Tengo ingresos estables",
-      "Estoy formando una familia",
-      "Tengo familia y responsabilidades económicas",
-      "Estoy cerca a la jubilación"
-    ]
+{
+  "preguntas": [
+    {
+      "id": "convivencia",
+      "numero": 1,
+      "seccion": "Tu momento",
+      "tipo": "unica",
+      "pregunta": "Cuando llegas a casa después de un día normal, ¿con quién vives actualmente?",
+      "opciones": [
+        "Con mi familia",
+        "Con mi pareja",
+        "Con amigos o compañeros de vivienda",
+        "Vivo solo/a",
+        "Mi situación es diferente"
+      ]
+    },
+    {
+      "id": "movilidad",
+      "numero": 2,
+      "seccion": "Tu momento",
+      "tipo": "unica",
+      "pregunta": "Cuando necesitas desplazarte en tu día a día, ¿cuál de estas opciones se acerca más a tu situación?",
+      "opciones": [
+        "No tengo vehículo propio",
+        "Tengo moto",
+        "Tengo carro",
+        "Tengo más de un vehículo disponible",
+        "Mi situación es diferente"
+      ]
+    },
+    {
+      "id": "mascota",
+      "numero": 3,
+      "seccion": "Tu momento",
+      "tipo": "unica",
+      "pregunta": "¿Tienes mascota actualmente?",
+      "opciones": [
+        "No",
+        "Sí, una",
+        "Sí, más de una"
+      ]
+    },
+    {
+      "id": "situacionActual",
+      "numero": 4,
+      "seccion": "Tu momento",
+      "tipo": "unica",
+      "pregunta": "Actualmente, ¿cuál opción describe mejor tu situación?",
+      "opciones": [
+        "Estoy estudiando",
+        "Trabajo como empleado/a",
+        "Trabajo por mi cuenta",
+        "Tengo un negocio o emprendimiento",
+        "Estudio y trabajo",
+        "Actualmente no estoy trabajando",
+        "Estoy en otra situación"
+      ]
+    },
+    {
+      "id": "familiaridadPoliza",
+      "numero": 5,
+      "seccion": "Tu momento",
+      "tipo": "unica",
+      "pregunta": "Cuando escuchas la palabra “póliza”, ¿qué tan familiar te resulta?",
+      "ayuda": "Una póliza es el documento donde se establecen las condiciones de un seguro.",
+      "opciones": [
+        "No sé realmente qué significa",
+        "Tengo una idea general",
+        "Tengo seguros, pero otra persona suele encargarse",
+        "Tengo seguros y participo en las decisiones",
+        "Suelo comparar opciones y conozco cómo funcionan"
+      ]
+    },
+    {
+      "id": "personasDependientes",
+      "numero": 6,
+      "seccion": "Tus responsabilidades",
+      "tipo": "unica",
+      "pregunta": "Además de tus propios gastos, ¿alguna persona depende actualmente de tus ingresos?",
+      "opciones": [
+        "No, por ahora respondo principalmente por mí",
+        "Apoyo económicamente a alguien ocasionalmente",
+        "Una persona depende de mí",
+        "Varias personas dependen de mí",
+        "Prefiero no responder"
+      ]
+    },
+    {
+      "id": "responsabilidades",
+      "numero": 7,
+      "seccion": "Tus responsabilidades",
+      "tipo": "multiple",
+      "ayuda": "Puedes seleccionar varias.",
+      "opcionesExclusivas": [
+        "Ninguna de estas por ahora"
+      ],
+      "pregunta": "¿Por cuáles de estas cosas respondes actualmente?",
+      "opciones": [
+        "Mis gastos personales",
+        "Gastos de mi hogar",
+        "Una deuda o crédito",
+        "Apoyo económico o bienestar de otra persona",
+        "Un vehículo",
+        "Una vivienda",
+        "Una mascota",
+        "Un negocio o emprendimiento",
+        "Ninguna de estas por ahora",
+        "Otra"
+      ]
+    },
+    {
+      "id": "gastoInesperado",
+      "numero": 8,
+      "seccion": "Tus responsabilidades",
+      "tipo": "unica",
+      "pregunta": "Si apareciera hoy un gasto inesperado importante, ¿cuál opción se acerca más a tu situación?",
+      "opciones": [
+        "Podría asumirlo sin cambiar demasiado mis planes",
+        "Tendría que reorganizar algunos gastos",
+        "Utilizaría parte de mis ahorros",
+        "Necesitaría pedir dinero prestado o utilizar crédito",
+        "Me resultaría difícil asumirlo",
+        "No estoy seguro/a",
+        "Prefiero no responder"
+      ]
+    },
+    {
+      "id": "protegerEspecialmente",
+      "numero": 9,
+      "seccion": "Tus responsabilidades",
+      "tipo": "multiple",
+      "maxSeleccion": 2,
+      "ayuda": "Puedes seleccionar hasta dos opciones.",
+      "pregunta": "Pensando en tu vida actual, ¿qué te interesaría proteger especialmente?",
+      "opciones": [
+        "Mi salud",
+        "Mi familia o personas cercanas",
+        "Mis ingresos",
+        "Mi vivienda",
+        "Mi movilidad",
+        "Mi mascota",
+        "Mis estudios o formación",
+        "Mi negocio o emprendimiento",
+        "Mis planes de independencia",
+        "Mis ahorros o proyectos futuros",
+        "Otra"
+      ]
+    },
+    {
+      "id": "decisionSeguro",
+      "numero": 10,
+      "seccion": "Tus responsabilidades",
+      "tipo": "unica",
+      "pregunta": "Si tuvieras que tomar una decisión relacionada con un seguro, ¿quién tendría principalmente la decisión final?",
+      "opciones": [
+        "Yo",
+        "Yo decidiría después de consultar con mi familia o pareja",
+        "La decisión se tomaría entre varias personas",
+        "Mis padres o familiares tendrían mayor influencia",
+        "Nunca he tenido que tomar una decisión de este tipo"
+      ]
+    },
+    {
+      "id": "primeraDecision",
+      "numero": 11,
+      "seccion": "Tus responsabilidades",
+      "tipo": "unica",
+      "pregunta": "Cuando tienes que tomar una decisión nueva o importante, ¿qué haces normalmente primero?",
+      "opciones": [
+        "Investigo por mi cuenta",
+        "Investigo y luego consulto a alguien",
+        "Busco recomendaciones y después decido",
+        "Prefiero hablar primero con alguien que conozca del tema",
+        "Depende del tipo de decisión"
+      ]
+    },
+    {
+      "id": "protectorEsencial_1",
+      "numero": 12,
+      "seccion": "Cómo decides",
+      "tipo": "escalaPerfil",
+      "perfil": "Protector de lo Esencial",
+      "pregunta": "Cuando tomo una decisión importante, suelo considerar cómo podría afectar a las personas o responsabilidades que actualmente dependen de mí."
+    },
+    {
+      "id": "protectorEsencial_2",
+      "numero": 13,
+      "seccion": "Cómo decides",
+      "tipo": "escalaPerfil",
+      "perfil": "Protector de lo Esencial",
+      "pregunta": "Cuando una decisión puede cambiar la estabilidad de mi hogar o de las personas cercanas, ese impacto pesa en lo que termino eligiendo."
+    },
+    {
+      "id": "protectorEsencial_3",
+      "numero": 14,
+      "seccion": "Cómo decides",
+      "tipo": "escalaPerfil",
+      "perfil": "Protector de lo Esencial",
+      "pregunta": "Me interesa tener claro qué situaciones podrían afectar las responsabilidades que ya tengo a mi cargo."
+    },
+    {
+      "id": "protectorEsencial_4",
+      "numero": 15,
+      "seccion": "Cómo decides",
+      "tipo": "escalaPerfil",
+      "perfil": "Protector de lo Esencial",
+      "pregunta": "Cuando tengo que priorizar, suelo dar más importancia a mantener estable lo que ya tengo que a sumar algo nuevo."
+    },
+    {
+      "id": "protectorEsencial_5",
+      "numero": 16,
+      "seccion": "Cómo decides",
+      "tipo": "escalaPerfil",
+      "perfil": "Protector de lo Esencial",
+      "pregunta": "Antes de asumir una nueva responsabilidad, suelo pensar qué ocurriría con lo que ya depende de mí si aparece un imprevisto."
+    },
+    {
+      "id": "constructorIndependencia_1",
+      "numero": 17,
+      "seccion": "Cómo decides",
+      "tipo": "escalaPerfil",
+      "perfil": "Constructor de Independencia",
+      "pregunta": "Prefiero tomar decisiones que tengan sentido para mi situación actual antes que comprometerme con algo pensado para una etapa muy lejana."
+    },
+    {
+      "id": "constructorIndependencia_2",
+      "numero": 18,
+      "seccion": "Cómo decides",
+      "tipo": "escalaPerfil",
+      "perfil": "Constructor de Independencia",
+      "pregunta": "Me cuesta interesarme por algo cuando todavía no encuentro una relación clara con lo que estoy viviendo hoy."
+    },
+    {
+      "id": "constructorIndependencia_3",
+      "numero": 19,
+      "seccion": "Cómo decides",
+      "tipo": "escalaPerfil",
+      "perfil": "Constructor de Independencia",
+      "pregunta": "Prefiero comenzar con una opción sencilla que pueda ajustar después si mi situación cambia."
+    },
+    {
+      "id": "constructorIndependencia_4",
+      "numero": 20,
+      "seccion": "Cómo decides",
+      "tipo": "escalaPerfil",
+      "perfil": "Constructor de Independencia",
+      "pregunta": "Valoro las opciones que pueden adaptarse a medida que mi vida, ingresos o responsabilidades cambian."
+    },
+    {
+      "id": "constructorIndependencia_5",
+      "numero": 21,
+      "seccion": "Cómo decides",
+      "tipo": "escalaPerfil",
+      "perfil": "Constructor de Independencia",
+      "pregunta": "No necesito resolver todo de una vez: primero prefiero identificar qué es realmente prioritario para mí ahora."
+    },
+    {
+      "id": "pragmatico_1",
+      "numero": 22,
+      "seccion": "Cómo decides",
+      "tipo": "escalaPerfil",
+      "perfil": "Pragmático",
+      "pregunta": "Si voy a pagar por algo, necesito entender claramente qué estoy recibiendo a cambio."
+    },
+    {
+      "id": "pragmatico_2",
+      "numero": 23,
+      "seccion": "Cómo decides",
+      "tipo": "escalaPerfil",
+      "perfil": "Pragmático",
+      "pregunta": "Conocer el precio no es suficiente para decidir: también necesito entender las condiciones."
+    },
+    {
+      "id": "pragmatico_3",
+      "numero": 24,
+      "seccion": "Cómo decides",
+      "tipo": "escalaPerfil",
+      "perfil": "Pragmático",
+      "pregunta": "Antes de aceptar una opción quiero saber tanto lo que incluye como lo que no incluye."
+    },
+    {
+      "id": "pragmatico_4",
+      "numero": 25,
+      "seccion": "Cómo decides",
+      "tipo": "escalaPerfil",
+      "perfil": "Pragmático",
+      "pregunta": "Una recomendación me resulta más útil cuando entiendo las razones que la respaldan."
+    },
+    {
+      "id": "pragmatico_5",
+      "numero": 26,
+      "seccion": "Cómo decides",
+      "tipo": "escalaPerfil",
+      "perfil": "Pragmático",
+      "pregunta": "Antes de pagar por algo suelo preguntarme si el beneficio realmente justifica el costo."
+    },
+    {
+      "id": "planificadorFuturo_1",
+      "numero": 27,
+      "seccion": "Cómo decides",
+      "tipo": "escalaPerfil",
+      "perfil": "Planificador del Futuro",
+      "pregunta": "Suelo pensar cómo una decisión que tomo hoy podría afectar mis planes de los próximos años."
+    },
+    {
+      "id": "planificadorFuturo_2",
+      "numero": 28,
+      "seccion": "Cómo decides",
+      "tipo": "escalaPerfil",
+      "perfil": "Planificador del Futuro",
+      "pregunta": "Organizar algunas cosas con anticipación me ayuda a sentir mayor tranquilidad frente a cambios futuros."
+    },
+    {
+      "id": "planificadorFuturo_3",
+      "numero": 29,
+      "seccion": "Cómo decides",
+      "tipo": "escalaPerfil",
+      "perfil": "Planificador del Futuro",
+      "pregunta": "Metas como terminar mis estudios, empezar a trabajar, independizarme, viajar, emprender o ahorrar influyen en algunas decisiones que tomo hoy."
+    },
+    {
+      "id": "planificadorFuturo_4",
+      "numero": 30,
+      "seccion": "Cómo decides",
+      "tipo": "escalaPerfil",
+      "perfil": "Planificador del Futuro",
+      "pregunta": "Me interesa identificar decisiones actuales que podrían evitarme dificultades más adelante."
+    },
+    {
+      "id": "planificadorFuturo_5",
+      "numero": 31,
+      "seccion": "Cómo decides",
+      "tipo": "escalaPerfil",
+      "perfil": "Planificador del Futuro",
+      "pregunta": "Antes de una decisión importante suelo imaginar diferentes escenarios sobre lo que podría pasar después."
+    },
+    {
+      "id": "digitalInformado_1",
+      "numero": 32,
+      "seccion": "Cómo decides",
+      "tipo": "escalaPerfil",
+      "perfil": "Digital Informado",
+      "pregunta": "Antes de tomar una decisión importante suelo buscar información por mi cuenta."
+    },
+    {
+      "id": "digitalInformado_2",
+      "numero": 33,
+      "seccion": "Cómo decides",
+      "tipo": "escalaPerfil",
+      "perfil": "Digital Informado",
+      "pregunta": "Las experiencias y opiniones de otras personas me sirven como una referencia adicional antes de decidir."
+    },
+    {
+      "id": "digitalInformado_3",
+      "numero": 34,
+      "seccion": "Cómo decides",
+      "tipo": "escalaPerfil",
+      "perfil": "Digital Informado",
+      "pregunta": "Prefiero investigar primero y buscar ayuda después si todavía tengo dudas."
+    },
+    {
+      "id": "digitalInformado_4",
+      "numero": 35,
+      "seccion": "Cómo decides",
+      "tipo": "escalaPerfil",
+      "perfil": "Digital Informado",
+      "pregunta": "Me siento más cómodo/a cuando puedo comparar varias opciones antes de elegir."
+    },
+    {
+      "id": "digitalInformado_5",
+      "numero": 36,
+      "seccion": "Cómo decides",
+      "tipo": "escalaPerfil",
+      "perfil": "Digital Informado",
+      "pregunta": "Cuando una empresa me presenta información, prefiero poder revisarla a mi ritmo antes de decidir si quiero hablar con alguien."
+    },
+    {
+      "id": "respuestaAbierta",
+      "numero": 37,
+      "seccion": "Para terminar",
+      "tipo": "abierta",
+      "opcional": true,
+      "pregunta": "Si pudieras proteger especialmente una o dos cosas de tu vida en este momento, ¿cuáles serían y por qué?"
+    }
+  ],
+  "secciones": {
+    "Tu momento": "Primero queremos conocer un poco de tu situación actual.",
+    "Tus responsabilidades": "Ahora queremos conocer cuáles son las cosas que actualmente tienen peso en tus decisiones.",
+    "Cómo decides": "Ahora queremos conocer qué tanto se parecen las siguientes afirmaciones a tu manera de tomar decisiones. Utiliza esta escala para responder.",
+    "Para terminar": "Una última pregunta, opcional."
   },
-  {
-    "id": "posesiones",
-    "tipo": "multiple",
-    "pregunta": "¿Cuáles de estos tienes actualmente?",
-    "ayuda": "Selecciona todos los que apliquen",
-    "opciones": [
-      "Vehículo",
-      "Propiedad raíz",
-      "Hijos",
-      "Mascota",
-      "Ninguno"
-    ]
-  },
-  {
-    "id": "preocupacion",
-    "tipo": "unica",
-    "pregunta": "¿Qué te preocuparía más perder hoy?",
-    "opciones": [
-      "Mis ingresos",
-      "Mi salud",
-      "Mi vivienda o bienes",
-      "Mi estabilidad familiar"
-    ]
-  },
-  {
-    "id": "preparacion",
-    "tipo": "escala",
-    "pregunta": "¿Qué tan preparado te sientes ante un imprevisto?",
-    "ayuda": "1 siendo poco preparado y 5 siendo completamente preparado",
-    "opciones": [
-      1,
-      2,
-      3,
-      4,
-      5
-    ]
-  },
-  {
-    "id": "riesgos",
-    "tipo": "unica",
-    "pregunta": "¿Cómo sueles actuar frente a riesgos?",
-    "opciones": [
-      "Prefiero evitarlos",
-      "Los asumo si no son muy altos",
-      "Prefiero estar cubierto siempre"
-    ]
-  },
-  {
-    "id": "gastoSeguros",
-    "tipo": "unica",
-    "pregunta": "¿Cómo ves el gasto en seguros?",
-    "opciones": [
-      "Es un gasto innecesario",
-      "Solo lo pago si es obligatorio",
-      "Es una inversión en tranquilidad"
-    ]
-  },
-  {
-    "id": "mensualidad",
-    "tipo": "unica",
-    "pregunta": "¿Qué valoras más al pagar una mensualidad?",
-    "opciones": [
-      "Que sea barato y accesible",
-      "Que tenga beneficios claros",
-      "Que me brinde seguridad a largo plazo"
-    ]
-  },
-  {
-    "id": "eleccionSeguro",
-    "tipo": "unica",
-    "pregunta": "¿Cómo prefieres elegir un seguro?",
-    "opciones": [
-      "Con alguien que me asesore",
-      "Investigando por mi cuenta",
-      "Por recomendación de alguien cercano"
-    ]
-  },
-  {
-    "id": "largoPlazo",
-    "tipo": "escala",
-    "pregunta": "¿Qué tan importante es para ti planear a largo plazo?",
-    "ayuda": "1 siendo poco importante y 5 siendo muy importante",
-    "opciones": [
-      1,
-      2,
-      3,
-      4,
-      5
-    ]
-  },
-  {
-    "id": "futuro",
-    "tipo": "multiple",
-    "pregunta": "¿Te interesa asegurar cosas a futuro (educación, pensión, etc.)?",
-    "ayuda": "Selecciona todos los que apliquen",
-    "opciones": [
-      "La educación",
-      "La pensión",
-      "Seguro de vida",
-      "Ninguno"
-    ]
-  }
-]
+  "escalaPerfil": [
+    "Nada como yo",
+    "Poco como yo",
+    "Ni mucho ni poco",
+    "Bastante como yo",
+    "Totalmente como yo"
+  ]
+}

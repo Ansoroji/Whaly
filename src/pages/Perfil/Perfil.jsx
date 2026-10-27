@@ -169,6 +169,7 @@ function Perfil() {
   const {
     datosPersonales,
     perfilWhaly,
+    resultadoPerfilWhaly,
     plan,
   } = usuario;
 
@@ -259,6 +260,34 @@ function Perfil() {
             >
               {perfilWhaly}
             </Badge>
+
+            {resultadoPerfilWhaly && (
+              <Stack
+                align="center"
+                gap="6px"
+                maxW="720px"
+              >
+                {resultadoPerfilWhaly.complementarios.length > 0 && (
+                  <Text
+                    color="var(--whaly-purple)"
+                    fontSize="14px"
+                  >
+                    También podrías identificarte con:{" "}
+                    {resultadoPerfilWhaly.complementarios
+                      .map((perfil) => perfil.nombre)
+                      .join(", ")}
+                  </Text>
+                )}
+
+                <Text
+                  color="var(--whaly-purple)"
+                  fontSize="14px"
+                  opacity="0.75"
+                >
+                  Este resultado refleja cómo te relacionas hoy con tus decisiones y prioridades. No es una etiqueta permanente: tu Perfil Whaly puede cambiar a medida que también cambia tu vida.
+                </Text>
+              </Stack>
+            )}
 
           </Stack>
 

@@ -26,6 +26,7 @@ export function guardarUsuarioWhaly({
   datos,
   respuestas,
   perfilWhaly,
+  resultadoPerfilWhaly,
   plan,
 }) {
 
@@ -75,6 +76,8 @@ export function guardarUsuarioWhaly({
     */
 
     perfilWhaly,
+
+    resultadoPerfilWhaly,
 
 
     /*

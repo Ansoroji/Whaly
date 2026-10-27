@@ -1,7 +1,9 @@
 import {
   Button,
   Heading,
+  SimpleGrid,
   Stack,
+  Textarea,
   Text,
 } from "@chakra-ui/react";
 
@@ -13,10 +15,15 @@ import OpcionCuestionario from "./OpcionCuestionario";
 
 function PreguntaCuestionario({
   pregunta,
+  respuestaAbierta,
+  textoSeccion,
+  etiquetasEscala,
+  mostrarSeccion,
   numero,
   total,
   estaSeleccionada,
   seleccionarRespuesta,
+  puedeSeleccionar,
   puedeContinuar,
   onAnterior,
   onSiguiente,
@@ -42,14 +49,49 @@ function PreguntaCuestionario({
         <Stack
           textAlign="center"
           align="center"
-          gap="10px"
+          gap="12px"
         >
+
+          {mostrarSeccion && (
+
+            <Stack
+              gap="4px"
+              mb="4px"
+              align="center"
+            >
+              <Text
+                color="var(--whaly-teal)"
+                fontSize="13px"
+                fontWeight="800"
+                letterSpacing="2px"
+                textTransform="uppercase"
+              >
+                {pregunta.seccion}
+              </Text>
+
+              <Text
+                color="var(--whaly-purple)"
+                fontSize="15px"
+                opacity="0.75"
+                maxW="620px"
+                lineHeight="1.6"
+              >
+                {textoSeccion}
+              </Text>
+            </Stack>
+
+          )}
 
           <Text
             color="var(--whaly-purple)"
             fontSize="13px"
             fontWeight="800"
             letterSpacing="3px"
+            backgroundColor="rgba(191, 234, 193, 0.55)"
+            border="1px solid rgba(53, 30, 115, 0.2)"
+            borderRadius="999px"
+            px="18px"
+            py="8px"
           >
             PREGUNTA {numero}
           </Text>
@@ -77,6 +119,7 @@ function PreguntaCuestionario({
               fontSize="15px"
               fontWeight="600"
               opacity="0.7"
+              maxW="620px"
             >
               {pregunta.ayuda}
             </Text>
@@ -86,44 +129,97 @@ function PreguntaCuestionario({
         </Stack>
 
 
-        {/* ESCALA */}
+        {pregunta.tipo === "escalaPerfil" && (
 
-        {pregunta.tipo === "escala" ? (
-
-          <Stack
-            direction="row"
-            justify="center"
+          <SimpleGrid
+            columns={5}
+            justifyItems="center"
             gap={{
-              base: "10px",
-              md: "20px",
+              base: "4px",
+              md: "12px",
             }}
-            flexWrap="wrap"
+            maxW="620px"
+            width="100%"
+            alignSelf="center"
           >
 
-            {pregunta.opciones.map(
-              (opcion) => (
+            {(pregunta.opciones || [1, 2, 3, 4, 5]).map(
+              (opcion, indice) => (
 
-                <BotonEscala
+                <Stack
                   key={opcion}
-                  valor={opcion}
-                  seleccionada={
-                    estaSeleccionada(
-                      opcion
-                    )
-                  }
-                  onClick={() =>
-                    seleccionarRespuesta(
-                      opcion
-                    )
-                  }
-                />
+                  align="center"
+                  gap="8px"
+                  width="100%"
+                >
+                  <BotonEscala
+                    valor={opcion}
+                    seleccionada={
+                      estaSeleccionada(opcion)
+                    }
+                    onClick={() =>
+                      seleccionarRespuesta(opcion)
+                    }
+                  />
+
+                  <Text
+                    color="var(--whaly-purple)"
+                    fontSize={{
+                      base: "10px",
+                      md: "12px",
+                    }}
+                    fontWeight="600"
+                    lineHeight="1.25"
+                    textAlign="center"
+                  >
+                    {indice + 1} — {etiquetasEscala[indice]}
+                  </Text>
+                </Stack>
 
               )
             )}
 
+          </SimpleGrid>
+
+        )}
+
+
+        {pregunta.tipo === "abierta" ? (
+
+          <Stack
+            gap="8px"
+            width="100%"
+            maxW="620px"
+            alignSelf="center"
+          >
+            <Textarea
+              value={respuestaAbierta}
+              onChange={(event) =>
+                seleccionarRespuesta(
+                  event.target.value
+                )
+              }
+              placeholder="Escribe tu respuesta aquí"
+              minH="140px"
+              border="2px solid var(--whaly-purple)"
+              borderRadius="20px"
+              color="var(--whaly-purple)"
+              _focusVisible={{
+                borderColor: "var(--whaly-teal)",
+                boxShadow: "0 0 0 1px var(--whaly-teal)",
+              }}
+            />
+
+            <Text
+              color="var(--whaly-purple)"
+              fontSize="13px"
+              opacity="0.7"
+            >
+              Opcional
+            </Text>
           </Stack>
 
-        ) : (
+        ) : pregunta.tipo !== "escalaPerfil" ? (
 
           /* OPCIONES NORMALES */
 
@@ -144,6 +240,9 @@ function PreguntaCuestionario({
                       opcion
                     )
                   }
+                  deshabilitada={
+                    !puedeSeleccionar(opcion)
+                  }
                   onClick={() =>
                     seleccionarRespuesta(
                       opcion
@@ -158,7 +257,7 @@ function PreguntaCuestionario({
 
           </Stack>
 
-        )}
+        ) : null}
 
 
         {/* NAVEGACIÓN */}

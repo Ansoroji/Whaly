@@ -29,6 +29,9 @@ function Cuestionario() {
   const navigate =
     useNavigate();
 
+  const listaPreguntas =
+    preguntas.preguntas;
+
 
   /* ========================================
      DATOS PERSONALES
@@ -81,7 +84,7 @@ function Cuestionario() {
 
 
   const pregunta =
-    preguntas[preguntaActual];
+    listaPreguntas[preguntaActual];
 
 
   /* ========================================
@@ -109,6 +112,28 @@ function Cuestionario() {
       [name]: valorCampo,
 
     }));
+
+  };
+
+  const puedeSeleccionar = (
+    opcion
+  ) => {
+
+    if (
+      pregunta.tipo !== "multiple" ||
+      estaSeleccionada(opcion) ||
+      !pregunta.maxSeleccion
+    ) {
+      return true;
+    }
+
+    const seleccionadas =
+      respuestas[pregunta.id] || [];
+
+    return (
+      seleccionadas.length <
+      pregunta.maxSeleccion
+    );
 
   };
 
@@ -162,14 +187,10 @@ function Cuestionario() {
           pregunta.id
         ] || [];
 
-
-      /*
-        NINGUNO ELIMINA
-        LAS DEMÁS OPCIONES
-      */
-
       if (
-        opcion === "Ninguno"
+        pregunta.opcionesExclusivas?.includes(
+          opcion
+        )
       ) {
 
         setRespuestas(
@@ -178,33 +199,26 @@ function Cuestionario() {
             ...prev,
 
             [pregunta.id]:
-              ["Ninguno"],
+              actuales.includes(opcion)
+                ? []
+                : [opcion],
 
           })
         );
-
 
         return;
 
       }
 
 
-      /*
-        QUITAMOS NINGUNO
-        SI SELECCIONA OTRA OPCIÓN
-      */
+      const exclusivas =
+        pregunta.opcionesExclusivas || [];
 
       let nuevas =
-
         actuales.filter(
           (item) =>
-            item !== "Ninguno"
+            !exclusivas.includes(item)
         );
-
-
-      /*
-        ALTERNAR SELECCIÓN
-      */
 
       if (
         nuevas.includes(
@@ -212,13 +226,20 @@ function Cuestionario() {
         )
       ) {
 
-        nuevas =
-          nuevas.filter(
+        nuevas = nuevas.filter(
             (item) =>
               item !== opcion
-          );
+        );
 
       } else {
+
+        if (
+          pregunta.maxSeleccion &&
+          nuevas.length >=
+            pregunta.maxSeleccion
+        ) {
+          return;
+        }
 
         nuevas = [
           ...nuevas,
@@ -291,7 +312,6 @@ function Cuestionario() {
 
     }
 
-
     return (
       respuesta === opcion
     );
@@ -335,6 +355,10 @@ function Cuestionario() {
 
     }
 
+    if (pregunta.opcional) {
+      return true;
+    }
+
 
     return (
 
@@ -364,7 +388,7 @@ function Cuestionario() {
 
     if (
       preguntaActual <
-      preguntas.length - 1
+      listaPreguntas.length - 1
     ) {
 
       setPreguntaActual(
@@ -433,7 +457,7 @@ function Cuestionario() {
         onVolver={() => {
 
           setPreguntaActual(
-            preguntas.length - 1
+            listaPreguntas.length - 1
           );
 
 
@@ -465,12 +489,33 @@ function Cuestionario() {
           pregunta
         }
 
+        respuestaAbierta={
+          respuestas[pregunta.id] || ""
+        }
+
+        textoSeccion={
+          preguntas.secciones[
+            pregunta.seccion
+          ]
+        }
+
+        etiquetasEscala={
+          preguntas.escalaPerfil
+        }
+
+        mostrarSeccion={
+          preguntaActual === 0 ||
+          listaPreguntas[
+            preguntaActual - 1
+          ].seccion !== pregunta.seccion
+        }
+
         numero={
-          preguntaActual + 1
+          pregunta.numero
         }
 
         total={
-          preguntas.length
+          listaPreguntas.length
         }
 
         estaSeleccionada={
@@ -479,6 +524,10 @@ function Cuestionario() {
 
         seleccionarRespuesta={
           seleccionarRespuesta
+        }
+
+        puedeSeleccionar={
+          puedeSeleccionar
         }
 
         puedeContinuar={

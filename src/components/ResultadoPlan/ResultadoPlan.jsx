@@ -18,8 +18,8 @@ import segurosData
   from "../../datos/seguros.json";
 
 import {
+  calcularResultadoPerfilWhaly,
   calcularRecomendaciones,
-  obtenerPerfilWhaly,
 } from "../../utils/calcularRecomendaciones";
 
 import {
@@ -71,14 +71,17 @@ function ResultadoPlan({
      PERFIL WHALY
   ======================================== */
 
-  const perfil =
+  const resultadoPerfil =
     useMemo(
       () =>
-        obtenerPerfilWhaly(
+        calcularResultadoPerfilWhaly(
           respuestas
         ),
       [respuestas]
     );
+
+  const perfil =
+    resultadoPerfil.principal.nombre;
 
 
   /* ========================================
@@ -247,6 +250,9 @@ function ResultadoPlan({
           perfilWhaly:
             perfil,
 
+          resultadoPerfilWhaly:
+            resultadoPerfil,
+
           /*
             Guardamos el plan tal como
             quedó después de editarlo.
@@ -319,6 +325,12 @@ function ResultadoPlan({
             }
             perfil={
               perfil
+            }
+            puntaje={
+              resultadoPerfil.principal.puntaje
+            }
+            perfilesComplementarios={
+              resultadoPerfil.complementarios
             }
           />
 

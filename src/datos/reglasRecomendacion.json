@@ -1,223 +1,136 @@
 {
   "configuracion": {
-    "cantidadRecomendaciones": 4
+    "cantidadRecomendaciones": 4,
+    "diferenciaPerfilComplementario": 2
   },
-
-  "perfiles": {
-    "Estoy empezando mi vida laboral": "Constructor de la Independencia",
-    "Tengo ingresos estables": "Constructor de Patrimonio",
-    "Estoy formando una familia": "Arquitecto de Nuevos Comienzos",
-    "Tengo familia y responsabilidades económicas": "Protector de los Tuyos",
-    "Estoy cerca a la jubilación": "Planificador de Tranquilidad"
-  },
-
-  "momentoVida": {
-    "Estoy empezando mi vida laboral": {
-      "salud": 3,
-      "movilidad": 2,
-      "credito": 2
+  "perfiles": [
+    {
+      "id": "protectorEsencial",
+      "nombre": "Protector de lo Esencial",
+      "preguntas": [
+        "protectorEsencial_1",
+        "protectorEsencial_2",
+        "protectorEsencial_3",
+        "protectorEsencial_4",
+        "protectorEsencial_5"
+      ]
     },
-
-    "Tengo ingresos estables": {
-      "salud": 2,
-      "hogar": 2,
-      "vida": 2,
-      "credito": 1
+    {
+      "id": "constructorIndependencia",
+      "nombre": "Constructor de Independencia",
+      "preguntas": [
+        "constructorIndependencia_1",
+        "constructorIndependencia_2",
+        "constructorIndependencia_3",
+        "constructorIndependencia_4",
+        "constructorIndependencia_5"
+      ]
     },
-
-    "Estoy formando una familia": {
-      "vida": 5,
-      "salud": 3,
-      "educacion": 3,
-      "hogar": 2
+    {
+      "id": "pragmatico",
+      "nombre": "Pragmático",
+      "preguntas": [
+        "pragmatico_1",
+        "pragmatico_2",
+        "pragmatico_3",
+        "pragmatico_4",
+        "pragmatico_5"
+      ]
     },
-
-    "Tengo familia y responsabilidades económicas": {
-      "vida": 6,
-      "salud": 3,
-      "hogar": 3,
-      "educacion": 3,
-      "responsabilidad": 1
+    {
+      "id": "planificadorFuturo",
+      "nombre": "Planificador del Futuro",
+      "preguntas": [
+        "planificadorFuturo_1",
+        "planificadorFuturo_2",
+        "planificadorFuturo_3",
+        "planificadorFuturo_4",
+        "planificadorFuturo_5"
+      ]
     },
-
-    "Estoy cerca a la jubilación": {
-      "pension": 6,
-      "salud": 4,
-      "vida": 2
+    {
+      "id": "digitalInformado",
+      "nombre": "Digital Informado",
+      "preguntas": [
+        "digitalInformado_1",
+        "digitalInformado_2",
+        "digitalInformado_3",
+        "digitalInformado_4",
+        "digitalInformado_5"
+      ]
     }
-  },
-
-  "posesiones": {
-    "Vehículo": {
-      "movilidad": 7
+  ],
+  "responsabilidades": {
+    "Gastos de mi hogar": {
+      "hogar": 3
     },
-
-    "Propiedad raíz": {
-      "hogar": 7,
-      "responsabilidad": 2
-    },
-
-    "Hijos": {
-      "vida": 5,
-      "educacion": 7,
-      "salud": 2
-    },
-
-    "Mascota": {
-      "mascotas": 7
-    },
-
-    "Ninguno": {}
-  },
-
-  "preocupacion": {
-    "Mis ingresos": {
-      "vida": 5,
+    "Una deuda o crédito": {
       "credito": 3
     },
-
-    "Mi salud": {
-      "salud": 7
+    "Apoyo económico o bienestar de otra persona": {
+      "vida": 2
     },
-
-    "Mi vivienda o bienes": {
-      "hogar": 7,
+    "Un vehículo": {
+      "movilidad": 3
+    },
+    "Una vivienda": {
+      "hogar": 3
+    },
+    "Una mascota": {
+      "mascotas": 3
+    },
+    "Un negocio o emprendimiento": {
       "responsabilidad": 3
+    }
+  },
+  "prioridades": {
+    "Mi salud": {
+      "salud": 5
     },
-
-    "Mi estabilidad familiar": {
-      "vida": 7,
-      "salud": 2,
+    "Mi familia o personas cercanas": {
+      "vida": 5,
+      "salud": 1
+    },
+    "Mis ingresos": {
+      "vida": 4,
+      "credito": 2
+    },
+    "Mi vivienda": {
+      "hogar": 5
+    },
+    "Mi movilidad": {
+      "movilidad": 5
+    },
+    "Mi mascota": {
+      "mascotas": 5
+    },
+    "Mis estudios o formación": {
+      "educacion": 5
+    },
+    "Mi negocio o emprendimiento": {
+      "responsabilidad": 4,
+      "hogar": 2
+    },
+    "Mis planes de independencia": {
+      "credito": 3,
+      "vida": 1
+    },
+    "Mis ahorros o proyectos futuros": {
+      "pension": 3,
       "educacion": 2
     }
   },
-
-  "preparacion": {
-    "1": {
-      "vida": 2,
-      "salud": 2,
-      "hogar": 1
-    },
-
-    "2": {
-      "vida": 2,
-      "salud": 2
-    },
-
-    "3": {
-      "vida": 1,
-      "salud": 1
-    },
-
-    "4": {},
-
-    "5": {}
-  },
-
-  "riesgos": {
-    "Prefiero evitarlos": {
-      "vida": 2,
-      "salud": 2,
-      "hogar": 1,
-      "responsabilidad": 1
-    },
-
-    "Los asumo si no son muy altos": {
-      "vida": 1,
-      "salud": 1
-    },
-
-    "Prefiero estar cubierto siempre": {
-      "vida": 3,
-      "salud": 3,
-      "hogar": 2,
-      "responsabilidad": 2
-    }
-  },
-
-  "gastoSeguros": {
-    "Es un gasto innecesario": {
-      "tipoCliente": "sensible_precio"
-    },
-
-    "Solo lo pago si es obligatorio": {
-      "tipoCliente": "cobertura_esencial"
-    },
-
-    "Es una inversión en tranquilidad": {
-      "tipoCliente": "proteccion_amplia"
-    }
-  },
-
-  "mensualidad": {
-    "Que sea barato y accesible": {
-      "preferencia": "economico"
-    },
-
-    "Que tenga beneficios claros": {
-      "preferencia": "beneficios"
-    },
-
-    "Que me brinde seguridad a largo plazo": {
-      "preferencia": "largo_plazo",
-      "puntos": {
-        "pension": 3,
-        "educacion": 2,
-        "vida": 1
-      }
-    }
-  },
-
-  "eleccionSeguro": {
-    "Con alguien que me asesore": {
-      "canal": "asesor"
-    },
-
-    "Investigando por mi cuenta": {
-      "canal": "autogestion"
-    },
-
-    "Por recomendación de alguien cercano": {
-      "canal": "recomendacion"
-    }
-  },
-
-  "largoPlazo": {
-    "1": {},
-
-    "2": {},
-
-    "3": {
-      "pension": 1,
-      "educacion": 1
-    },
-
-    "4": {
-      "pension": 3,
-      "educacion": 2,
+  "personasDependientes": {
+    "Apoyo económicamente a alguien ocasionalmente": {
       "vida": 1
     },
-
-    "5": {
-      "pension": 5,
-      "educacion": 4,
-      "vida": 2
+    "Una persona depende de mí": {
+      "vida": 3,
+      "salud": 1
+    },
+    "Varias personas dependen de mí": {
+      "vida": 4,
+      "salud": 2
     }
-  },
-
-  "futuro": {
-    "La educación": {
-      "educacion": 8
-    },
-
-    "La pensión": {
-      "pension": 8
-    },
-
-    "Seguro de vida": {
-      "vida": 8
-    },
-
-    "Ninguno": {}
   }
 }

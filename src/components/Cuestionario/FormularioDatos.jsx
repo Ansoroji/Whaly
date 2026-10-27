@@ -44,8 +44,13 @@ function FormularioDatos({
             fontSize="14px"
             fontWeight="800"
             letterSpacing="3px"
+            backgroundColor="rgba(191, 234, 193, 0.7)"
+            border="1px solid rgba(53, 30, 115, 0.16)"
+            borderRadius="999px"
+            px="18px"
+            py="8px"
           >
-            ANTES DE EMPEZAR
+            TU PERFIL WHALY
           </Text>
 
 
@@ -57,8 +62,9 @@ function FormularioDatos({
               md: "46px",
             }}
             fontWeight="800"
+            lineHeight="1.1"
           >
-            Cuéntanos sobre ti
+            Antes de empezar
           </Heading>
 
 
@@ -67,9 +73,49 @@ function FormularioDatos({
             opacity="0.7"
             maxW="550px"
             lineHeight="1.6"
+            fontSize={{
+              base: "16px",
+              md: "18px",
+            }}
           >
-            Esta información nos ayudará
-            a personalizar mejor tu experiencia.
+            Cada vida se construye diferente. Queremos conocer un poco de la tuya.
+          </Text>
+
+          <Text
+            color="var(--whaly-purple)"
+            opacity="0.75"
+            maxW="620px"
+            lineHeight="1.7"
+          >
+            A continuación encontrarás algunas situaciones y afirmaciones relacionadas con tu momento de vida, tus responsabilidades y la forma en la que tomas decisiones.
+          </Text>
+
+          <Text
+            color="var(--whaly-purple)"
+            opacity="0.75"
+            maxW="620px"
+            lineHeight="1.7"
+          >
+            No necesitas saber de seguros y no existen respuestas correctas o incorrectas. Responde pensando en cómo eres y qué harías hoy, no en lo que crees que deberías responder.
+          </Text>
+
+          <Text
+            color="var(--whaly-purple)"
+            opacity="0.75"
+            maxW="620px"
+            lineHeight="1.7"
+          >
+            Tu resultado es una orientación sobre tu momento actual. No busca encasillarte y puede cambiar a medida que también cambia tu vida.
+          </Text>
+
+          <Text
+            color="var(--whaly-purple)"
+            fontSize="14px"
+            fontWeight="700"
+            mt="8px"
+            opacity="0.85"
+          >
+            Para personalizar tu experiencia, cuéntanos también algunos datos.
           </Text>
 
         </Stack>

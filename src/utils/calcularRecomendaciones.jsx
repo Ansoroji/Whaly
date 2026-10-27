@@ -8,10 +8,6 @@ function sumarReglas(puntajes, regla) {
   Object.entries(regla).forEach(
     ([codigoSeguro, puntos]) => {
 
-      /*
-        Algunas reglas pueden guardar
-        información que no sea puntuación.
-      */
       if (typeof puntos !== "number") {
         return;
       }
@@ -24,255 +20,123 @@ function sumarReglas(puntajes, regla) {
 
 
 export function calcularRecomendaciones(respuestas) {
-
-  /*
-    Aquí iremos acumulando los puntos.
-
-    Ejemplo:
-
-    {
-      vida: 12,
-      salud: 8,
-      educacion: 15
-    }
-  */
   const puntajes = {};
 
+  const responsabilidades =
+    Array.isArray(respuestas.responsabilidades)
+      ? respuestas.responsabilidades
+      : [];
 
-  /* =========================
-     1. MOMENTO DE VIDA
-  ========================= */
+  responsabilidades.forEach(
+    (responsabilidad) => {
+      sumarReglas(
+        puntajes,
+        reglas.responsabilidades[responsabilidad]
+      );
+    }
+  );
+
+  const prioridades =
+    Array.isArray(respuestas.protegerEspecialmente)
+      ? respuestas.protegerEspecialmente
+      : [];
+
+  prioridades.forEach(
+    (prioridad) => {
+      sumarReglas(
+        puntajes,
+        reglas.prioridades[prioridad]
+      );
+    }
+  );
 
   sumarReglas(
     puntajes,
-    reglas.momentoVida?.[
-      respuestas.momentoVida
+    reglas.personasDependientes[
+      respuestas.personasDependientes
     ]
   );
-
-
-  /* =========================
-     2. POSESIONES
-     Selección múltiple
-  ========================= */
 
   if (
-    Array.isArray(respuestas.posesiones)
+    ["Tengo moto", "Tengo carro", "Tengo más de un vehículo disponible"]
+      .includes(respuestas.movilidad)
   ) {
-
-    respuestas.posesiones.forEach(
-      (posesion) => {
-
-        sumarReglas(
-          puntajes,
-          reglas.posesiones?.[posesion]
-        );
-
-      }
-    );
-
+    sumarReglas(puntajes, { movilidad: 2 });
   }
-
-
-  /* =========================
-     3. PREOCUPACIÓN
-  ========================= */
-
-  sumarReglas(
-    puntajes,
-    reglas.preocupacion?.[
-      respuestas.preocupacion
-    ]
-  );
-
-
-  /* =========================
-     4. PREPARACIÓN
-     Escala 1 - 5
-  ========================= */
-
-  sumarReglas(
-    puntajes,
-    reglas.preparacion?.[
-      String(respuestas.preparacion)
-    ]
-  );
-
-
-  /* =========================
-     5. ACTITUD AL RIESGO
-  ========================= */
-
-  sumarReglas(
-    puntajes,
-    reglas.riesgos?.[
-      respuestas.riesgos
-    ]
-  );
-
-
-  /* =========================
-     6. GASTO EN SEGUROS
-
-     Esta pregunta puede servir luego
-     para determinar tipo de plan,
-     pero no necesariamente suma puntos.
-  ========================= */
-
-  sumarReglas(
-    puntajes,
-    reglas.gastoSeguros?.[
-      respuestas.gastoSeguros
-    ]
-  );
-
-
-  /* =========================
-     7. MENSUALIDAD
-  ========================= */
-
-  const reglaMensualidad =
-    reglas.mensualidad?.[
-      respuestas.mensualidad
-    ];
-
-
-  /*
-    Algunas reglas pueden venir directamente:
-
-    {
-      "pension": 3
-    }
-
-    o tener:
-
-    {
-      "preferencia": "...",
-      "puntos": {
-        "pension": 3
-      }
-    }
-  */
-
-  if (reglaMensualidad?.puntos) {
-
-    sumarReglas(
-      puntajes,
-      reglaMensualidad.puntos
-    );
-
-  } else {
-
-    sumarReglas(
-      puntajes,
-      reglaMensualidad
-    );
-
-  }
-
-
-  /* =========================
-     8. FORMA DE ELEGIR
-
-     Principalmente sirve para saber
-     si quiere asesoría, autogestión, etc.
-     Por ahora no modifica seguros.
-  ========================= */
-
-
-  /* =========================
-     9. PLANEACIÓN
-     Escala 1 - 5
-  ========================= */
-
-  sumarReglas(
-    puntajes,
-    reglas.largoPlazo?.[
-      String(respuestas.largoPlazo)
-    ]
-  );
-
-
-  /* =========================
-     10. FUTURO
-     Selección múltiple
-  ========================= */
 
   if (
-    Array.isArray(respuestas.futuro)
+    ["Sí, una", "Sí, más de una"]
+      .includes(respuestas.mascota)
   ) {
-
-    respuestas.futuro.forEach(
-      (opcion) => {
-
-        sumarReglas(
-          puntajes,
-          reglas.futuro?.[opcion]
-        );
-
-      }
-    );
-
+    sumarReglas(puntajes, { mascotas: 2 });
   }
 
-
-  /* =========================
-     CONECTAR LOS PUNTOS
-     CON seguros.json
-  ========================= */
-
-  const segurosConPuntaje =
-    segurosData.segurosPersonas.map(
+  return segurosData.segurosPersonas
+    .map(
       (seguro) => ({
-
         ...seguro,
-
-        puntos:
-          puntajes[seguro.codigo] || 0,
-
+        puntos: puntajes[seguro.codigo] || 0,
       })
+    )
+    .filter((seguro) => seguro.puntos > 0)
+    .sort(
+      (a, b) => b.puntos - a.puntos
+    )
+    .slice(
+      0,
+      reglas.configuracion.cantidadRecomendaciones
     );
-
-
-  /* =========================
-     ORDENAR
-  ========================= */
-
-  const recomendados =
-    segurosConPuntaje
-      .filter(
-        (seguro) =>
-          seguro.puntos > 0
-      )
-      .sort(
-        (a, b) =>
-          b.puntos - a.puntos
-      )
-      .slice(0, 4);
-
-
-  return recomendados;
-
 }
 
 
-/* =========================
-   PERFIL WHALY
-========================= */
+export function calcularResultadoPerfilWhaly(respuestas) {
+  const resultados =
+    reglas.perfiles.map((perfil) => ({
+      id: perfil.id,
+      nombre: perfil.nombre,
+      puntaje: perfil.preguntas.reduce(
+        (total, preguntaId) => {
+          const respuesta =
+            respuestas[preguntaId];
 
-export function obtenerPerfilWhaly(
-  respuestas
-) {
+          return (
+            total +
+            (
+              Number.isInteger(respuesta) &&
+              respuesta >= 1 &&
+              respuesta <= 5
+                ? respuesta
+                : 0
+            )
+          );
+        },
+        0
+      ),
+    }));
 
-  const perfil =
-    reglas.perfiles?.[
-      respuestas.momentoVida
-    ];
-
-
-  return (
-    perfil ||
-    "Constructor de tu Futuro"
+  resultados.sort(
+    (a, b) => b.puntaje - a.puntaje
   );
 
+  const principal = resultados[0];
+  const diferenciaComplementaria =
+    reglas.configuracion.diferenciaPerfilComplementario;
+
+  return {
+    principal,
+    complementarios: resultados
+      .slice(1)
+      .filter(
+        (perfil) =>
+          principal.puntaje - perfil.puntaje <=
+          diferenciaComplementaria
+      ),
+  };
+}
+
+
+export function obtenerPerfilWhaly(respuestas) {
+  return calcularResultadoPerfilWhaly(
+    respuestas
+  ).principal.nombre;
 }

@@ -13,7 +13,7 @@ function ContenedorCuestionario({
     <Box
       as="main"
       minHeight="100vh"
-      backgroundColor="var(--whaly-lavender)"
+      background="linear-gradient(180deg, rgba(185, 192, 234, 0.9) 0%, rgba(191, 234, 193, 0.4) 100%)"
       display="flex"
       alignItems="center"
       justifyContent="center"
@@ -37,10 +37,19 @@ function ContenedorCuestionario({
             base: "24px",
             md: "34px",
           }}
-          boxShadow="0 14px 0 var(--whaly-purple)"
+          boxShadow="0 16px 0 var(--whaly-purple)"
           padding={{
             base: "30px 22px",
             md: "48px",
+          }}
+          position="relative"
+          _before={{
+            content: '""',
+            position: "absolute",
+            inset: "12px",
+            border: "1px solid rgba(53, 30, 115, 0.12)",
+            borderRadius: "24px",
+            pointerEvents: "none",
           }}
         >
 
