@@ -2,21 +2,20 @@ import { Link } from "react-router-dom";
 
 import SeccionServicios from "../../components/SeccionServicios/SeccionServicios";
 import SeccionContacto from "../../components/SeccionContacto/SeccionContacto";
-import Footer from "../../components/Footer/Footer";
 
 function PaginaInicio() {
   return (
-    <div className="landing-container">
-      {/* HERO */}
-      <main
+    <main className="landing-container">
+      <section
         className="hero"
         id="inicio"
+        aria-labelledby="inicio-titulo"
       >
         <span className="greeting">
           HELLOOO ¿CÓMO VAS?
         </span>
 
-        <h1 className="title">
+        <h1 className="title" id="inicio-titulo">
           Bienvenido a
           <br />
 
@@ -49,12 +48,11 @@ function PaginaInicio() {
             Soluciones para empresas
           </Link>
         </div>
-      </main>
+      </section>
 
       <SeccionServicios />
       <SeccionContacto />
-      <Footer />
-    </div>
+    </main>
   );
 }
 

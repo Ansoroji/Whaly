@@ -1,7 +1,6 @@
 import {
   Box,
   Container,
-  SimpleGrid,
   Stack,
 } from "@chakra-ui/react";
 
@@ -24,7 +23,7 @@ import {
 
 import {
   guardarUsuarioWhaly,
-} from "../../utils/perfilStorage";
+} from "../../utils/perfilStorage.js";
 
 
 import EncabezadoPerfil
@@ -32,9 +31,6 @@ import EncabezadoPerfil
 
 import PlanRecomendado
   from "./PlanRecomendado";
-
-import PanelPersonalizar
-  from "./PanelPersonalizar";
 
 import ListaSegurosDisponibles
   from "./ListaSegurosDisponibles";
@@ -46,6 +42,7 @@ import AccionesPlan
 function ResultadoPlan({
   datos,
   respuestas,
+  modoCuestionario,
   onVolver,
 }) {
 
@@ -323,6 +320,9 @@ function ResultadoPlan({
             nombre={
               datos.nombre
             }
+            modoCuestionario={
+              modoCuestionario
+            }
             perfil={
               perfil
             }
@@ -337,65 +337,33 @@ function ResultadoPlan({
 
           {/* PLAN Y PERSONALIZACIÓN */}
 
-          <SimpleGrid
-            columns={{
-              base: 1,
-              lg: 3,
-            }}
-            gap="25px"
-          >
+          <PlanRecomendado
+            plan={plan}
+            editando={editando}
+            onAlternarEdicion={() =>
+              setEditando((actual) => !actual)
+            }
+            onEliminar={eliminarSeguro}
+            onRestaurar={restaurarPlan}
+            mostrarSeguros={mostrarSeguros}
+            onAlternarSeguros={alternarSeguros}
+            onCrearNuevoPaquete={crearNuevoPaquete}
+          />
 
-            <PlanRecomendado
-              plan={
-                plan
-              }
-              editando={
-                editando
-              }
-              onAlternarEdicion={() =>
-                setEditando(
-                  (actual) =>
-                    !actual
-                )
-              }
-              onEliminar={
-                eliminarSeguro
-              }
-              onRestaurar={
-                restaurarPlan
-              }
-            />
-
-
-            <PanelPersonalizar
-              mostrarSeguros={
-                mostrarSeguros
-              }
-              onAlternarSeguros={
-                alternarSeguros
-              }
-              onCrearNuevoPaquete={
-                crearNuevoPaquete
-              }
-            />
-
-          </SimpleGrid>
-
-
-          {/* SEGUROS DISPONIBLES */}
-
-          {mostrarSeguros && (
-
-            <ListaSegurosDisponibles
-              seguros={
-                segurosDisponibles
-              }
-              onAgregar={
-                agregarSeguro
-              }
-            />
-
-          )}
+          <ListaSegurosDisponibles
+            id="seguros-disponibles"
+            hidden={!mostrarSeguros}
+            seguros={segurosDisponibles}
+            onAgregar={agregarSeguro}
+            onVolverAlPlan={() =>
+              document
+                .getElementById("plan-recomendado")
+                ?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                })
+            }
+          />
 
 
           {/* ACCIONES FINALES */}

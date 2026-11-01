@@ -53,6 +53,7 @@ function TarjetaSeguroDisponible({
 
 
         <IconButton
+            className="whaly-button-raised"
             aria-label={`Agregar ${seguro.titulo}`}
             onClick={() =>
                 onAgregar(seguro)

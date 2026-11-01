@@ -115,20 +115,10 @@ function SeccionServicios() {
           {servicios.map((servicio) => (
             <Card.Root
               key={servicio.id}
+              className="whaly-card"
               overflow="hidden"
               backgroundColor="var(--whaly-white)"
               border="none"
-              borderRadius="18px"
-              boxShadow="0 8px 18px rgba(0, 0, 0, 0.12)"
-              transition="
-                transform 0.25s ease,
-                box-shadow 0.25s ease
-              "
-              _hover={{
-                transform: "translateY(-6px)",
-                boxShadow:
-                  "0 14px 28px rgba(0, 0, 0, 0.14)",
-              }}
             >
 
               {/* IMAGEN */}

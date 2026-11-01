@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Card,
   Heading,
   SimpleGrid,
@@ -7,18 +8,30 @@ import {
   Text,
 } from "@chakra-ui/react";
 
+import {
+  FaArrowUp,
+} from "react-icons/fa6";
+
 import TarjetaSeguroDisponible
   from "./TarjetaSeguroDisponible";
 
 
 function ListaSegurosDisponibles({
+  id,
+  hidden,
   seguros,
   onAgregar,
+  onVolverAlPlan,
 }) {
 
   return (
 
     <Card.Root
+      as="section"
+      className="whaly-card"
+      id={id}
+      aria-labelledby="seguros-disponibles-titulo"
+      hidden={hidden}
       backgroundColor="var(--whaly-white)"
       border="2px solid var(--whaly-purple)"
       borderRadius="30px"
@@ -51,6 +64,8 @@ function ListaSegurosDisponibles({
 
 
             <Heading
+              as="h2"
+              id="seguros-disponibles-titulo"
               color="var(--whaly-purple)"
               fontSize={{
                 base: "25px",
@@ -105,6 +120,16 @@ function ListaSegurosDisponibles({
             </Text>
 
           )}
+
+          <Button
+            onClick={onVolverAlPlan}
+            variant="ghost"
+            color="var(--whaly-purple)"
+            alignSelf="flex-start"
+          >
+            <FaArrowUp aria-hidden="true" />
+            Volver a seguros recomendados
+          </Button>
 
         </Stack>
 

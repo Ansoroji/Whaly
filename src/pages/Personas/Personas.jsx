@@ -10,7 +10,6 @@ import {
 import { Link } from "react-router-dom";
 
 import TarjetaSeguro from "../../components/TarjetaSeguro/TarjetaSeguro";
-import Footer from "../../components/Footer/Footer";
 
 import seguros from "../../datos/seguros.json";
 
@@ -18,8 +17,7 @@ const { segurosPersonas } = seguros;
 
 function Personas() {
   return (
-    <>
-      <Box
+    <Box
         as="main"
         minHeight="100vh"
         backgroundColor="var(--whaly-light-blue)"
@@ -109,6 +107,8 @@ function Personas() {
 
           {/*CARDS DE SEGUROS*/}
           <SimpleGrid
+            as="section"
+            aria-label="Catálogo de seguros para personas"
             columns={{
               base: 1,
               md: 2,
@@ -129,6 +129,8 @@ function Personas() {
 
           {/*CTA FINAL*/}
           <Box
+            as="section"
+            aria-labelledby="cta-personas"
             marginTop={{
               base: "60px",
               md: "90px",
@@ -148,6 +150,7 @@ function Personas() {
 
               <Heading
                 as="h2"
+                id="cta-personas"
                 color="var(--whaly-purple)"
                 fontSize={{
                   base: "30px",
@@ -191,10 +194,7 @@ function Personas() {
           </Box>
 
         </Container>
-      </Box>
-
-      <Footer />
-    </>
+    </Box>
   );
 }
 

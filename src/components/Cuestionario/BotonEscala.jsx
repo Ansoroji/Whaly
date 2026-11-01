@@ -11,6 +11,11 @@ function BotonEscala({
 
   return (
     <Button
+      className={
+        seleccionada
+          ? undefined
+          : "whaly-button-raised"
+      }
       onClick={onClick}
       width={{
         base: "58px",

@@ -10,7 +10,6 @@ import {
 import { Link } from "react-router-dom";
 
 import TarjetaSeguro from "../../components/TarjetaSeguro/TarjetaSeguro";
-import Footer from "../../components/Footer/Footer";
 
 import seguros from "../../datos/seguros.json";
 
@@ -18,8 +17,7 @@ const { segurosEmpresas } = seguros;
 
 function Empresas() {
   return (
-    <>
-      <Box
+    <Box
         as="main"
         minHeight="100vh"
         backgroundColor="var(--whaly-lavender)"
@@ -108,6 +106,8 @@ function Empresas() {
 
           {/*CARDS DE SEGUROS*/}
           <SimpleGrid
+            as="section"
+            aria-label="Catálogo de seguros para empresas"
             columns={{
               base: 1,
               md: 2,
@@ -128,6 +128,8 @@ function Empresas() {
 
           {/*CTA FINAL*/}
           <Box
+            as="section"
+            aria-labelledby="cta-empresas"
             marginTop={{
               base: "60px",
               md: "90px",
@@ -146,6 +148,7 @@ function Empresas() {
             >
               <Heading
                 as="h2"
+                id="cta-empresas"
                 color="var(--whaly-purple)"
                 fontSize={{
                   base: "30px",
@@ -170,8 +173,8 @@ function Empresas() {
               </Text>
 
               <Box
-                as="a"
-                href="/#contacto"
+                as={Link}
+                to="/#contacto"
                 marginTop="8px"
                 backgroundColor="var(--whaly-purple)"
                 color="var(--whaly-white)"
@@ -196,10 +199,7 @@ function Empresas() {
           </Box>
 
         </Container>
-      </Box>
-
-      <Footer />
-    </>
+    </Box>
   );
 }
 

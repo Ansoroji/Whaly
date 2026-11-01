@@ -8,16 +8,11 @@ import {
 } from "@chakra-ui/react";
 
 import {
-  useNavigate,
+  Link,
 } from "react-router-dom";
 
 
 function NotFound() {
-
-  const navigate =
-    useNavigate();
-
-
   return (
 
     <Box
@@ -58,6 +53,7 @@ function NotFound() {
 
 
           <Heading
+            as="h1"
             color="var(--whaly-purple)"
             fontSize={{
               base: "30px",
@@ -91,10 +87,8 @@ function NotFound() {
 
 
           <Button
-            onClick={() =>
-              navigate("/")
-            }
-
+            className="whaly-button-raised"
+            asChild
             backgroundColor="var(--whaly-mint)"
 
             color="var(--whaly-purple)"
@@ -124,7 +118,9 @@ function NotFound() {
                 "translateY(-2px)",
             }}
           >
-            ← Volver al inicio
+            <Link to="/">
+              ← Volver al inicio
+            </Link>
           </Button>
 
         </Stack>

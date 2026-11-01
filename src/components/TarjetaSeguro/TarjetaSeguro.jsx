@@ -7,6 +7,10 @@ import {
   Text,
 } from "@chakra-ui/react";
 
+import {
+  Link,
+} from "react-router-dom";
+
 
 function TarjetaSeguro({
   titulo,
@@ -15,20 +19,11 @@ function TarjetaSeguro({
 }) {
   return (
     <Card.Root
+      className="whaly-card"
       height="100%"
       overflow="hidden"
       backgroundColor="var(--whaly-white)"
       border="none"
-      borderRadius="20px"
-      boxShadow="0 6px 18px rgba(0, 0, 0, 0.08)"
-      transition="
-        transform 0.25s ease,
-        box-shadow 0.25s ease
-      "
-      _hover={{
-        transform: "translateY(-6px)",
-        boxShadow: "0 14px 28px rgba(0, 0, 0, 0.12)",
-      }}
     >
 
       {/*IMAGEN*/}
@@ -71,7 +66,7 @@ function TarjetaSeguro({
         >
 
           <Heading
-            as="h3"
+            as="h2"
             color="var(--whaly-purple)"
             fontSize={{
               base: "23px",
@@ -94,8 +89,8 @@ function TarjetaSeguro({
 
 
           <Box
-            as="a"
-            href="/#contacto"
+            as={Link}
+            to="/#contacto"
             marginTop="auto"
             paddingTop="6px"
             color="var(--whaly-purple)"

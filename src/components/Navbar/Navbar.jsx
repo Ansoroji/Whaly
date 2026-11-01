@@ -1,9 +1,16 @@
 import { Button } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { obtenerUsuarioWhaly } from "../../utils/perfilStorage";
+import {
+  useState,
+} from "react";
+
+import { obtenerUsuarioWhaly } from "../../utils/perfilStorage.js";
 import "./Navbar.css";
 
 function Navbar() {
+  const [menuAbierto, setMenuAbierto] =
+    useState(false);
+
   const usuarioTienePerfil =
     obtenerUsuarioWhaly()?.cuestionarioCompletado === true;
 
@@ -11,66 +18,73 @@ function Navbar() {
     {
       id: 1,
       label: "Inicio",
-      href: "/",
+      to: "/",
     },
     {
       id: 2,
       label: "Servicios",
-      href: "/#servicios",
+      to: "/#servicios",
     },
     {
       id: 3,
       label: "Contacto",
-      href: "/#contacto",
+      to: "/#contacto",
     },
   ];
 
   return (
-    <nav className="navbar navbar-expand-lg whaly-navbar">
+    <nav
+      className="navbar navbar-expand-lg whaly-navbar"
+      aria-label="Navegación principal"
+    >
       <div className="container-fluid whaly-navbar__container">
 
         {/* LOGO */}
-        <a
+        <Link
           className="navbar-brand whaly-navbar__brand"
-          href="/"
+          to="/"
+          aria-label="Whaly, inicio"
         >
           whaly
-        </a>
+        </Link>
 
         {/* BOTÓN MENÚ MÓVIL */}
         <button
           className="navbar-toggler whaly-navbar__toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#whalyNavbar"
+          onClick={() =>
+            setMenuAbierto((abierto) => !abierto)
+          }
           aria-controls="whalyNavbar"
-          aria-expanded="false"
-          aria-label="Abrir menú"
+          aria-expanded={menuAbierto}
+          aria-label={menuAbierto ? "Cerrar menú" : "Abrir menú"}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
 
         {/* CONTENIDO DEL NAVBAR */}
         <div
-          className="collapse navbar-collapse"
+          className={`collapse navbar-collapse${menuAbierto ? " show" : ""}`}
           id="whalyNavbar"
         >
           {/* ENLACES */}
           <div className="navbar-nav mx-auto whaly-navbar__links">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.id}
-                href={link.href}
+                to={link.to}
                 className="nav-link whaly-navbar__link"
+                onClick={() => setMenuAbierto(false)}
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
 
           {/* BOTÓN CONTACTO */}
           <div className="whaly-navbar__actions">
             <Button
+              className="whaly-button-raised"
               asChild
               background="var(--whaly-mint)"
               color="var(--whaly-purple)"
@@ -85,7 +99,10 @@ function Navbar() {
                 transform: "translateY(-2px)",
               }}
             >
-              <Link to={usuarioTienePerfil ? "/perfil" : "/cuestionario"}>
+              <Link
+                to={usuarioTienePerfil ? "/perfil" : "/cuestionario"}
+                onClick={() => setMenuAbierto(false)}
+              >
                 {usuarioTienePerfil ? "Mi perfil" : "Hacer cuestionario"}
               </Link>
             </Button>

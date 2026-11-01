@@ -5,38 +5,47 @@ import {
 } from "react-router-dom";
 
 import {
+  lazy,
+  Suspense,
   useEffect,
 } from "react";
 
-import Navbar
-  from "./components/Navbar/Navbar";
+import {
+  Box,
+} from "@chakra-ui/react";
 
-import PaginaInicio
-  from "./pages/PaginaInicio/PaginaInicio";
+import AppLayout
+  from "./layouts/AppLayout";
 
-import SolucionesPersonas
-  from "./pages/SolucionesPersonas/SolucionesPersonas";
-
-import SolucionesEmpresas
-  from "./pages/SolucionesEmpresas/SolucionesEmpresas";
-
-import Personas
-  from "./pages/Personas/Personas";
-
-import Empresas
-  from "./pages/Empresas/Empresas";
-
-import Cuestionario
-  from "./pages/Cuestionario/Cuestionario";
-
-import Perfil
-  from "./pages/Perfil/Perfil";
-
-import NotFound
-  from "./pages/NotFound/NotFound";
-
+import PublicLayout
+  from "./layouts/PublicLayout";
 
 import "./App.css";
+
+const PaginaInicio = lazy(
+  () => import("./pages/PaginaInicio/PaginaInicio")
+);
+const SolucionesPersonas = lazy(
+  () => import("./pages/SolucionesPersonas/SolucionesPersonas")
+);
+const SolucionesEmpresas = lazy(
+  () => import("./pages/SolucionesEmpresas/SolucionesEmpresas")
+);
+const Personas = lazy(
+  () => import("./pages/Personas/Personas")
+);
+const Empresas = lazy(
+  () => import("./pages/Empresas/Empresas")
+);
+const Cuestionario = lazy(
+  () => import("./pages/Cuestionario/Cuestionario")
+);
+const Perfil = lazy(
+  () => import("./pages/Perfil/Perfil")
+);
+const NotFound = lazy(
+  () => import("./pages/NotFound/NotFound")
+);
 
 
 function App() {
@@ -54,90 +63,86 @@ function App() {
     }
 
 
-    window.scrollTo(
-      0,
-      0
-    );
+    if (location.hash) {
+      const targetId =
+        location.hash.slice(1);
+
+      const animationFrame =
+        window.requestAnimationFrame(() => {
+          document
+            .getElementById(targetId)
+            ?.scrollIntoView();
+        });
+
+      return () =>
+        window.cancelAnimationFrame(animationFrame);
+    }
+
+    window.scrollTo(0, 0);
 
   }, [
     location.pathname,
+    location.hash,
   ]);
 
 
   return (
 
-    <>
-
-      <Navbar />
-
-
+    <Suspense
+      fallback={
+        <Box
+          as="main"
+          role="status"
+          aria-live="polite"
+          minHeight="50vh"
+          display="grid"
+          placeItems="center"
+          color="var(--whaly-purple)"
+        >
+          Cargando página…
+        </Box>
+      }
+    >
       <Routes>
+        <Route element={<AppLayout />}>
+          <Route element={<PublicLayout />}>
+            <Route
+              path="/"
+              element={<PaginaInicio />}
+            />
+            <Route
+              path="/soluciones-personas"
+              element={<SolucionesPersonas />}
+            />
+            <Route
+              path="/personas"
+              element={<Personas />}
+            />
+            <Route
+              path="/soluciones-empresas"
+              element={<SolucionesEmpresas />}
+            />
+            <Route
+              path="/empresas"
+              element={<Empresas />}
+            />
+          </Route>
 
-        <Route
-          path="/"
-          element={
-            <PaginaInicio />
-          }
-        />
-
-
-        <Route
-          path="/soluciones-personas"
-          element={
-            <SolucionesPersonas />
-          }
-        />
-
-
-        <Route
-          path="/personas"
-          element={
-            <Personas />
-          }
-        />
-
-
-        <Route
-          path="/soluciones-empresas"
-          element={
-            <SolucionesEmpresas />
-          }
-        />
-
-
-        <Route
-          path="/empresas"
-          element={
-            <Empresas />
-          }
-        />
-
-
-        <Route
-          path="/cuestionario"
-          element={
-            <Cuestionario />
-          }
-        />
-
-
-        <Route
-          path="/perfil"
-          element={
-            <Perfil />
-          }
-        />
-
-        <Route
-          path="*"
-          element={
-            <NotFound />
-          }
-/>
-
+          <Route
+            path="/cuestionario"
+            element={<Cuestionario />}
+          />
+          <Route
+            path="/perfil"
+            element={<Perfil />}
+          />
+          <Route
+            path="*"
+            element={<NotFound />}
+          />
+        </Route>
       </Routes>
-
-    </>
+    </Suspense>
 
   );
 

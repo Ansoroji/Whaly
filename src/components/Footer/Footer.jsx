@@ -6,6 +6,10 @@ import {
   Text,
 } from "@chakra-ui/react";
 
+import {
+  Link,
+} from "react-router-dom";
+
 function Footer() {
   return (
     <Box
@@ -71,118 +75,95 @@ function Footer() {
           </Stack>
 
           {/*ENLACES RÁPIDOS*/}
-          <Stack
-            gap="14px"
-            align={{
-              base: "center",
-              md: "flex-start",
-            }}
+          <Box
+            as="nav"
+            aria-label="Enlaces rápidos"
           >
-            <Text
-              color="var(--whaly-white)"
-              fontSize="15px"
-              fontWeight="700"
-              marginBottom="4px"
-            >
-              Enlaces rápidos
-            </Text>
-
-            <Box
-              as="a"
-              href="#inicio"
-              color="var(--whaly-lavender)"
-              fontSize="14px"
-              transition="color 0.2s ease"
-              _hover={{
-                color: "var(--whaly-mint)",
+            <Stack
+              gap="14px"
+              align={{
+                base: "center",
+                md: "flex-start",
               }}
             >
-              Inicio
-            </Box>
+              <Text
+                as="h2"
+                color="var(--whaly-white)"
+                fontSize="15px"
+                fontWeight="700"
+                marginBottom="4px"
+              >
+                Enlaces rápidos
+              </Text>
 
-            <Box
-              as="a"
-              href="#servicios"
-              color="var(--whaly-lavender)"
-              fontSize="14px"
-              transition="color 0.2s ease"
-              _hover={{
-                color: "var(--whaly-mint)",
-              }}
-            >
-              Servicios
-            </Box>
-
-            <Box
-              as="a"
-              href="#contacto"
-              color="var(--whaly-lavender)"
-              fontSize="14px"
-              transition="color 0.2s ease"
-              _hover={{
-                color: "var(--whaly-mint)",
-              }}
-            >
-              Contacto
-            </Box>
-          </Stack>
+              {[
+                { label: "Inicio", to: "/" },
+                { label: "Servicios", to: "/#servicios" },
+                { label: "Contacto", to: "/#contacto" },
+              ].map((link) => (
+                <Box
+                  key={link.label}
+                  as={Link}
+                  to={link.to}
+                  color="var(--whaly-lavender)"
+                  fontSize="14px"
+                  transition="color 0.2s ease"
+                  _hover={{
+                    color: "var(--whaly-mint)",
+                    textDecoration: "none",
+                  }}
+                >
+                  {link.label}
+                </Box>
+              ))}
+            </Stack>
+          </Box>
 
           {/*LEGAL*/}
-          <Stack
-            gap="14px"
-            align={{
-              base: "center",
-              md: "flex-start",
-            }}
+          <Box
+            as="section"
+            aria-labelledby="footer-legal"
           >
-            <Text
-              color="var(--whaly-white)"
-              fontSize="15px"
-              fontWeight="700"
-              marginBottom="4px"
-            >
-              Legal
-            </Text>
-
-            <Box
-              as="a"
-              href="#"
-              color="var(--whaly-lavender)"
-              fontSize="14px"
-              transition="color 0.2s ease"
-              _hover={{
-                color: "var(--whaly-mint)",
+            <Stack
+              gap="14px"
+              align={{
+                base: "center",
+                md: "flex-start",
               }}
             >
-              Términos y condiciones
-            </Box>
+              <Text
+                as="h2"
+                id="footer-legal"
+                color="var(--whaly-white)"
+                fontSize="15px"
+                fontWeight="700"
+                marginBottom="4px"
+              >
+                Legal
+              </Text>
 
-            <Box
-              as="a"
-              href="#"
-              color="var(--whaly-lavender)"
-              fontSize="14px"
-              transition="color 0.2s ease"
-              _hover={{
-                color: "var(--whaly-mint)",
-              }}
-            >
-              Política de privacidad
-            </Box>
+              <Text
+                color="var(--whaly-lavender)"
+                fontSize="14px"
+              >
+                Términos y condiciones
+              </Text>
 
-            <Box
-              as="a"
-              href="#"
-              color="var(--whaly-lavender)"
-              fontSize="14px"
-              transition="color 0.2s ease"
-              _hover={{
-                color: "var(--whaly-mint)",
-              }}
-            >
-              Política de cookies
-            </Box>
-          </Stack>
+              <Text
+                color="var(--whaly-lavender)"
+                fontSize="14px"
+              >
+                Política de privacidad
+              </Text>
+
+              <Text
+                color="var(--whaly-lavender)"
+                fontSize="14px"
+              >
+                Política de cookies
+              </Text>
+            </Stack>
+          </Box>
         </SimpleGrid>
 
         {/*PARTE INFERIOR*/}

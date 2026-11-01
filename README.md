@@ -1,16 +1,38 @@
-# React + Vite
+# Whaly
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web de seguros desarrollada con React y Vite.
 
-Currently, two official plugins are available:
+## Requisitos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Node.js 20.19+ o 22.12+
+- npm
 
-## React Compiler
+## Desarrollo local
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```sh
+npm install
+npm run dev
+```
 
-## Expanding the ESLint configuration
+## Comprobaciones
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```sh
+npm run lint
+npm test
+npm run build
+```
+
+- ESLint revisa el código de la aplicación y las pruebas.
+- Las pruebas unitarias usan el runner integrado de Node.js; no requieren instalar un framework de testing.
+- La compilación de producción genera sus archivos en `dist`.
+
+## Organización de `src`
+
+- `layouts/`: composición compartida de navegación, contenido público y footer.
+- `pages/`: vistas asociadas a rutas.
+- `components/`: componentes reutilizables de interfaz, organizados por dominio.
+- `datos/`: contenido y configuración del cuestionario, perfiles y seguros.
+- `hooks/`: lógica reutilizable basada en hooks de React.
+- `utils/`: cálculo de perfiles, selección de preguntas y validación/persistencia del perfil.
+
+Las pruebas en `tests/` cubren el cálculo de puntajes, las modalidades del cuestionario y la validación del perfil persistido.

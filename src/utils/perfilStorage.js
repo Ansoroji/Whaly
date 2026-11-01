@@ -1,3 +1,7 @@
+import {
+  esUsuarioWhalyValido,
+} from "./validarUsuarioWhaly.js";
+
 const CLAVE_USUARIO = "whalyUsuario";
 
 
@@ -133,6 +137,11 @@ export function guardarUsuarioWhaly({
 
   };
 
+  if (!esUsuarioWhalyValido(usuario)) {
+    throw new TypeError(
+      "No se puede guardar un perfil Whaly con datos incompletos o inválidos."
+    );
+  }
 
   localStorage.setItem(
     CLAVE_USUARIO,
@@ -164,9 +173,18 @@ export function obtenerUsuarioWhaly() {
 
   try {
 
-    return JSON.parse(
+    const usuarioGuardado = JSON.parse(
       usuario
     );
+
+    if (!esUsuarioWhalyValido(usuarioGuardado)) {
+      console.warn(
+        "Los datos guardados del perfil Whaly no tienen una estructura válida."
+      );
+      return null;
+    }
+
+    return usuarioGuardado;
 
   } catch (error) {
 

@@ -12,6 +12,11 @@ function OpcionCuestionario({
 
   return (
     <Button
+      className={
+        seleccionada
+          ? undefined
+          : "whaly-button-raised"
+      }
       onClick={onClick}
       disabled={deshabilitada}
       width="100%"

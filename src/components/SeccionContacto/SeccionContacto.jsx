@@ -140,18 +140,12 @@ function SeccionContacto() {
                 textDecoration="none"
               >
                 <Card.Root
+                  className="whaly-card"
                   height="100%"
                   minHeight="240px"
                   backgroundColor="var(--whaly-white)"
                   border="none"
-                  borderRadius="16px"
-                  boxShadow="0 3px 10px rgba(0, 0, 0, 0.08)"
-                  transition="transform 0.25s ease, box-shadow 0.25s ease"
                   cursor="pointer"
-                  _hover={{
-                    transform: "translateY(-6px)",
-                    boxShadow: "0 10px 22px rgba(0, 0, 0, 0.12)",
-                  }}
                 >
                   <Card.Body
                     padding={{
@@ -219,6 +213,7 @@ function SeccionContacto() {
 
         {/*CARD INFERIOR*/}
         <Card.Root
+          className="whaly-card"
           marginTop="40px"
           backgroundColor="var(--whaly-white)"
           border="none"

@@ -20,17 +20,21 @@ import ResultadoPlan
 import preguntas
   from "../../datos/preguntasCuestionario.json";
 
+import rutasCuestionario
+  from "../../datos/rutasCuestionario.json";
+
 import useCiudades
   from "../../hooks/useCiudades";
+
+import {
+  seleccionarPreguntasCuestionario,
+} from "../../utils/seleccionarPreguntasCuestionario";
 
 
 function Cuestionario() {
 
   const navigate =
     useNavigate();
-
-  const listaPreguntas =
-    preguntas.preguntas;
 
 
   /* ========================================
@@ -69,6 +73,18 @@ function Cuestionario() {
     etapa,
     setEtapa,
   ] = useState("datos");
+
+  const [
+    modoCuestionario,
+    setModoCuestionario,
+  ] = useState("completo");
+
+  const listaPreguntas =
+    seleccionarPreguntasCuestionario(
+      preguntas.preguntas,
+      modoCuestionario,
+      rutasCuestionario
+    );
 
 
   const [
@@ -154,7 +170,6 @@ function Cuestionario() {
     if (!formularioCompleto) {
       return;
     }
-
 
     setPreguntaActual(0);
 
@@ -454,6 +469,10 @@ function Cuestionario() {
           respuestas
         }
 
+        modoCuestionario={
+          modoCuestionario
+        }
+
         onVolver={() => {
 
           setPreguntaActual(
@@ -486,7 +505,12 @@ function Cuestionario() {
       <PreguntaCuestionario
 
         pregunta={
-          pregunta
+          modoCuestionario === "breve" && pregunta.preguntaBreve
+            ? {
+                ...pregunta,
+                pregunta: pregunta.preguntaBreve,
+              }
+            : pregunta
         }
 
         respuestaAbierta={
@@ -511,7 +535,7 @@ function Cuestionario() {
         }
 
         numero={
-          pregunta.numero
+          preguntaActual + 1
         }
 
         total={
@@ -581,9 +605,9 @@ function Cuestionario() {
         formularioCompleto
       }
 
-      onComenzar={
-        comenzarCuestionario
-      }
+      onComenzar={comenzarCuestionario}
+      modoCuestionario={modoCuestionario}
+      onCambiarModo={setModoCuestionario}
 
       onVolver={() =>
         navigate(-1)

@@ -8,7 +8,6 @@ import {
 } from "@chakra-ui/react";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 import App from "./App.jsx";
 import "./index.css";

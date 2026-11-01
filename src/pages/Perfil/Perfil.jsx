@@ -17,6 +17,7 @@ import {
 } from "react";
 
 import {
+  Link,
   useNavigate,
 } from "react-router-dom";
 
@@ -28,7 +29,7 @@ import {
 import {
   eliminarUsuarioWhaly,
   obtenerUsuarioWhaly,
-} from "../../utils/perfilStorage";
+} from "../../utils/perfilStorage.js";
 
 
 function Perfil() {
@@ -82,6 +83,9 @@ function Perfil() {
         >
 
           <Card.Root
+            as="section"
+            className="whaly-card"
+            aria-labelledby="perfil-sin-datos-titulo"
             backgroundColor="var(--whaly-white)"
             border="2px solid var(--whaly-purple)"
             borderRadius="30px"
@@ -116,6 +120,8 @@ function Perfil() {
 
 
                 <Heading
+                  as="h1"
+                  id="perfil-sin-datos-titulo"
                   color="var(--whaly-purple)"
                 >
                   Aún no tienes un perfil
@@ -134,17 +140,15 @@ function Perfil() {
 
 
                 <Button
-                  onClick={() =>
-                    navigate(
-                      "/cuestionario"
-                    )
-                  }
+                  asChild
                   backgroundColor="var(--whaly-purple)"
                   color="var(--whaly-white)"
                   borderRadius="30px"
                   px="30px"
                 >
-                  Crear mi perfil
+                  <Link to="/cuestionario">
+                    Crear mi perfil
+                  </Link>
                 </Button>
 
               </Stack>
@@ -240,6 +244,7 @@ function Perfil() {
 
 
             <Heading
+              as="h1"
               color="var(--whaly-purple)"
               fontSize={{
                 base: "34px",
@@ -297,6 +302,7 @@ function Perfil() {
           ========================= */}
 
           <Card.Root
+            className="whaly-card"
             backgroundColor="var(--whaly-white)"
             border="2px solid var(--whaly-purple)"
             borderRadius="30px"
@@ -323,6 +329,8 @@ function Perfil() {
                   </Text>
 
                   <Heading
+                    as="h2"
+                    id="perfil-datos-titulo"
                     color="var(--whaly-purple)"
                     fontSize="27px"
                   >
@@ -380,6 +388,9 @@ function Perfil() {
           ========================= */}
 
           <Card.Root
+            as="section"
+            className="whaly-card"
+            aria-labelledby="perfil-seguros-titulo"
             backgroundColor="var(--whaly-white)"
             border="2px solid var(--whaly-purple)"
             borderRadius="30px"
@@ -406,6 +417,8 @@ function Perfil() {
                   </Text>
 
                   <Heading
+                    as="h2"
+                    id="perfil-seguros-titulo"
                     color="var(--whaly-purple)"
                     fontSize="27px"
                   >
@@ -522,6 +535,7 @@ function Perfil() {
           >
 
             <Button
+              className="whaly-button-raised"
               onClick={volverAHacerCuestionario}
               backgroundColor="var(--whaly-mint)"
               color="var(--whaly-purple)"
@@ -631,6 +645,7 @@ function Perfil() {
                 </Button>
 
                 <Button
+                  className="whaly-button-raised"
                   onClick={eliminarPerfil}
                   backgroundColor="var(--whaly-mint)"
                   color="var(--whaly-purple)"

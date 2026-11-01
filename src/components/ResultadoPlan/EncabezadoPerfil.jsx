@@ -10,6 +10,7 @@ import {
 function EncabezadoPerfil({
   nombre,
   perfil,
+  modoCuestionario,
   perfilesComplementarios,
 }) {
 
@@ -60,6 +61,8 @@ function EncabezadoPerfil({
   return (
 
     <Stack
+      as="section"
+      aria-labelledby="resultado-perfil-titulo"
       textAlign="center"
       align="center"
       gap="10px"
@@ -75,7 +78,8 @@ function EncabezadoPerfil({
       </Text>
 
 
-      <Heading
+      <Text
+        as="p"
         color="var(--whaly-purple)"
         fontSize={{
           base: "34px",
@@ -88,10 +92,12 @@ function EncabezadoPerfil({
           ? `${nombreCompleto}, eres`
           : "Eres"}
 
-      </Heading>
+      </Text>
 
 
       <Heading
+        as="h1"
+        id="resultado-perfil-titulo"
         color="var(--whaly-purple)"
         fontSize={{
           base: "28px",
@@ -121,6 +127,18 @@ function EncabezadoPerfil({
       >
         Este resultado refleja cómo te relacionas hoy con tus decisiones y prioridades. No es una etiqueta permanente: tu Perfil Whaly puede cambiar a medida que también cambia tu vida.
       </Text>
+
+      {modoCuestionario === "breve" && (
+        <Text
+          color="var(--whaly-purple)"
+          maxW="650px"
+          opacity="0.75"
+          lineHeight="1.6"
+          fontSize="14px"
+        >
+          Elegiste la ruta breve: este resultado es una orientación inicial basada en una selección de tus respuestas.
+        </Text>
+      )}
 
       {perfilesComplementarios.length > 0 && (
 

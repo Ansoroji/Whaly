@@ -16,7 +16,6 @@ import {
   FaUmbrella,
 } from "react-icons/fa6";
 
-import Footer from "../../components/Footer/Footer";
 
 
 function SolucionesPersonas() {
@@ -46,14 +45,15 @@ function SolucionesPersonas() {
 
 
   return (
-    <>
-      <Box
+    <Box
         as="main"
         backgroundColor="var(--whaly-light-blue)"
       >
 
         {/* HERO */}
         <Box
+          as="section"
+          aria-labelledby="soluciones-personas-titulo"
           backgroundColor="var(--whaly-mint)"
           py={{
             base: "70px",
@@ -84,6 +84,7 @@ function SolucionesPersonas() {
 
               <Heading
                 as="h1"
+                id="soluciones-personas-titulo"
                 maxW="900px"
                 color="var(--whaly-purple)"
                 fontSize={{
@@ -121,6 +122,8 @@ function SolucionesPersonas() {
 
         {/* INTRODUCCIÓN */}
         <Box
+          as="section"
+          aria-labelledby="introduccion-personas-titulo"
           py={{
             base: "70px",
             md: "100px",
@@ -154,6 +157,7 @@ function SolucionesPersonas() {
 
               <Heading
                 as="h2"
+                id="introduccion-personas-titulo"
                 maxW="850px"
                 color="var(--whaly-purple)"
                 fontSize={{
@@ -199,19 +203,9 @@ function SolucionesPersonas() {
                 return (
                   <Card.Root
                     key={razon.id}
+                    className="whaly-card"
                     backgroundColor="var(--whaly-white)"
                     border="none"
-                    borderRadius="20px"
-                    boxShadow="0 6px 18px rgba(0, 0, 0, 0.08)"
-                    transition="
-                      transform 0.25s ease,
-                      box-shadow 0.25s ease
-                    "
-                    _hover={{
-                      transform: "translateY(-6px)",
-                      boxShadow:
-                        "0 14px 28px rgba(0, 0, 0, 0.12)",
-                    }}
                   >
 
                     <Card.Body
@@ -275,6 +269,8 @@ function SolucionesPersonas() {
 
         {/* MENSAJE CERCANO */}
         <Box
+          as="section"
+          aria-labelledby="mensaje-personas-titulo"
           py={{
             base: "30px",
             md: "50px",
@@ -303,6 +299,7 @@ function SolucionesPersonas() {
 
                 <Heading
                   as="h2"
+                  id="mensaje-personas-titulo"
                   color="var(--whaly-purple)"
                   fontSize={{
                     base: "30px",
@@ -340,6 +337,8 @@ function SolucionesPersonas() {
 
         {/* CTA */}
         <Box
+          as="section"
+          aria-labelledby="cta-soluciones-personas"
           py={{
             base: "80px",
             md: "110px",
@@ -369,6 +368,7 @@ function SolucionesPersonas() {
 
               <Heading
                 as="h2"
+                id="cta-soluciones-personas"
                 color="var(--whaly-purple)"
                 fontSize={{
                   base: "34px",
@@ -409,7 +409,7 @@ function SolucionesPersonas() {
                 {/* CUESTIONARIO */}
                 <Box
                   as={Link}
-                  to="/Cuestionario"
+                  to="/cuestionario"
                   width="100%"
                   minHeight="58px"
                   backgroundColor="transparent"
@@ -490,10 +490,7 @@ function SolucionesPersonas() {
           </Container>
         </Box>
 
-      </Box>
-
-      <Footer />
-    </>
+    </Box>
   );
 }
 

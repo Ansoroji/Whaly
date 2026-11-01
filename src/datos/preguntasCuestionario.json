@@ -6,6 +6,7 @@
       "seccion": "Tu momento",
       "tipo": "unica",
       "pregunta": "Cuando llegas a casa después de un día normal, ¿con quién vives actualmente?",
+      "preguntaBreve": "Cuando llegas a casa después de un día normal, ¿con quién compartes tu hogar?",
       "opciones": [
         "Con mi familia",
         "Con mi pareja",

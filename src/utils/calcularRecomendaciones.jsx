@@ -1,5 +1,8 @@
 import segurosData from "../datos/seguros.json";
 import reglas from "../datos/reglasRecomendacion.json";
+import {
+  calcularPuntajesPerfiles,
+} from "./calcularPuntajesPerfiles";
 
 
 function sumarReglas(puntajes, regla) {
@@ -90,48 +93,11 @@ export function calcularRecomendaciones(respuestas) {
 
 
 export function calcularResultadoPerfilWhaly(respuestas) {
-  const resultados =
-    reglas.perfiles.map((perfil) => ({
-      id: perfil.id,
-      nombre: perfil.nombre,
-      puntaje: perfil.preguntas.reduce(
-        (total, preguntaId) => {
-          const respuesta =
-            respuestas[preguntaId];
-
-          return (
-            total +
-            (
-              Number.isInteger(respuesta) &&
-              respuesta >= 1 &&
-              respuesta <= 5
-                ? respuesta
-                : 0
-            )
-          );
-        },
-        0
-      ),
-    }));
-
-  resultados.sort(
-    (a, b) => b.puntaje - a.puntaje
+  return calcularPuntajesPerfiles(
+    respuestas,
+    reglas.perfiles,
+    reglas.configuracion.diferenciaPerfilComplementario
   );
-
-  const principal = resultados[0];
-  const diferenciaComplementaria =
-    reglas.configuracion.diferenciaPerfilComplementario;
-
-  return {
-    principal,
-    complementarios: resultados
-      .slice(1)
-      .filter(
-        (perfil) =>
-          principal.puntaje - perfil.puntaje <=
-          diferenciaComplementaria
-      ),
-  };
 }
 
 

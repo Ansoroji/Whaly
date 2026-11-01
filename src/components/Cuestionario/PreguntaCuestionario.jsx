@@ -47,6 +47,8 @@ function PreguntaCuestionario({
         {/* PREGUNTA */}
 
         <Stack
+          as="section"
+          aria-labelledby="pregunta-cuestionario-titulo"
           textAlign="center"
           align="center"
           gap="12px"
@@ -99,6 +101,7 @@ function PreguntaCuestionario({
 
           <Heading
             as="h1"
+            id="pregunta-cuestionario-titulo"
             color="var(--whaly-purple)"
             fontSize={{
               base: "28px",
@@ -270,6 +273,7 @@ function PreguntaCuestionario({
         >
 
           <Button
+            className="whaly-button-raised"
             onClick={onAnterior}
             backgroundColor="var(--whaly-mint)"
             color="var(--whaly-purple)"
@@ -292,6 +296,7 @@ function PreguntaCuestionario({
 
 
           <Button
+            className="whaly-button-raised"
             onClick={onSiguiente}
             disabled={!puedeContinuar}
             backgroundColor="var(--whaly-mint)"

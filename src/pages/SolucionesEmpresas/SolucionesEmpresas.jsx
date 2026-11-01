@@ -16,7 +16,6 @@ import {
   FaShieldHalved,
 } from "react-icons/fa6";
 
-import Footer from "../../components/Footer/Footer";
 
 
 function SolucionesEmpresas() {
@@ -46,14 +45,15 @@ function SolucionesEmpresas() {
 
 
   return (
-    <>
-      <Box
+    <Box
         as="main"
         backgroundColor="var(--whaly-light-blue)"
       >
 
         {/* HERO */}
         <Box
+          as="section"
+          aria-labelledby="soluciones-empresas-titulo"
           backgroundColor="var(--whaly-lavender)"
           py={{
             base: "70px",
@@ -82,6 +82,7 @@ function SolucionesEmpresas() {
 
               <Heading
                 as="h1"
+                id="soluciones-empresas-titulo"
                 maxW="900px"
                 color="var(--whaly-purple)"
                 fontSize={{
@@ -116,6 +117,8 @@ function SolucionesEmpresas() {
 
         {/* RAZONES */}
         <Box
+          as="section"
+          aria-labelledby="razones-empresas-titulo"
           py={{
             base: "70px",
             md: "100px",
@@ -143,6 +146,8 @@ function SolucionesEmpresas() {
               </Text>
 
               <Heading
+                as="h2"
+                id="razones-empresas-titulo"
                 color="var(--whaly-purple)"
                 fontSize={{
                   base: "34px",
@@ -168,10 +173,9 @@ function SolucionesEmpresas() {
                 return (
                   <Card.Root
                     key={razon.id}
+                    className="whaly-card"
                     backgroundColor="var(--whaly-white)"
                     border="none"
-                    borderRadius="20px"
-                    boxShadow="0 6px 18px rgba(0, 0, 0, 0.08)"
                   >
                     <Card.Body padding="32px">
                       <Stack gap="20px">
@@ -190,6 +194,7 @@ function SolucionesEmpresas() {
                         </Box>
 
                         <Heading
+                          as="h3"
                           color="var(--whaly-purple)"
                           fontSize="24px"
                           fontWeight="800"
@@ -217,6 +222,8 @@ function SolucionesEmpresas() {
 
         {/* CTA */}
         <Box
+          as="section"
+          aria-labelledby="cta-soluciones-empresas"
           py={{
             base: "80px",
             md: "110px",
@@ -231,6 +238,8 @@ function SolucionesEmpresas() {
               gap="22px"
             >
               <Heading
+                as="h2"
+                id="cta-soluciones-empresas"
                 color="var(--whaly-purple)"
                 fontSize={{
                   base: "34px",
@@ -274,10 +283,7 @@ function SolucionesEmpresas() {
           </Container>
         </Box>
 
-      </Box>
-
-      <Footer />
-    </>
+    </Box>
   );
 }
 
