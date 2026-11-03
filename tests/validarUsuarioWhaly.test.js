@@ -179,6 +179,10 @@ test("actualiza y persiste el plan sin reemplazar el perfil", () => {
         { codigo: "vida", titulo: "Seguro de Vida" },
       ]
     );
+
+    const planVacio = actualizarPlanUsuarioWhaly([]);
+    assert.deepEqual(planVacio.plan, []);
+    assert.deepEqual(obtenerUsuarioWhaly().plan, []);
   } finally {
     delete globalThis.localStorage;
   }
