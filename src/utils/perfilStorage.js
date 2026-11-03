@@ -153,6 +153,41 @@ export function guardarUsuarioWhaly({
 
 }
 
+export function actualizarPlanUsuarioWhaly(plan) {
+  const usuario = obtenerUsuarioWhaly();
+
+  if (!usuario) {
+    throw new Error(
+      "No se puede actualizar el plan porque no existe un perfil Whaly válido."
+    );
+  }
+
+  const usuarioActualizado = {
+    ...usuario,
+    plan: plan.map((seguro) => ({
+      id: seguro.id,
+      codigo: seguro.codigo,
+      titulo: seguro.titulo,
+      descripcion: seguro.descripcion,
+      imagen: seguro.imagen,
+    })),
+    fechaActualizacion: new Date().toISOString(),
+  };
+
+  if (!esUsuarioWhalyValido(usuarioActualizado)) {
+    throw new TypeError(
+      "No se puede actualizar el plan con seguros incompletos o inválidos."
+    );
+  }
+
+  localStorage.setItem(
+    CLAVE_USUARIO,
+    JSON.stringify(usuarioActualizado)
+  );
+
+  return usuarioActualizado;
+}
+
 
 /* ========================================
    OBTENER USUARIO

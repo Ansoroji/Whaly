@@ -5,6 +5,7 @@ import {
   esUsuarioWhalyValido,
 } from "../src/utils/validarUsuarioWhaly.js";
 import {
+  actualizarPlanUsuarioWhaly,
   guardarUsuarioWhaly,
   obtenerUsuarioWhaly,
 } from "../src/utils/perfilStorage.js";
@@ -134,4 +135,83 @@ test("no guarda perfiles incompletos", () => {
   );
 
   delete globalThis.localStorage;
+});
+
+test("actualiza y persiste el plan sin reemplazar el perfil", () => {
+  const datosGuardados = new Map();
+  globalThis.localStorage = {
+    getItem: (clave) => datosGuardados.get(clave) ?? null,
+    setItem: (clave, valor) => datosGuardados.set(clave, valor),
+    removeItem: (clave) => datosGuardados.delete(clave),
+  };
+
+  try {
+    const guardado = guardarUsuarioWhaly({
+      datos: usuarioValido.datosPersonales,
+      respuestas: usuarioValido.respuestas,
+      perfilWhaly: usuarioValido.perfilWhaly,
+      resultadoPerfilWhaly: usuarioValido.resultadoPerfilWhaly,
+      plan: usuarioValido.plan,
+    });
+    const nuevoSeguro = {
+      codigo: "vida",
+      titulo: "Seguro de Vida",
+      descripcion: "Descripción",
+    };
+
+    const actualizado = actualizarPlanUsuarioWhaly([
+      ...guardado.plan,
+      nuevoSeguro,
+    ]);
+
+    assert.equal(actualizado.id, guardado.id);
+    assert.deepEqual(
+      actualizado.plan.map((seguro) => seguro.codigo),
+      ["salud", "vida"]
+    );
+    assert.deepEqual(
+      obtenerUsuarioWhaly().plan.map((seguro) => ({
+        codigo: seguro.codigo,
+        titulo: seguro.titulo,
+      })),
+      [
+        { codigo: "salud", titulo: "Seguro de Salud" },
+        { codigo: "vida", titulo: "Seguro de Vida" },
+      ]
+    );
+  } finally {
+    delete globalThis.localStorage;
+  }
+});
+
+test("no persiste una actualización de plan inválida", () => {
+  const datosGuardados = new Map();
+  globalThis.localStorage = {
+    getItem: (clave) => datosGuardados.get(clave) ?? null,
+    setItem: (clave, valor) => datosGuardados.set(clave, valor),
+    removeItem: (clave) => datosGuardados.delete(clave),
+  };
+
+  try {
+    guardarUsuarioWhaly({
+      datos: usuarioValido.datosPersonales,
+      respuestas: usuarioValido.respuestas,
+      perfilWhaly: usuarioValido.perfilWhaly,
+      resultadoPerfilWhaly: usuarioValido.resultadoPerfilWhaly,
+      plan: usuarioValido.plan,
+    });
+
+    const valorAnterior = datosGuardados.get("whalyUsuario");
+
+    assert.throws(
+      () =>
+        actualizarPlanUsuarioWhaly([
+          { codigo: "vida", titulo: "", descripcion: "Descripción" },
+        ]),
+      TypeError
+    );
+    assert.equal(datosGuardados.get("whalyUsuario"), valorAnterior);
+  } finally {
+    delete globalThis.localStorage;
+  }
 });

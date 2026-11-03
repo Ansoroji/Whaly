@@ -19,6 +19,7 @@ import segurosData
 import {
   calcularResultadoPerfilWhaly,
   calcularRecomendaciones,
+  calcularSegurosPriorizados,
 } from "../../utils/calcularRecomendaciones";
 
 import {
@@ -32,8 +33,8 @@ import EncabezadoPerfil
 import PlanRecomendado
   from "./PlanRecomendado";
 
-import ListaSegurosDisponibles
-  from "./ListaSegurosDisponibles";
+import SelectorSegurosDialog
+  from "./SelectorSegurosDialog";
 
 import AccionesPlan
   from "./AccionesPlan";
@@ -62,6 +63,11 @@ function ResultadoPlan({
         ),
       [respuestas]
     );
+
+  const segurosPriorizados = useMemo(
+    () => calcularSegurosPriorizados(respuestas),
+    [respuestas]
+  );
 
 
   /* ========================================
@@ -125,6 +131,16 @@ function ResultadoPlan({
         )
     );
 
+  const codigosRecomendados = new Set(
+    segurosPriorizados.map((seguro) => seguro.codigo)
+  );
+  const segurosRecomendadosDisponibles = segurosDisponibles.filter(
+    (seguro) => codigosRecomendados.has(seguro.codigo)
+  );
+  const otrosSegurosDisponibles = segurosDisponibles.filter(
+    (seguro) => !codigosRecomendados.has(seguro.codigo)
+  );
+
 
   /* ========================================
      ELIMINAR SEGURO
@@ -162,7 +178,7 @@ function ResultadoPlan({
 
 
     if (yaExiste) {
-      return;
+      return false;
     }
 
 
@@ -173,6 +189,7 @@ function ResultadoPlan({
       ]
     );
 
+    return true;
   };
 
 
@@ -203,19 +220,8 @@ function ResultadoPlan({
 
     setEditando(true);
 
-    setMostrarSeguros(true);
-
-  };
-
-
-  /* ========================================
-     MOSTRAR / OCULTAR SEGUROS
-  ======================================== */
-
-  const alternarSeguros = () => {
-
     setMostrarSeguros(
-      (actual) => !actual
+      true
     );
 
   };
@@ -345,24 +351,18 @@ function ResultadoPlan({
             }
             onEliminar={eliminarSeguro}
             onRestaurar={restaurarPlan}
-            mostrarSeguros={mostrarSeguros}
-            onAlternarSeguros={alternarSeguros}
+            onAgregarSeguros={() => setMostrarSeguros(true)}
             onCrearNuevoPaquete={crearNuevoPaquete}
           />
 
-          <ListaSegurosDisponibles
-            id="seguros-disponibles"
-            hidden={!mostrarSeguros}
-            seguros={segurosDisponibles}
-            onAgregar={agregarSeguro}
-            onVolverAlPlan={() =>
-              document
-                .getElementById("plan-recomendado")
-                ?.scrollIntoView({
-                  behavior: "smooth",
-                  block: "start",
-                })
+          <SelectorSegurosDialog
+            open={mostrarSeguros}
+            onOpenChange={(event) =>
+              setMostrarSeguros(event.open)
             }
+            segurosRecomendados={segurosRecomendadosDisponibles}
+            otrosSeguros={otrosSegurosDisponibles}
+            onAgregar={agregarSeguro}
           />
 
 

@@ -35,7 +35,7 @@ export const METADATOS_POR_RUTA = {
     title: "Cuestionario de orientación de seguros | Whaly",
     description:
       "Responde el cuestionario Whaly para conocer una orientación sobre tus prioridades y explorar seguros que pueden ajustarse a tu situación.",
-    indexable: false,
+    indexable: true,
   },
   "/perfil": {
     title: "Mi perfil Whaly",

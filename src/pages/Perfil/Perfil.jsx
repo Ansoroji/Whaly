@@ -23,13 +23,25 @@ import {
 
 import {
   FaCheck,
+  FaCirclePlus,
   FaUser,
 } from "react-icons/fa6";
 
+import segurosData
+  from "../../datos/seguros.json";
+
 import {
+  calcularSegurosPriorizados,
+} from "../../utils/calcularRecomendaciones";
+
+import {
+  actualizarPlanUsuarioWhaly,
   eliminarUsuarioWhaly,
   obtenerUsuarioWhaly,
 } from "../../utils/perfilStorage.js";
+
+import SelectorSegurosDialog
+  from "../../components/ResultadoPlan/SelectorSegurosDialog";
 
 
 function Perfil() {
@@ -42,13 +54,16 @@ function Perfil() {
      OBTENER USUARIO LOCAL
   ======================================== */
 
-  const usuario =
-    obtenerUsuarioWhaly();
+  const [usuario, setUsuario] =
+    useState(obtenerUsuarioWhaly);
 
   const [
     mostrarConfirmacionEliminar,
     setMostrarConfirmacionEliminar,
   ] = useState(false);
+  const [mostrarSelectorSeguros, setMostrarSelectorSeguros] =
+    useState(false);
+  const [errorPlan, setErrorPlan] = useState("");
 
   const volverAHacerCuestionario = () => {
     navigate("/cuestionario");
@@ -180,6 +195,45 @@ function Perfil() {
 
   const nombreCompleto =
     datosPersonales.nombre?.trim();
+
+  const segurosPriorizados =
+    calcularSegurosPriorizados(usuario.respuestas)
+      .filter(
+        (seguro) =>
+          !plan.some((item) => item.codigo === seguro.codigo)
+      );
+  const codigosRecomendados = new Set(
+    segurosPriorizados.map((seguro) => seguro.codigo)
+  );
+  const segurosDisponibles =
+    segurosData.segurosPersonas.filter(
+      (seguro) =>
+        !plan.some((item) => item.codigo === seguro.codigo)
+    );
+  const otrosSegurosDisponibles =
+    segurosDisponibles.filter(
+      (seguro) => !codigosRecomendados.has(seguro.codigo)
+    );
+
+  const agregarSeguro = (seguro) => {
+    if (plan.some((item) => item.codigo === seguro.codigo)) {
+      return false;
+    }
+
+    try {
+      const usuarioActualizado =
+        actualizarPlanUsuarioWhaly([...plan, seguro]);
+      setUsuario(usuarioActualizado);
+      setErrorPlan("");
+      return true;
+    } catch (error) {
+      console.error("Error actualizando el plan de seguros:", error);
+      setErrorPlan(
+        "No pudimos guardar el cambio. Inténtalo de nuevo."
+      );
+      return false;
+    }
+  };
 
 
   return (
@@ -504,16 +558,65 @@ function Perfil() {
                       )
                     )}
 
+                    {plan.length % 2 === 1 && (
+                      <Button
+                        onClick={() => {
+                          setErrorPlan("");
+                          setMostrarSelectorSeguros(true);
+                        }}
+                        display="flex"
+                        height="100%"
+                        minH="160px"
+                        flexDirection="column"
+                        gap="10px"
+                        whiteSpace="normal"
+                        textAlign="center"
+                        border="2px dashed var(--whaly-purple)"
+                        borderRadius="22px"
+                        backgroundColor="rgba(191, 234, 193, 0.28)"
+                        color="var(--whaly-purple)"
+                        _hover={{
+                          backgroundColor: "var(--whaly-mint)",
+                          transform: "translateY(-2px)",
+                        }}
+                      >
+                        <FaCirclePlus aria-hidden="true" size={24} />
+                        <Text as="span" fontWeight="800">
+                          Amplía tu protección
+                        </Text>
+                        <Text as="span" fontSize="14px" fontWeight="400">
+                          Explora seguros recomendados para ti.
+                        </Text>
+                      </Button>
+                    )}
+
                   </SimpleGrid>
 
                 ) : (
 
-                  <Text
-                    color="var(--whaly-purple)"
+                  <Stack
+                    align="center"
+                    textAlign="center"
+                    gap="12px"
+                    border="2px dashed var(--whaly-purple)"
+                    borderRadius="22px"
+                    p="24px"
                   >
-                    Actualmente no tienes
-                    seguros en tu plan.
-                  </Text>
+                    <Text color="var(--whaly-purple)">
+                      Actualmente no tienes seguros en tu plan.
+                    </Text>
+                    <Button
+                      onClick={() => {
+                        setErrorPlan("");
+                        setMostrarSelectorSeguros(true);
+                      }}
+                      backgroundColor="var(--whaly-purple)"
+                      color="var(--whaly-white)"
+                      borderRadius="24px"
+                    >
+                      Explorar seguros recomendados
+                    </Button>
+                  </Stack>
 
                 )}
 
@@ -665,6 +768,17 @@ function Perfil() {
           </Dialog.Positioner>
         </Portal>
       </Dialog.Root>
+
+      <SelectorSegurosDialog
+        open={mostrarSelectorSeguros}
+        onOpenChange={(event) =>
+          setMostrarSelectorSeguros(event.open)
+        }
+        segurosRecomendados={segurosPriorizados}
+        otrosSeguros={otrosSegurosDisponibles}
+        onAgregar={agregarSeguro}
+        error={errorPlan}
+      />
 
     </Box>
 

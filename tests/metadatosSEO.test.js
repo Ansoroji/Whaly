@@ -24,10 +24,10 @@ test("cada página pública tiene título y descripción únicos", () => {
   }
 });
 
-test("las rutas privadas y desconocidas no son indexables", () => {
+test("el cuestionario público es indexable y el perfil o rutas desconocidas no", () => {
   assert.equal(
     obtenerMetadatosSEO("/cuestionario").metadatos.indexable,
-    false
+    true
   );
   assert.equal(
     obtenerMetadatosSEO("/perfil").metadatos.indexable,
@@ -54,7 +54,7 @@ test("el sitemap contiene todas y solo las rutas públicas indexables", async ()
     .sort();
 
   assert.deepEqual(rutasEnSitemap.sort(), rutasEsperadas);
-  assert.ok(!sitemap.includes("/cuestionario"));
+  assert.ok(sitemap.includes("/cuestionario"));
   assert.ok(!sitemap.includes("/perfil"));
 });
 

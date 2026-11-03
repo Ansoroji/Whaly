@@ -8,8 +8,6 @@ import {
 } from "@chakra-ui/react";
 
 import {
-  FaChevronDown,
-  FaChevronUp,
   FaPen,
   FaRotateLeft,
 } from "react-icons/fa6";
@@ -24,8 +22,7 @@ function PlanRecomendado({
   onAlternarEdicion,
   onEliminar,
   onRestaurar,
-  mostrarSeguros,
-  onAlternarSeguros,
+  onAgregarSeguros,
   onCrearNuevoPaquete,
 }) {
 
@@ -122,9 +119,7 @@ function PlanRecomendado({
               </Button>
 
               <Button
-                onClick={onAlternarSeguros}
-                aria-expanded={mostrarSeguros}
-                aria-controls="seguros-disponibles"
+                onClick={onAgregarSeguros}
                 backgroundColor="var(--whaly-purple)"
                 color="var(--whaly-white)"
                 border="2px solid var(--whaly-purple)"
@@ -139,9 +134,6 @@ function PlanRecomendado({
                 }}
               >
                 Agregar seguros
-                {mostrarSeguros
-                  ? <FaChevronUp aria-hidden="true" />
-                  : <FaChevronDown aria-hidden="true" />}
               </Button>
 
               <Button

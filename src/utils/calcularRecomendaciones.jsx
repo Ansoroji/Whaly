@@ -22,7 +22,7 @@ function sumarReglas(puntajes, regla) {
 }
 
 
-export function calcularRecomendaciones(respuestas) {
+export function calcularSegurosPriorizados(respuestas) {
   const puntajes = {};
 
   const responsabilidades =
@@ -84,11 +84,14 @@ export function calcularRecomendaciones(respuestas) {
     .filter((seguro) => seguro.puntos > 0)
     .sort(
       (a, b) => b.puntos - a.puntos
-    )
-    .slice(
-      0,
-      reglas.configuracion.cantidadRecomendaciones
     );
+}
+
+export function calcularRecomendaciones(respuestas) {
+  return calcularSegurosPriorizados(respuestas).slice(
+    0,
+    reglas.configuracion.cantidadRecomendaciones
+  );
 }
 
 
