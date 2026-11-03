@@ -34,14 +34,14 @@ function Navbar() {
 
   return (
     <nav
-      className="navbar navbar-expand-lg whaly-navbar"
+      className="whaly-navbar"
       aria-label="Navegación principal"
     >
-      <div className="container-fluid whaly-navbar__container">
+      <div className="whaly-navbar__container">
 
         {/* LOGO */}
         <Link
-          className="navbar-brand whaly-navbar__brand"
+          className="whaly-navbar__brand"
           to="/"
           aria-label="Whaly, inicio"
         >
@@ -50,7 +50,7 @@ function Navbar() {
 
         {/* BOTÓN MENÚ MÓVIL */}
         <button
-          className="navbar-toggler whaly-navbar__toggler"
+          className="whaly-navbar__toggler"
           type="button"
           onClick={() =>
             setMenuAbierto((abierto) => !abierto)
@@ -59,21 +59,25 @@ function Navbar() {
           aria-expanded={menuAbierto}
           aria-label={menuAbierto ? "Cerrar menú" : "Abrir menú"}
         >
-          <span className="navbar-toggler-icon"></span>
+          <span className="whaly-navbar__icon" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </span>
         </button>
 
         {/* CONTENIDO DEL NAVBAR */}
         <div
-          className={`collapse navbar-collapse${menuAbierto ? " show" : ""}`}
+          className={`whaly-navbar__content${menuAbierto ? " is-open" : ""}`}
           id="whalyNavbar"
         >
           {/* ENLACES */}
-          <div className="navbar-nav mx-auto whaly-navbar__links">
+          <div className="whaly-navbar__links">
             {navLinks.map((link) => (
               <Link
                 key={link.id}
                 to={link.to}
-                className="nav-link whaly-navbar__link"
+                className="whaly-navbar__link"
                 onClick={() => setMenuAbierto(false)}
               >
                 {link.label}
@@ -84,7 +88,7 @@ function Navbar() {
           {/* BOTÓN CONTACTO */}
           <div className="whaly-navbar__actions">
             <Button
-              className="whaly-button-raised"
+              className="whaly-navbar__contact-button whaly-button-raised"
               asChild
               background="var(--whaly-mint)"
               color="var(--whaly-purple)"

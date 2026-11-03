@@ -20,6 +20,10 @@ import AppLayout
 import PublicLayout
   from "./layouts/PublicLayout";
 
+import {
+  actualizarMetadatosSEO,
+} from "./utils/actualizarMetadatosSEO.js";
+
 import "./App.css";
 
 const PaginaInicio = lazy(
@@ -62,6 +66,7 @@ function App() {
       return;
     }
 
+    actualizarMetadatosSEO(location.pathname);
 
     if (location.hash) {
       const targetId =

@@ -8,7 +8,27 @@
     ],
     "rewrites": [
       {
-        "source": "**",
+        "source": "/soluciones-personas",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/soluciones-empresas",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/personas",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/empresas",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/cuestionario",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/perfil",
         "destination": "/index.html"
       }
     ]

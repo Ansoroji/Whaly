@@ -8,8 +8,8 @@ import {
 } from "@chakra-ui/react";
 
 import BarraProgreso from "./BarraProgreso";
-import BotonEscala from "./BotonEscala";
 import ContenedorCuestionario from "./ContenedorCuestionario";
+import OpcionEscalaCuestionario from "./OpcionEscalaCuestionario";
 import OpcionCuestionario from "./OpcionCuestionario";
 
 
@@ -135,6 +135,9 @@ function PreguntaCuestionario({
         {pregunta.tipo === "escalaPerfil" && (
 
           <SimpleGrid
+            as="fieldset"
+            className="whaly-choice-group whaly-scale-group"
+            aria-labelledby="pregunta-cuestionario-titulo"
             columns={5}
             justifyItems="center"
             gap={{
@@ -148,37 +151,18 @@ function PreguntaCuestionario({
 
             {(pregunta.opciones || [1, 2, 3, 4, 5]).map(
               (opcion, indice) => (
-
-                <Stack
-                  key={opcion}
-                  align="center"
-                  gap="8px"
-                  width="100%"
-                >
-                  <BotonEscala
+                  <OpcionEscalaCuestionario
+                    key={opcion}
                     valor={opcion}
+                    nombre={`respuesta-${pregunta.id}`}
                     seleccionada={
                       estaSeleccionada(opcion)
                     }
-                    onClick={() =>
+                    etiqueta={`${indice + 1} — ${etiquetasEscala[indice]}`}
+                    onChange={() =>
                       seleccionarRespuesta(opcion)
                     }
                   />
-
-                  <Text
-                    color="var(--whaly-purple)"
-                    fontSize={{
-                      base: "10px",
-                      md: "12px",
-                    }}
-                    fontWeight="600"
-                    lineHeight="1.25"
-                    textAlign="center"
-                  >
-                    {indice + 1} — {etiquetasEscala[indice]}
-                  </Text>
-                </Stack>
-
               )
             )}
 
@@ -227,6 +211,9 @@ function PreguntaCuestionario({
           /* OPCIONES NORMALES */
 
           <Stack
+            as="fieldset"
+            className="whaly-choice-group"
+            aria-labelledby="pregunta-cuestionario-titulo"
             gap="14px"
             width="100%"
             maxW="620px"
@@ -238,6 +225,9 @@ function PreguntaCuestionario({
 
                 <OpcionCuestionario
                   key={opcion}
+                  name={`respuesta-${pregunta.id}`}
+                  tipo={pregunta.tipo === "multiple" ? "checkbox" : "radio"}
+                  checked={estaSeleccionada(opcion)}
                   seleccionada={
                     estaSeleccionada(
                       opcion
@@ -246,7 +236,7 @@ function PreguntaCuestionario({
                   deshabilitada={
                     !puedeSeleccionar(opcion)
                   }
-                  onClick={() =>
+                  onChange={() =>
                     seleccionarRespuesta(
                       opcion
                     )

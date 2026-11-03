@@ -48,6 +48,7 @@ function TarjetaSeguro({
           objectFit="contain"
           objectPosition="center"
           loading="lazy"
+          decoding="async"
         />
       </Box>
 

@@ -1,6 +1,8 @@
 /*NAVBAR - WHALY SEGUROS*/
 
 .whaly-navbar {
+  position: relative;
+  z-index: 10;
   width: 100%;
   padding: 16px 7%;
   background:
@@ -8,6 +10,23 @@
   box-shadow: 0 4px 18px rgba(35, 20, 75, 0.13);
 }
 
+.whaly-navbar__container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.whaly-navbar__content {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.whaly-navbar__toggler {
+  display: none;
+}
 
 .whaly-navbar__brand {
   margin: 0;
@@ -33,7 +52,9 @@
 
 .whaly-navbar__links {
   display: flex;
+  flex: 1;
   align-items: center;
+  justify-content: center;
   gap: 18px;
 }
 
@@ -78,6 +99,9 @@
 }
 
 .whaly-navbar__contact-button {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
   border: none !important;
   text-decoration: none !important;
   transition:
@@ -96,6 +120,10 @@
 /*BOTON HAMBURGUESA*/
 
 .whaly-navbar__toggler {
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 40px;
   padding: 7px 9px;
   background-color: var(--whaly-mint) !important;
   border: none !important;
@@ -105,6 +133,21 @@
     transform var(--whaly-motion-fast),
     background-color var(--whaly-motion-fast),
     box-shadow var(--whaly-motion-fast);
+}
+
+.whaly-navbar__icon {
+  display: flex;
+  width: 22px;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.whaly-navbar__icon span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background-color: var(--whaly-purple);
 }
 
 .whaly-navbar__toggler:hover {
@@ -128,27 +171,44 @@
     padding: 14px 24px;
   }
 
-  .whaly-navbar .navbar-collapse {
+  .whaly-navbar__container {
+    flex-wrap: wrap;
+  }
+
+  .whaly-navbar__toggler {
+    display: inline-flex;
+  }
+
+  .whaly-navbar__content {
+    display: none;
+    flex: 0 0 100%;
+    flex-direction: column;
+    align-items: stretch;
     margin-top: 14px;
     padding-top: 16px;
     border-top: 1px solid rgba(255, 255, 255, 0.18);
   }
 
+  .whaly-navbar__content.is-open {
+    display: flex;
+  }
+
   .whaly-navbar__links {
+    flex: initial;
+    flex-direction: column;
     align-items: flex-start;
-
     gap: 4px;
-
     margin-bottom: 18px;
   }
 
   .whaly-navbar__link {
+    display: block;
     width: 100%;
-
-    padding: 10px 0 !important;
+    padding: 10px 8px !important;
   }
 
   .whaly-navbar__actions {
+    display: flex;
     width: 100%;
   }
 

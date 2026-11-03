@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
 
-Disallow: /perfil
-
 Sitemap: https://whaly-7d8e3.web.app/sitemap.xml

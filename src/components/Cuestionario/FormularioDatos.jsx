@@ -299,81 +299,48 @@ function FormularioDatos({
           </Stack>
 
           <Stack
+            as="fieldset"
+            className="whaly-route-group"
             direction={{
               base: "column",
               md: "row",
             }}
             gap="14px"
-            role="group"
-            aria-label="Duración del cuestionario"
+            aria-labelledby="modo-cuestionario"
           >
-            <Button
-              className={
-                modoCuestionario === "breve"
-                  ? "whaly-button-raised"
-                  : undefined
-              }
-              type="button"
-              onClick={() => onCambiarModo("breve")}
-              aria-pressed={modoCuestionario === "breve"}
-              height="auto"
-              minH="108px"
-              flex="1"
-              whiteSpace="normal"
-              textAlign="left"
-              justifyContent="flex-start"
-              alignItems="flex-start"
-              flexDirection="column"
-              gap="6px"
-              p="18px"
-              border="2px solid var(--whaly-purple)"
-              borderRadius="20px"
-              backgroundColor={
-                modoCuestionario === "breve"
-                  ? "var(--whaly-mint)"
-                  : "var(--whaly-white)"
-              }
-              color="var(--whaly-purple)"
-            >
-              <Text fontWeight="800">Ruta breve · 15 preguntas</Text>
-              <Text fontSize="14px" fontWeight="400" whiteSpace="normal">
-                Una orientación rápida si ya tienes una idea de seguros o quieres avanzar en menos tiempo.
-              </Text>
-            </Button>
+            <label className={`whaly-route-choice${modoCuestionario === "breve" ? " is-selected" : ""}`}>
+              <input
+                className="whaly-choice__input"
+                type="radio"
+                name="modo-cuestionario"
+                value="breve"
+                checked={modoCuestionario === "breve"}
+                onChange={() => onCambiarModo("breve")}
+              />
+              <span className="whaly-route-choice__content">
+                <span className="whaly-route-choice__title">Ruta breve · 15 preguntas</span>
+                <span className="whaly-route-choice__description">
+                  Una orientación rápida si ya tienes una idea de seguros o quieres avanzar en menos tiempo.
+                </span>
+              </span>
+            </label>
 
-            <Button
-              className={
-                modoCuestionario === "completo"
-                  ? "whaly-button-raised"
-                  : undefined
-              }
-              type="button"
-              onClick={() => onCambiarModo("completo")}
-              aria-pressed={modoCuestionario === "completo"}
-              height="auto"
-              minH="108px"
-              flex="1"
-              whiteSpace="normal"
-              textAlign="left"
-              justifyContent="flex-start"
-              alignItems="flex-start"
-              flexDirection="column"
-              gap="6px"
-              p="18px"
-              border="2px solid var(--whaly-purple)"
-              borderRadius="20px"
-              backgroundColor={
-                modoCuestionario === "completo"
-                  ? "var(--whaly-mint)"
-                  : "var(--whaly-white)"
-              }
-              color="var(--whaly-purple)"
-            >
-              <Text fontWeight="800">Ruta completa · 37 preguntas</Text>
-              <Text fontSize="14px" fontWeight="400" whiteSpace="normal">
-                Explora tus prioridades con más detalle, tengas o no experiencia en seguros.
-              </Text>
-            </Button>
+            <label className={`whaly-route-choice${modoCuestionario === "completo" ? " is-selected" : ""}`}>
+              <input
+                className="whaly-choice__input"
+                type="radio"
+                name="modo-cuestionario"
+                value="completo"
+                checked={modoCuestionario === "completo"}
+                onChange={() => onCambiarModo("completo")}
+              />
+              <span className="whaly-route-choice__content">
+                <span className="whaly-route-choice__title">Ruta completa · 37 preguntas</span>
+                <span className="whaly-route-choice__description">
+                  Explora tus prioridades con más detalle, tengas o no experiencia en seguros.
+                </span>
+              </span>
+            </label>
           </Stack>
         </Stack>
 
