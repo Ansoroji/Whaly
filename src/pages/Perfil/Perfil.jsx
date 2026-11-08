@@ -14,6 +14,7 @@ import {
 
 import {
   useEffect,
+  useRef,
   useState,
 } from "react";
 
@@ -25,6 +26,8 @@ import {
 import {
   FaCheck,
   FaCirclePlus,
+  FaPen,
+  FaRotateLeft,
   FaTrashCan,
   FaUser,
 } from "react-icons/fa6";
@@ -67,23 +70,23 @@ function Perfil() {
     useState(false);
   const [errorPlan, setErrorPlan] = useState("");
   const [editandoSeguros, setEditandoSeguros] = useState(false);
-  const [seguroParaDeshacer, setSeguroParaDeshacer] = useState(null);
+  const [segurosParaDeshacer, setSegurosParaDeshacer] = useState([]);
   const [mensajePlan, setMensajePlan] = useState("");
+  const agregarSegurosButtonRef = useRef(null);
+  const enfocarAgregarTrasQuitarRef = useRef(false);
+  const plan = usuario?.plan;
 
   useEffect(() => {
-    if (!seguroParaDeshacer) {
-      return undefined;
+    if (!enfocarAgregarTrasQuitarRef.current) {
+      return;
     }
 
-    const timeout = window.setTimeout(() => {
-      setSeguroParaDeshacer(null);
-    }, 6000);
-
-    return () => window.clearTimeout(timeout);
-  }, [seguroParaDeshacer]);
+    agregarSegurosButtonRef.current?.focus();
+    enfocarAgregarTrasQuitarRef.current = false;
+  }, [plan]);
 
   useEffect(() => {
-    if (!mensajePlan) {
+    if (!mensajePlan || segurosParaDeshacer.length > 0) {
       return undefined;
     }
 
@@ -92,7 +95,7 @@ function Perfil() {
     }, 6000);
 
     return () => window.clearTimeout(timeout);
-  }, [mensajePlan]);
+  }, [mensajePlan, segurosParaDeshacer.length]);
 
   const volverAHacerCuestionario = () => {
     navigate("/cuestionario");
@@ -218,7 +221,6 @@ function Perfil() {
     datosPersonales,
     perfilWhaly,
     resultadoPerfilWhaly,
-    plan,
   } = usuario;
 
 
@@ -273,8 +275,12 @@ function Perfil() {
       const usuarioActualizado = actualizarPlanUsuarioWhaly(
         plan.filter((item) => item.codigo !== seguro.codigo)
       );
+      enfocarAgregarTrasQuitarRef.current = true;
       setUsuario(usuarioActualizado);
-      setSeguroParaDeshacer({ seguro, indice });
+      setSegurosParaDeshacer((actuales) => [
+        ...actuales,
+        { seguro, indice },
+      ]);
       setMensajePlan(`${seguro.titulo} se quitó de tu plan.`);
       setErrorPlan("");
 
@@ -290,17 +296,20 @@ function Perfil() {
   };
 
   const deshacerQuitarSeguro = () => {
-    if (!seguroParaDeshacer) {
+    const ultimoSeguroQuitado =
+      segurosParaDeshacer[segurosParaDeshacer.length - 1];
+
+    if (!ultimoSeguroQuitado) {
       return;
     }
 
-    const { seguro, indice } = seguroParaDeshacer;
+    const { seguro, indice } = ultimoSeguroQuitado;
 
     if (plan.some((item) => item.codigo === seguro.codigo)) {
       setMensajePlan(
         `${seguro.titulo} ya está en tu plan.`
       );
-      setSeguroParaDeshacer(null);
+      setSegurosParaDeshacer((actuales) => actuales.slice(0, -1));
       return;
     }
 
@@ -314,14 +323,44 @@ function Perfil() {
       const usuarioActualizado =
         actualizarPlanUsuarioWhaly(planRestaurado);
       setUsuario(usuarioActualizado);
-      setEditandoSeguros(false);
-      setSeguroParaDeshacer(null);
+      setSegurosParaDeshacer((actuales) => actuales.slice(0, -1));
       setMensajePlan(`${seguro.titulo} volvió a tu plan.`);
       setErrorPlan("");
     } catch (error) {
       console.error("Error restaurando un seguro al plan:", error);
       setErrorPlan(
         "No pudimos restaurar el seguro. Inténtalo de nuevo."
+      );
+    }
+  };
+
+  const restaurarSegurosQuitados = () => {
+    if (segurosParaDeshacer.length === 0) {
+      return;
+    }
+
+    try {
+      const planRestaurado = [...plan];
+      [...segurosParaDeshacer].reverse().forEach(({ seguro, indice }) => {
+        if (!planRestaurado.some((item) => item.codigo === seguro.codigo)) {
+          planRestaurado.splice(
+            Math.min(indice, planRestaurado.length),
+            0,
+            seguro
+          );
+        }
+      });
+      const usuarioActualizado =
+        actualizarPlanUsuarioWhaly(planRestaurado);
+      setUsuario(usuarioActualizado);
+      setEditandoSeguros(false);
+      setSegurosParaDeshacer([]);
+      setMensajePlan("Restauramos los seguros que habías quitado.");
+      setErrorPlan("");
+    } catch (error) {
+      console.error("Error restaurando los seguros quitados:", error);
+      setErrorPlan(
+        "No pudimos restaurar los seguros. Inténtalo de nuevo."
       );
     }
   };
@@ -551,10 +590,10 @@ function Perfil() {
               <Stack gap="25px">
 
                 <Stack
-                  direction={{ base: "column", sm: "row" }}
+                  direction={{ base: "column", lg: "row" }}
                   justify="space-between"
-                  align={{ base: "flex-start", sm: "center" }}
-                  gap="12px"
+                  align={{ base: "stretch", lg: "center" }}
+                  gap="16px"
                 >
                   <Box>
                     <Text
@@ -576,21 +615,87 @@ function Perfil() {
                     </Heading>
                   </Box>
 
-                  {plan.length > 0 && (
+                  <Stack
+                    direction="row"
+                    wrap="wrap"
+                    justify={{ base: "stretch", lg: "flex-end" }}
+                    align="center"
+                    gap="10px"
+                    width={{ base: "100%", lg: "auto" }}
+                    flex="1"
+                    minW="0"
+                  >
                     <Button
                       onClick={() =>
                         setEditandoSeguros((actual) => !actual)
                       }
+                      backgroundColor={
+                        editandoSeguros
+                          ? "var(--whaly-purple)"
+                          : "transparent"
+                      }
+                      color={
+                        editandoSeguros
+                          ? "var(--whaly-white)"
+                          : "var(--whaly-purple)"
+                      }
+                      border="2px solid var(--whaly-purple)"
+                      borderRadius="25px"
+                      fontWeight="700"
+                      minH="44px"
+                      minW="0"
+                      flex={{ base: "1 1 100%", sm: "0 1 auto" }}
+                      order={{ base: 1, lg: 1 }}
+                      whiteSpace="normal"
+                      textAlign="center"
+                      aria-pressed={editandoSeguros}
+                      disabled={plan.length === 0}
+                    >
+                      <FaPen aria-hidden="true" />
+                      {editandoSeguros ? "Terminar" : "Editar"}
+                    </Button>
+
+                    <Button
+                      ref={agregarSegurosButtonRef}
+                      onClick={() => {
+                        setErrorPlan("");
+                        setMostrarSelectorSeguros(true);
+                      }}
+                      backgroundColor="var(--whaly-purple)"
+                      color="var(--whaly-white)"
+                      border="2px solid var(--whaly-purple)"
+                      borderRadius="25px"
+                      fontWeight="700"
+                      minH="44px"
+                      minW="0"
+                      flex={{ base: "1 1 100%", sm: "0 1 auto" }}
+                      order={{ base: 2, lg: 2 }}
+                      whiteSpace="normal"
+                      textAlign="center"
+                    >
+                      <FaCirclePlus aria-hidden="true" />
+                      Agregar seguros
+                    </Button>
+
+                    <Button
+                      onClick={restaurarSegurosQuitados}
                       variant="outline"
                       border="2px solid var(--whaly-purple)"
-                      borderRadius="24px"
+                      borderRadius="25px"
                       color="var(--whaly-purple)"
+                      fontWeight="700"
                       minH="44px"
-                      aria-pressed={editandoSeguros}
+                      minW="0"
+                      flex={{ base: "1 1 100%", sm: "0 1 auto" }}
+                      order={{ base: 3, lg: 3 }}
+                      whiteSpace="normal"
+                      textAlign="center"
+                      disabled={segurosParaDeshacer.length === 0}
                     >
-                      {editandoSeguros ? "Listo" : "Editar seguros"}
+                      <FaRotateLeft aria-hidden="true" />
+                      Restaurar seguros quitados
                     </Button>
-                  )}
+                  </Stack>
                 </Stack>
 
                 {errorPlan && (
@@ -614,13 +719,14 @@ function Perfil() {
                     <Text color="var(--whaly-purple)">
                       {mensajePlan}
                     </Text>
-                    {seguroParaDeshacer && (
+                    {segurosParaDeshacer.length > 0 && (
                       <Button
                         onClick={deshacerQuitarSeguro}
                         variant="ghost"
                         color="var(--whaly-purple)"
                         textDecoration="underline"
                         minH="44px"
+                        aria-label={`Deshacer y recuperar ${segurosParaDeshacer[segurosParaDeshacer.length - 1].seguro.titulo}`}
                       >
                         Deshacer
                       </Button>
@@ -719,35 +825,49 @@ function Perfil() {
                     ))}
 
                     {plan.length % 2 === 1 && (
-                      <Button
-                        onClick={() => {
-                          setErrorPlan("");
-                          setMostrarSelectorSeguros(true);
-                        }}
-                        display="flex"
-                        height="100%"
-                        minH="160px"
+                      <Box
+                        as="aside"
+                        aria-labelledby="perfil-plan-ayuda-titulo"
+                        display={{ base: "none", md: "flex" }}
                         flexDirection="column"
-                        gap="10px"
-                        whiteSpace="normal"
-                        textAlign="center"
-                        border="2px dashed var(--whaly-purple)"
+                        justifyContent="center"
+                        minH="100%"
+                        border="2px dashed var(--whaly-border)"
                         borderRadius="22px"
-                        backgroundColor="rgba(191, 234, 193, 0.28)"
-                        color="var(--whaly-purple)"
-                        _hover={{
-                          backgroundColor: "var(--whaly-mint)",
-                          transform: "translateY(-2px)",
-                        }}
+                        p="20px"
+                        backgroundColor="rgba(191, 234, 193, 0.18)"
                       >
-                        <FaCirclePlus aria-hidden="true" size={24} />
-                        <Text as="span" fontWeight="800">
-                          Amplía tu protección
+                        <Box
+                          width="42px"
+                          height="42px"
+                          mb="14px"
+                          borderRadius="50%"
+                          backgroundColor="rgba(191, 234, 193, 0.55)"
+                          color="var(--whaly-purple)"
+                          display="flex"
+                          alignItems="center"
+                          justifyContent="center"
+                        >
+                          <FaCirclePlus aria-hidden="true" />
+                        </Box>
+                        <Heading
+                          as="h3"
+                          id="perfil-plan-ayuda-titulo"
+                          color="var(--whaly-purple)"
+                          fontSize="18px"
+                        >
+                          Tu plan puede crecer contigo
+                        </Heading>
+                        <Text
+                          color="var(--whaly-purple)"
+                          opacity="0.75"
+                          fontSize="14px"
+                          mb="0"
+                        >
+                          Cuando quieras, explora otras opciones desde
+                          «Agregar seguros» en la parte superior.
                         </Text>
-                        <Text as="span" fontSize="14px" fontWeight="400">
-                          Explora seguros recomendados para ti.
-                        </Text>
-                      </Button>
+                      </Box>
                     )}
 
                   </SimpleGrid>
@@ -765,17 +885,6 @@ function Perfil() {
                     <Text color="var(--whaly-purple)">
                       Actualmente no tienes seguros en tu plan.
                     </Text>
-                    <Button
-                      onClick={() => {
-                        setErrorPlan("");
-                        setMostrarSelectorSeguros(true);
-                      }}
-                      backgroundColor="var(--whaly-purple)"
-                      color="var(--whaly-white)"
-                      borderRadius="24px"
-                    >
-                      Explorar seguros recomendados
-                    </Button>
                   </Stack>
 
                 )}

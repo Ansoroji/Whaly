@@ -29,6 +29,9 @@ import useCiudades
 import {
   seleccionarPreguntasCuestionario,
 } from "../../utils/seleccionarPreguntasCuestionario";
+import {
+  esCelularColombianoValido,
+} from "../../utils/validarCelularColombiano";
 
 
 function Cuestionario() {
@@ -162,7 +165,7 @@ function Cuestionario() {
 
     datos.ciudad.trim() !== "" &&
 
-    /^\d{10}$/.test(datos.telefono);
+    esCelularColombianoValido(datos.telefono);
 
 
   const comenzarCuestionario = () => {
@@ -603,6 +606,10 @@ function Cuestionario() {
 
       formularioCompleto={
         formularioCompleto
+      }
+
+      telefonoValido={
+        esCelularColombianoValido(datos.telefono)
       }
 
       onComenzar={comenzarCuestionario}

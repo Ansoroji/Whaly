@@ -9,7 +9,7 @@ import Navbar
 function AppLayout() {
   return (
     <>
-      <header>
+      <header className="whaly-site-header">
         <Navbar />
       </header>
       <Outlet />

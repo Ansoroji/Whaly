@@ -1,6 +1,9 @@
 import {
   esUsuarioWhalyValido,
 } from "./validarUsuarioWhaly.js";
+import {
+  esCelularColombianoValido,
+} from "./validarCelularColombiano.js";
 
 const CLAVE_USUARIO = "whalyUsuario";
 
@@ -137,9 +140,12 @@ export function guardarUsuarioWhaly({
 
   };
 
-  if (!esUsuarioWhalyValido(usuario)) {
+  if (
+    !esUsuarioWhalyValido(usuario) ||
+    !esCelularColombianoValido(usuario.datosPersonales.telefono)
+  ) {
     throw new TypeError(
-      "No se puede guardar un perfil Whaly con datos incompletos o inválidos."
+      "No se puede guardar un perfil Whaly con datos incompletos o inválidos, incluido el número celular colombiano."
     );
   }
 

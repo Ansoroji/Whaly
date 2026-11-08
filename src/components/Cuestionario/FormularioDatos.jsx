@@ -18,6 +18,7 @@ function FormularioDatos({
   cargandoCiudades,
   errorCiudades,
   formularioCompleto,
+  telefonoValido,
   onComenzar,
   modoCuestionario,
   onCambiarModo,
@@ -275,6 +276,16 @@ function FormularioDatos({
             value={datos.telefono}
             onChange={onChange}
             placeholder="Ej. 300 123 4567"
+            helperText={
+              telefonoValido
+                ? "¡Perfecto! Gracias por compartirlo."
+                : "Ingresa los 10 dígitos de tu celular."
+            }
+            error={
+              datos.telefono && !telefonoValido
+                ? "Ingresa un número de celular válido."
+                : ""
+            }
           />
 
         </Stack>

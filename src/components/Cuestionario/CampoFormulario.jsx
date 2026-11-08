@@ -16,6 +16,8 @@ function CampoFormulario({
   max,
   maxLength,
   inputMode,
+  helperText,
+  error,
 }) {
 
   return (
@@ -39,6 +41,12 @@ function CampoFormulario({
         max={max}
         maxLength={maxLength}
         inputMode={inputMode}
+        aria-invalid={Boolean(error)}
+        aria-describedby={
+          helperText || error
+            ? `${name}-description`
+            : undefined
+        }
         value={value}
         onChange={onChange}
         placeholder={placeholder}
@@ -55,6 +63,17 @@ function CampoFormulario({
             "0 0 0 2px var(--whaly-mint)",
         }}
       />
+
+      {(error || helperText) && (
+        <Text
+          id={`${name}-description`}
+          color={error ? "red.700" : "var(--whaly-purple)"}
+          fontSize="13px"
+          role={error ? "status" : undefined}
+        >
+          {error || helperText}
+        </Text>
+      )}
 
     </Stack>
   );

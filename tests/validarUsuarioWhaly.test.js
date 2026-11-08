@@ -137,6 +137,32 @@ test("no guarda perfiles incompletos", () => {
   delete globalThis.localStorage;
 });
 
+test("no guarda perfiles con números que no son celulares colombianos", () => {
+  globalThis.localStorage = {
+    getItem: () => null,
+    setItem: () => assert.fail("No debe persistir un número inválido."),
+  };
+
+  try {
+    assert.throws(
+      () =>
+        guardarUsuarioWhaly({
+          datos: {
+            ...usuarioValido.datosPersonales,
+            telefono: "1111111111",
+          },
+          respuestas: usuarioValido.respuestas,
+          perfilWhaly: usuarioValido.perfilWhaly,
+          resultadoPerfilWhaly: usuarioValido.resultadoPerfilWhaly,
+          plan: usuarioValido.plan,
+        }),
+      TypeError
+    );
+  } finally {
+    delete globalThis.localStorage;
+  }
+});
+
 test("actualiza y persiste el plan sin reemplazar el perfil", () => {
   const datosGuardados = new Map();
   globalThis.localStorage = {
