@@ -9,9 +9,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-import {
-  Link,
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 function SeccionServicios() {
@@ -55,9 +53,7 @@ function SeccionServicios() {
       }}
     >
 
-      <Container
-        maxW="1200px"
-      >
+      <Container maxW="1200px">
 
 
         {/* =========================
@@ -132,226 +128,326 @@ function SeccionServicios() {
             base: "35px",
             md: "45px",
           }}
+          alignItems="stretch"
         >
 
-          {servicios.map(
-            (servicio) => (
+          {servicios.map((servicio) => (
 
-              <Card.Root
-                key={servicio.id}
-                role="group"
+            <Card.Root
+              key={servicio.id}
+              role="group"
+
+              position="relative"
+
+              overflow="hidden"
+
+              backgroundColor="var(--whaly-white)"
+
+              border="none"
+
+              borderRadius={{
+                base: "26px",
+                md: "32px",
+              }}
+
+              boxShadow="
+                0 10px 0
+                var(--whaly-purple)
+              "
+
+              transition="
+                transform 0.25s ease,
+                box-shadow 0.25s ease
+              "
+
+              _hover={{
+                transform:
+                  "translateY(-7px)",
+
+                boxShadow:
+                  "0 17px 0 var(--whaly-purple)",
+              }}
+
+              display="flex"
+
+              flexDirection="column"
+
+              height="100%"
+            >
+
+
+              {/* =========================
+                  BARRA SUPERIOR
+              ========================= */}
+
+              <Box
+                position="absolute"
+                top="0"
+                left="0"
+
+                width="100%"
+                height="8px"
+
+                backgroundColor="var(--whaly-mint)"
+
+                zIndex="3"
+              />
+
+
+              {/* =========================
+                  IMAGEN
+              ========================= */}
+
+              <Box
                 position="relative"
-                overflow="hidden"
-                backgroundColor="var(--whaly-white)"
-                border="2px solid var(--whaly-purple)"
-                borderRadius={{
-                  base: "26px",
-                  md: "32px",
+
+                height={{
+                  base: "230px",
+                  md: "290px",
                 }}
-                boxShadow="
-                  0 10px 0
-                  var(--whaly-purple)
-                "
-                transition="
-                  transform 0.25s ease,
-                  box-shadow 0.25s ease
-                "
-                _hover={{
-                  transform:
-                    "translateY(-7px)",
-                  boxShadow:
-                    "0 17px 0 var(--whaly-purple)",
+
+                display="flex"
+
+                justifyContent="center"
+
+                alignItems="center"
+
+                padding={{
+                  base: "28px",
+                  md: "34px",
+                }}
+
+                backgroundColor="var(--whaly-white)"
+
+                flexShrink="0"
+              >
+
+                <Image
+                  src={servicio.imagen}
+
+                  alt={servicio.titulo}
+
+                  width="100%"
+                  height="100%"
+
+                  maxW="360px"
+
+                  objectFit="contain"
+
+                  loading="lazy"
+
+                  decoding="async"
+
+                  transition="
+                    transform 0.3s ease
+                  "
+
+                  _groupHover={{
+                    transform:
+                      "scale(1.04)",
+                  }}
+                />
+
+              </Box>
+
+
+              {/* =========================
+                  CONTENIDO
+              ========================= */}
+
+              <Card.Body
+                display="flex"
+
+                flexDirection="column"
+
+                flex="1"
+
+                padding={{
+                  base: "26px",
+                  md: "34px",
+                }}
+
+                paddingTop={{
+                  base: "20px",
+                  md: "22px",
                 }}
               >
 
+                <Stack
+                  gap="18px"
 
-                {/* =========================
-                    BARRA SUPERIOR
-                ========================= */}
+                  align="flex-start"
 
-                <Box
-                  position="absolute"
-                  top="0"
-                  left="0"
                   width="100%"
-                  height="8px"
-                  backgroundColor="var(--whaly-mint)"
-                  zIndex="3"
-                />
 
-
-                {/* =========================
-                    IMAGEN
-                ========================= */}
-
-                <Box
-                  position="relative"
-                  height={{
-                    base: "230px",
-                    md: "290px",
-                  }}
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  padding={{
-                    base: "28px",
-                    md: "34px",
-                  }}
-                  backgroundColor="var(--whaly-white)"
+                  height="100%"
                 >
 
-                  <Image
-                    src={servicio.imagen}
-                    alt={servicio.titulo}
-                    width="100%"
-                    height="100%"
-                    maxW="360px"
-                    objectFit="contain"
-                    loading="lazy"
-                    decoding="async"
-                    transition="
-                      transform 0.3s ease
-                    "
-                    _groupHover={{
-                      transform:
-                        "scale(1.04)",
+
+                  {/* =========================
+                      ETIQUETA
+                  ========================= */}
+
+                  <Box
+                    backgroundColor="var(--whaly-mint)"
+
+                    color="var(--whaly-purple)"
+
+                    borderRadius="20px"
+
+                    px="14px"
+
+                    py="6px"
+
+                    fontSize="12px"
+
+                    fontWeight="800"
+
+                    letterSpacing="2px"
+                  >
+                    {servicio.etiqueta}
+                  </Box>
+
+
+                  {/* =========================
+                      TÍTULO
+                  ========================= */}
+
+                  <Heading
+                    as="h3"
+
+                    color="var(--whaly-purple)"
+
+                    fontSize={{
+                      base: "27px",
+                      md: "32px",
                     }}
-                  />
 
-                </Box>
+                    fontWeight="800"
+
+                    lineHeight="1.15"
+
+                    width="100%"
+
+                    minHeight={{
+                      base: "32px",
+                      md: "38px",
+                    }}
+                  >
+                    {servicio.titulo}
+                  </Heading>
 
 
-                {/* =========================
-                    CONTENIDO
-                ========================= */}
+                  {/* =========================
+                      DESCRIPCIÓN
+                  ========================= */}
 
-                <Card.Body
-                  padding={{
-                    base: "26px",
-                    md: "34px",
-                  }}
-                  paddingTop={{
-                    base: "20px",
-                    md: "22px",
-                  }}
-                >
+                  <Text
+                    color="var(--whaly-purple)"
 
-                  <Stack
-                    gap="18px"
-                    align="flex-start"
+                    fontSize={{
+                      base: "16px",
+                      md: "17px",
+                    }}
+
+                    lineHeight="1.7"
+
+                    opacity="0.8"
+
+                    width="100%"
+
+                    minHeight={{
+                      base: "54px",
+                      md: "58px",
+                    }}
+                  >
+                    {servicio.descripcion}
+                  </Text>
+
+
+                  {/* =========================
+                      BOTÓN
+                  ========================= */}
+
+                  <Box
+                    as={Link}
+
+                    to={servicio.ruta}
+
+                    marginTop="auto"
+
+                    display="inline-flex"
+
+                    alignItems="center"
+
+                    justifyContent="center"
+
+                    gap="10px"
+
+                    backgroundColor="var(--whaly-mint)"
+
+                    color="var(--whaly-purple)"
+
+                    border="2px solid var(--whaly-purple)"
+
+                    borderRadius="30px"
+
+                    minW="145px"
+
+                    height="48px"
+
+                    px="22px"
+
+                    fontSize="15px"
+
+                    fontWeight="800"
+
+                    transition="
+                      transform 0.2s ease,
+                      background-color 0.2s ease,
+                      color 0.2s ease
+                    "
+
+                    _hover={{
+                      transform:
+                        "translateX(4px)",
+
+                      backgroundColor:
+                        "var(--whaly-purple)",
+
+                      color:
+                        "var(--whaly-white)",
+
+                      textDecoration:
+                        "none",
+                    }}
                   >
 
+                    Ver más
 
-                    {/* ETIQUETA */}
-
-                    <Box
-                      backgroundColor="var(--whaly-mint)"
-                      color="var(--whaly-purple)"
-                      borderRadius="20px"
-                      px="14px"
-                      py="6px"
-                      fontSize="12px"
-                      fontWeight="800"
-                      letterSpacing="2px"
-                    >
-                      {servicio.etiqueta}
-                    </Box>
-
-
-                    {/* TÍTULO */}
-
-                    <Heading
-                      as="h3"
-                      color="var(--whaly-purple)"
-                      fontSize={{
-                        base: "27px",
-                        md: "32px",
-                      }}
-                      fontWeight="800"
-                      lineHeight="1.15"
-                      maxW="90%"
-                    >
-                      {servicio.titulo}
-                    </Heading>
-
-
-                    {/* DESCRIPCIÓN */}
 
                     <Text
-                      color="var(--whaly-purple)"
-                      fontSize={{
-                        base: "16px",
-                        md: "17px",
-                      }}
-                      lineHeight="1.7"
-                      opacity="0.8"
-                      maxW="440px"
+                      as="span"
+
+                      fontSize="19px"
+
+                      lineHeight="1"
                     >
-                      {servicio.descripcion}
+                      →
                     </Text>
 
+                  </Box>
 
-                    {/* =========================
-                        BOTÓN
-                    ========================= */}
 
-                    <Box
-                      as={Link}
-                      to={servicio.ruta}
-                      marginTop="8px"
-                      display="inline-flex"
-                      alignItems="center"
-                      justifyContent="center"
-                      gap="10px"
-                      backgroundColor="var(--whaly-mint)"
-                      color="var(--whaly-purple)"
-                      border="2px solid var(--whaly-purple)"
-                      borderRadius="30px"
-                      minW="145px"
-                      height="48px"
-                      px="22px"
-                      fontSize="15px"
-                      fontWeight="800"
-                      transition="
-                        transform 0.2s ease,
-                        background-color 0.2s ease,
-                        color 0.2s ease
-                      "
-                      _hover={{
-                        transform:
-                          "translateX(4px)",
-                        backgroundColor:
-                          "var(--whaly-purple)",
-                        color:
-                          "var(--whaly-white)",
-                        textDecoration:
-                          "none",
-                      }}
-                    >
+                </Stack>
 
-                      Ver más
+              </Card.Body>
 
-                      <Text
-                        as="span"
-                        fontSize="19px"
-                        lineHeight="1"
-                      >
-                        →
-                      </Text>
+            </Card.Root>
 
-                    </Box>
-
-                  </Stack>
-
-                </Card.Body>
-
-              </Card.Root>
-
-            )
-          )}
+          ))}
 
         </SimpleGrid>
-
 
       </Container>
 
