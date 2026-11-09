@@ -77,61 +77,61 @@
       "id": 1,
       "titulo": "Todo Riesgo Empresarial",
       "descripcion": "Protección para tu empresa frente a eventos inesperados que puedan ocasionar pérdidas en sus bienes y operaciones.",
-      "imagen": "/images/seguros/empresas/todo-riesgo.webp"
+      "imagen": null
     },
     {
       "id": 2,
       "titulo": "Pólizas Colectivas",
       "descripcion": "Soluciones colectivas para cuidar el capital humano de tu empresa y ofrecer beneficios a tus colaboradores.",
-      "imagen": "/images/seguros/empresas/polizas-colectivas.webp"
+      "imagen": null
     },
     {
       "id": 3,
       "titulo": "Vida Socios",
       "descripcion": "Protección para mantener la estabilidad de tu empresa ante una situación inesperada que afecte a uno de sus socios.",
-      "imagen": "/images/seguros/empresas/vida-socios.webp"
+      "imagen": null
     },
     {
       "id": 4,
       "titulo": "Transporte de Mercancías",
       "descripcion": "Protege tus mercancías durante el traslado ante daños, pérdidas, robos y otros imprevistos.",
-      "imagen": "/images/seguros/empresas/transporte-mercancias.webp"
+      "imagen": null
     },
     {
       "id": 5,
       "titulo": "Sostenibilidad Legal",
       "descripcion": "Protege tu empresa frente a riesgos legales con acompañamiento especializado.",
-      "imagen": "/images/seguros/empresas/sostenibilidad-legal.webp"
+      "imagen": null
     },
     {
       "id": 6,
       "titulo": "Protección Digital",
       "descripcion": "Protege la información y los sistemas de tu negocio frente a ciberataques y otros riesgos digitales.",
-      "imagen": "/images/seguros/empresas/proteccion-digital.webp"
+      "imagen": null
     },
     {
       "id": 7,
       "titulo": "Cumplimiento",
       "descripcion": "Respalda las obligaciones establecidas en tus contratos y brinda mayor seguridad y confianza a tus operaciones.",
-      "imagen": "/images/seguros/empresas/cumplimiento.webp"
+      "imagen": null
     },
     {
       "id": 8,
       "titulo": "Responsabilidad Civil Empresarial",
       "descripcion": "Protege el patrimonio de tu empresa ante daños a terceros relacionados con su actividad.",
-      "imagen": "/images/seguros/empresas/responsabilidad-civil.webp"
+      "imagen": null
     },
     {
       "id": 9,
       "titulo": "Intermediación de ARL",
       "descripcion": "Acompañamiento para que tu empresa aproveche mejor los servicios y beneficios relacionados con la ARL.",
-      "imagen": "/images/seguros/empresas/arl.webp"
+      "imagen": null
     },
     {
       "id": 10,
       "titulo": "Financiación de Autos",
       "descripcion": "Alternativas de financiación para adquirir vehículos con condiciones y beneficios para ti o tu empresa.",
-      "imagen": "/images/seguros/empresas/financiacion-autos.webp"
+      "imagen": null
     }
   ]
 }

@@ -1,15 +1,10 @@
 import {
   Box,
-  Card,
   Heading,
   Image,
   Stack,
   Text,
 } from "@chakra-ui/react";
-
-import {
-  Link,
-} from "react-router-dom";
 
 
 function TarjetaSeguro({
@@ -17,101 +12,197 @@ function TarjetaSeguro({
   descripcion,
   imagen,
 }) {
+
   return (
-    <Card.Root
-      className="whaly-card"
-      height="100%"
-      overflow="hidden"
+
+    <Box
+      role="group"
+
+      position="relative"
+
       backgroundColor="var(--whaly-white)"
+
+      borderRadius="22px"
+
+      overflow="hidden"
+
+      width="100%"
+
+      height="100%"
+
       border="none"
+
+      boxShadow="
+        0 5px 0
+        rgba(53, 30, 115, 0.14)
+      "
+
+      transition="
+        transform 0.25s ease,
+        box-shadow 0.25s ease
+      "
+
+      _hover={{
+        transform: "translateY(-4px)",
+
+        boxShadow:
+          "0 8px 18px rgba(53, 30, 115, 0.14)",
+      }}
     >
 
-      {/*IMAGEN*/}
+
+      {/* =========================
+          DETALLE SUPERIOR
+      ========================= */}
+
       <Box
-        height={{
-          base: "220px",
-          md: "250px",
-        }}
+        position="absolute"
+
+        top="0"
+
+        left="0"
+
         width="100%"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        backgroundColor="var(--whaly-white)"
-        padding="20px"
-        overflow="hidden"
-      >
-        <Image
-          src={imagen}
-          alt={`Ilustración de ${titulo}`}
+
+        height="5px"
+
+        backgroundColor="var(--whaly-mint)"
+
+        zIndex="2"
+      />
+
+
+      {/* =========================
+          IMAGEN
+      ========================= */}
+
+      {imagen && (
+
+        <Box
           width="100%"
-          height="100%"
-          objectFit="contain"
-          objectPosition="center"
-          loading="lazy"
-          decoding="async"
-        />
-      </Box>
 
+          height={{
+            base: "210px",
+            md: "230px",
+          }}
 
-      {/*CONTENIDO*/}
-      <Card.Body
-        padding={{
-          base: "24px",
-          md: "28px",
-        }}
-      >
-        <Stack
-          height="100%"
-          gap="16px"
-          align="flex-start"
+          display="flex"
+
+          alignItems="center"
+
+          justifyContent="center"
+
+          overflow="hidden"
+
+          padding={{
+            base: "20px",
+            md: "22px",
+          }}
+
+          backgroundColor="var(--whaly-white)"
         >
 
-          <Heading
-            as="h2"
-            color="var(--whaly-purple)"
-            fontSize={{
-              base: "23px",
-              md: "25px",
+          <Image
+            src={imagen}
+
+            alt={`Ilustración de ${titulo}`}
+
+            width="100%"
+
+            height="100%"
+
+            objectFit="contain"
+
+            transition="
+              transform 0.3s ease
+            "
+
+            _groupHover={{
+              transform: "scale(1.025)",
             }}
-            lineHeight="1.2"
-            fontWeight="800"
-          >
-            {titulo}
-          </Heading>
+          />
+
+        </Box>
+
+      )}
 
 
-          <Text
-            color="var(--whaly-purple)"
-            fontSize="16px"
-            lineHeight="1.65"
-          >
-            {descripcion}
-          </Text>
+      {/* =========================
+          INFORMACIÓN
+      ========================= */}
+
+      <Stack
+        gap="13px"
+
+        padding={{
+          base: "22px",
+          md: "26px",
+        }}
+
+        paddingTop={{
+          base: "20px",
+          md: "22px",
+        }}
+      >
 
 
-          <Box
-            as={Link}
-            to="/#contacto"
-            marginTop="auto"
-            paddingTop="6px"
-            color="var(--whaly-purple)"
-            fontWeight="700"
-            fontSize="15px"
-            display="inline-block"
-            transition="transform 0.2s ease"
-            _hover={{
-              transform: "translateX(5px)",
-              textDecoration: "none",
-            }}
-          >
-            Ver más →
-          </Box>
+        {/* DETALLE MINT */}
 
-        </Stack>
-      </Card.Body>
+        <Box
+          width="34px"
 
-    </Card.Root>
+          height="4px"
+
+          backgroundColor="var(--whaly-mint)"
+
+          borderRadius="20px"
+        />
+
+
+        {/* TÍTULO */}
+
+        <Heading
+          as="h3"
+
+          color="var(--whaly-purple)"
+
+          fontSize={{
+            base: "22px",
+            md: "25px",
+          }}
+
+          lineHeight="1.2"
+
+          fontWeight="800"
+        >
+          {titulo}
+        </Heading>
+
+
+        {/* DESCRIPCIÓN */}
+
+        <Text
+          color="var(--whaly-purple)"
+
+          fontSize={{
+            base: "15px",
+            md: "16px",
+          }}
+
+          lineHeight="1.65"
+
+          opacity="0.78"
+        >
+          {descripcion}
+        </Text>
+
+
+      </Stack>
+
+    </Box>
+
   );
+
 }
 
 
