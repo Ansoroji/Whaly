@@ -29,6 +29,9 @@
 }
 
 .whaly-navbar__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   margin: 0;
 
   color: var(--whaly-mint) !important;
@@ -40,6 +43,12 @@
 
   text-decoration: none;
   transition: transform var(--whaly-motion-fast);
+}
+
+.whaly-navbar__brand-mark {
+  width: 34px;
+  height: 28px;
+  object-fit: contain;
 }
 
 .whaly-navbar__brand:hover {

@@ -45,7 +45,13 @@ function Navbar() {
           to="/"
           aria-label="Whaly, inicio"
         >
-          whaly
+          <img
+            className="whaly-navbar__brand-mark"
+            src="/images/brand/whaly-mark-mint.png"
+            alt=""
+            aria-hidden="true"
+          />
+          <span>whaly</span>
         </Link>
 
         {/* BOTÓN MENÚ MÓVIL */}
